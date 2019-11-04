@@ -18,6 +18,9 @@ public class Main extends PApplet {
         surface.setTitle("Hi");
         surface.setCursor(CROSS);
 
+        // Setup an AppletSingleton
+        AppletSingleton.getInstance().setApplet(this);
+
         // Setup the python interpreter
         pi = new PythonInterpreter();
         pi.set("cool", new PyInteger(5));

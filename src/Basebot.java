@@ -1,8 +1,12 @@
+import processing.core.PApplet;
+
 public class Basebot {
     private int value;
+    private PApplet applet;
 
     public Basebot(int value) {
         this.value = value;
+        this.applet = AppletSingleton.getInstance().getApplet();
     }
 
     public int getValue() {
@@ -11,5 +15,7 @@ public class Basebot {
 
     public void setValue(int value) {
         this.value = value;
+        applet.fill(255, 0, 0);
+        applet.rect(90, 90, 100, 100);
     }
 }

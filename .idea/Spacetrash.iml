@@ -12,5 +12,7 @@
     <orderEntry type="library" name="core" level="project" />
     <orderEntry type="library" name="sound" level="project" />
     <orderEntry type="library" name="jython" level="project" />
+    <orderEntry type="library" name="core" level="project" />
+    <orderEntry type="library" name="jython" level="project" />
   </component>
 </module>
