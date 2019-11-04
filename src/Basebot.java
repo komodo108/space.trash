@@ -4,6 +4,9 @@ public class Basebot {
     private int value;
     private PApplet applet;
 
+    /**
+     * @param value
+     */
     public Basebot(int value) {
         this.value = value;
         this.applet = AppletSingleton.getInstance().getApplet();

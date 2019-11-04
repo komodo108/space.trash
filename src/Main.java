@@ -37,7 +37,7 @@ public class Main extends PApplet {
         background(0);
         fill(255);
         if(test) rect(0, 0, 100, 100);
-        else bot.draw();
+        else pi.exec("bot.draw()");
     }
 
     @Override
