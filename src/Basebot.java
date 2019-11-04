@@ -15,6 +15,9 @@ public class Basebot {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public void draw() {
         applet.fill(255, 0, 0);
         applet.rect(90, 90, 100, 100);
     }

@@ -5,6 +5,7 @@ import processing.core.PApplet;
 public class Main extends PApplet {
     private boolean test;
     private PythonInterpreter pi;
+    private Basebot bot;
 
     @Override
     public void settings() {
@@ -28,6 +29,7 @@ public class Main extends PApplet {
         pi.exec("import Basebot");
         pi.exec("bot = Basebot(4)");
         pi.exec("print(bot.getValue())");
+        bot = (Basebot) pi.get("bot").__tojava__(Basebot.class);
     }
 
     @Override
@@ -35,7 +37,7 @@ public class Main extends PApplet {
         background(0);
         fill(255);
         if(test) rect(0, 0, 100, 100);
-        else rect(100, 100, 100, 100);
+        else bot.draw();
     }
 
     @Override
@@ -43,7 +45,6 @@ public class Main extends PApplet {
         test = !test;
         pi.exec("bot.setValue(bot.getValue() + 1)");
         pi.exec("print(bot.getValue())");
-        Basebot bot = (Basebot) pi.get("bot").__tojava__(Basebot.class);
         bot.setValue(bot.getValue() + 1);
         System.out.println(bot.getValue());
     }
