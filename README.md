@@ -8,6 +8,8 @@ Consider Java program as J, and python program as P, so far we can:
     * Calling an instance of a Java class from within Python
 * J calls P function
     * Can call pure python functions from within Java
+* Can now convert between Python and Java objects
+    * Have class P in Java, instance of P in python and then get that instance in Java
 
 ### Story
 You are working in a bot factory & you come across an unusual bot which you can't work on.

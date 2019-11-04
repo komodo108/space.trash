@@ -38,7 +38,11 @@ public class Main extends PApplet {
     @Override
     public void mouseReleased() {
         test = !test;
+        pi.exec("bot.setValue(bot.getValue() + 1)");
         pi.exec("print(bot.getValue())");
+        Basebot bot = (Basebot) pi.get("bot").__tojava__(Basebot.class);
+        bot.setValue(bot.getValue() + 1);
+        System.out.println(bot.getValue());
     }
 
     @Override
