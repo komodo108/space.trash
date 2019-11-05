@@ -20,6 +20,10 @@ public class Basebot {
         this.value = value;
     }
 
+    public PApplet getApplet() {
+        return applet;
+    }
+
     public void draw() {
         applet.fill(255, 0, 0);
         applet.rect(90, 90, 100, 100);

@@ -23,14 +23,13 @@ public class Main extends PApplet {
         surface.setCursor(CROSS);
 
         // Setup panel
-        panel = new GPanel(this, 800 - 205 - 10, 10, 200, 200);
-        panel.setCollapsible(false);
+        panel = new GPanel(this, 800 - 305 - 10, 10, 330, 580);
         panel.setText("Code Window");
         panel.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
         panel.setOpaque(true);
 
         // Setup text area
-        area = new GTextArea(this, 10, 30, 175, 160, G4P.SCROLLBARS_VERTICAL_ONLY);
+        area = new GTextArea(this, 10, 30, 300, 550, G4P.SCROLLBARS_VERTICAL_ONLY);
         area.setText("# Enter Code Here.");
         area.setLocalColorScheme(GConstants.PURPLE_SCHEME);
         area.setOpaque(true);
@@ -54,7 +53,11 @@ public class Main extends PApplet {
         background(0);
         fill(255);
         if(test) rect(0, 0, 100, 100);
-        else pi.exec("bot.draw()");
+        else try {
+            pi.exec(area.getText());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
