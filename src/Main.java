@@ -1,9 +1,12 @@
+import g4p_controls.*;
 import org.python.core.PyInteger;
 import org.python.util.PythonInterpreter;
 import processing.core.PApplet;
 
 public class Main extends PApplet {
     private boolean test;
+    private GPanel panel;
+    private GTextArea area;
     private PythonInterpreter pi;
     private Basebot bot;
 
@@ -18,6 +21,20 @@ public class Main extends PApplet {
         // Setup window options
         surface.setTitle("Hi");
         surface.setCursor(CROSS);
+
+        // Setup panel
+        panel = new GPanel(this, 800 - 205 - 10, 10, 200, 200);
+        panel.setCollapsible(false);
+        panel.setText("Code Window");
+        panel.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
+        panel.setOpaque(true);
+
+        // Setup text area
+        area = new GTextArea(this, 10, 30, 175, 160, G4P.SCROLLBARS_VERTICAL_ONLY);
+        area.setText("# Enter Code Here.");
+        area.setLocalColorScheme(GConstants.PURPLE_SCHEME);
+        area.setOpaque(true);
+        panel.addControl(area);
 
         // Setup an AppletSingleton
         AppletSingleton.getInstance().setApplet(this);
@@ -43,10 +60,11 @@ public class Main extends PApplet {
     @Override
     public void mouseReleased() {
         test = !test;
-        pi.exec("bot.setValue(bot.getValue() + 1)");
-        pi.exec("print(bot.getValue())");
-        bot.setValue(bot.getValue() + 1);
-        System.out.println(bot.getValue());
+        try {
+            pi.exec(area.getText());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } System.out.println(bot.getValue());
     }
 
     @Override
