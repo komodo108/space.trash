@@ -1,3 +1,6 @@
+package bots;
+
+import main.AppletSingleton;
 import processing.core.PApplet;
 
 public class Basebot {

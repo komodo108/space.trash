@@ -1,3 +1,5 @@
+package main;
+
 import processing.core.PApplet;
 
 public class AppletSingleton {

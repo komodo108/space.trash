@@ -15,5 +15,6 @@
     <orderEntry type="library" name="core" level="project" />
     <orderEntry type="library" name="jython" level="project" />
     <orderEntry type="library" name="gui" level="project" />
+    <orderEntry type="library" name="gui" level="project" />
   </component>
 </module>
