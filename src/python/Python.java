@@ -19,6 +19,12 @@ public class Python {
         }
     }
 
+    /**
+     * Runs code from the user
+     * @param code the user-generated code
+     * @param parser a parser to catch the code against
+     * TODO: Infinite Loops stop the program from working
+     */
     public void run(String code, IParser parser) {
         try {
             String error = parser.parse(code);
