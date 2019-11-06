@@ -5,4 +5,9 @@ public class NoneParser implements IParser {
     public String parse(String code) {
         return null;
     }
+
+    @Override
+    public String change(String code) {
+        return code;
+    }
 }

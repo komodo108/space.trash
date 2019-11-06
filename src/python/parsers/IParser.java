@@ -8,4 +8,11 @@ public interface IParser {
      * @return null, or a user-readable error (e.g. "cannot use import on line 4")
      */
     String parse(String code);
+
+    /**
+     * Changes or removes lines from the input
+     * @param code the code
+     * @return the edited code
+     */
+    String change(String code);
 }

@@ -11,4 +11,12 @@ public class StandardParser implements IParser {
             linenum++;
         } return null;
     }
+
+    @Override
+    public String change(String code) {
+        String newcode = code;
+        newcode = newcode.replace("\"", "\'");
+        newcode = newcode.replace("\n", "\\n");
+        return newcode;
+    }
 }

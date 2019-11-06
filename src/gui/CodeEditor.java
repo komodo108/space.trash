@@ -12,6 +12,7 @@ import static main.Constants.*;
 public class CodeEditor {
     private GPanel panel;
     private GTextArea area;
+    private GButton go, step;
     private PApplet applet = AppletSingleton.getInstance().getApplet();
 
     public CodeEditor() {
@@ -19,7 +20,7 @@ public class CodeEditor {
         GCScheme.makeColorSchemes(applet);
         GCScheme.copyPalette(GConstants.ORANGE_SCHEME, 8);
         for(int i = 0; i < 7; i++) {
-            GCScheme.changePaletteColor(8, i, applet.color((255 * i / 7)));
+            GCScheme.changePaletteColor(8, i, applet.color((170 * i / 7)));
         } GCScheme.changePaletteColor(8, 11, applet.color(0));
 
         // Setup panel
@@ -29,14 +30,44 @@ public class CodeEditor {
         panel.setOpaque(true);
 
         // Setup text area
-        area = new GTextArea(applet, 10, 25, EDITOR_WIDTH - 20, EDITOR_HEIGHT - 35, G4P.SCROLLBARS_VERTICAL_ONLY | G4P.SCROLLBARS_AUTOHIDE);
+        area = new GTextArea(applet, 10, 25, EDITOR_WIDTH - 20, EDITOR_HEIGHT - 75, G4P.SCROLLBARS_VERTICAL_ONLY | G4P.SCROLLBARS_AUTOHIDE);
         area.setText("# Enter Code Here.");
         area.setLocalColorScheme(8);
         area.setOpaque(true);
         panel.addControl(area);
+
+        // Setup buttons
+        go = new GButton(applet, 10, EDITOR_HEIGHT - 45, EDITOR_WIDTH / 2 - 10, 40);
+        go.setText("Go");
+        go.setLocalColorScheme(GConstants.GREEN_SCHEME);
+        go.setOpaque(true);
+        panel.addControl(go);
+
+        step = new GButton(applet, EDITOR_WIDTH / 2 + 5, EDITOR_HEIGHT - 45, EDITOR_WIDTH / 2 - 10, 40);
+        step.setText("Step");
+        step.setLocalColorScheme(GConstants.BLUE_SCHEME);
+        step.setOpaque(true);
+        panel.addControl(step);
     }
 
     public String getText() {
         return area.getText();
     }
+
+    public boolean isOn() {
+        return go.getText().equals("Go");
+    }
+
+    public void setOff() {
+        go.setText("Go");
+        go.setLocalColorScheme(GConstants.GREEN_SCHEME);
+        step.setEnabled(true);
+    }
+
+    public void setOn() {
+        go.setText("Stop");
+        go.setLocalColorScheme(GConstants.RED_SCHEME);
+        step.setEnabled(false);
+    }
+
 }

@@ -3,13 +3,11 @@ package bots;
 import main.AppletSingleton;
 import processing.core.PApplet;
 
+// TODO: This should be an actual bot, not just a wrapped value & applet
 public class Basebot {
     private int value;
     private PApplet applet;
 
-    /**
-     * @param value
-     */
     public Basebot(int value) {
         this.value = value;
         this.applet = AppletSingleton.getInstance().getApplet();
