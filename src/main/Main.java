@@ -2,9 +2,9 @@ package main;
 
 import bots.Basebot;
 import g4p_controls.GButton;
-import g4p_controls.GEditableTextControl;
 import g4p_controls.GEvent;
 import gui.CodeEditor;
+import gui.Console;
 import processing.core.PApplet;
 import python.Python;
 import python.parsers.Parsers;
@@ -16,6 +16,7 @@ public class Main extends PApplet {
     private Parsers parsers;
     private Python py;
     private CodeEditor editor;
+    private Console console;
     private Basebot bot;
 
     @Override
@@ -35,7 +36,8 @@ public class Main extends PApplet {
 
         // Setup components
         editor = new CodeEditor();
-        py = new Python();
+        console = new Console();
+        py = new Python(console); // TODO: The 'print' function should be replaced with a print to console.
         parsers = new Parsers();
 
         // Setup the python interpreter
@@ -58,22 +60,19 @@ public class Main extends PApplet {
         if(!py.isRunning() && !editor.isOn()) editor.setOff();
     }
 
-    public void handleTextEvents(GEditableTextControl textControl, GEvent event) {
-        py.setup(editor.getText(), parsers.get("standard"));
-    }
-
     public void handleButtonEvents(GButton button, GEvent event) {
         switch (button.getText()) {
             case "Go":
-                editor.setOn();
-                py.start();
-                break;
+                if(py.setup(editor.getText(), parsers.get("standard"))) {
+                    editor.setOn();
+                    py.start();
+                } break;
             case "Stop":
                 editor.setOff();
                 py.stop();
                 break;
             case "Step":
-                py.step();
+                if(py.setup(editor.getText(), parsers.get("standard"))) py.step();
                 break;
         }
     }

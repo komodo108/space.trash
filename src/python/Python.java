@@ -21,7 +21,8 @@ public class Python {
     private boolean running;
     private int stepper;
 
-    public Python() {
+    public Python(Console console) {
+        this.console = console;
         try {
             py = new PythonInterpreter();
         } catch (Exception e) {
@@ -53,14 +54,19 @@ public class Python {
      * Setup a user generated code piece to be ran
      * @param code the code piece
      * @param parser the parser
+     * @return whether or not the code can be run
      */
-    public void setup(String code, IParser parser) {
+    public boolean setup(String code, IParser parser) {
         String run = parser.change(code);
         String error = parser.parse(run);
         if(error == null) {
             setup = "pdb.run(\"" + run + "\")";
             stepper = 0;
-        } else error(error);
+            return true;
+        } else {
+            error(error);
+            return false;
+        }
     }
 
     public boolean isRunning() {
