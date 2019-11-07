@@ -2,6 +2,7 @@ package main;
 
 import bots.Basebot;
 import g4p_controls.GButton;
+import g4p_controls.GEditableTextControl;
 import g4p_controls.GEvent;
 import gui.CodeEditor;
 import processing.core.PApplet;
@@ -57,8 +58,11 @@ public class Main extends PApplet {
         if(!py.isRunning() && !editor.isOn()) editor.setOff();
     }
 
-    public void handleButtonEvents(GButton button, GEvent event) {
+    public void handleTextEvents(GEditableTextControl textControl, GEvent event) {
         py.setup(editor.getText(), parsers.get("standard"));
+    }
+
+    public void handleButtonEvents(GButton button, GEvent event) {
         switch (button.getText()) {
             case "Go":
                 editor.setOn();

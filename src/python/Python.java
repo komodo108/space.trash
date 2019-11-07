@@ -1,5 +1,6 @@
 package python;
 
+import gui.Console;
 import org.python.core.PyObject;
 import org.python.util.PythonInterpreter;
 import python.parsers.IParser;
@@ -7,16 +8,18 @@ import python.parsers.IParser;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 
 /**
  * Safe access to a sandboxed python interpreter
  */
 public class Python {
     private PythonInterpreter py;
+    private Console console;
     private String setup;
     private InputStream is;
     private boolean running;
-    //private CodeConsole console;
+    private int stepper;
 
     public Python() {
         try {
@@ -56,6 +59,7 @@ public class Python {
         String error = parser.parse(run);
         if(error == null) {
             setup = "pdb.run(\"" + run + "\")";
+            stepper = 0;
         } else error(error);
     }
 
@@ -67,7 +71,9 @@ public class Python {
      * Start the current script running
      */
     public void start() {
-        running = true;
+        if(setup != null) {
+            running = true;
+        }
     }
 
     /**
@@ -76,12 +82,8 @@ public class Python {
     public void step() {
         if(setup != null) {
             try {
-                /* TODO: This seems to be better in terms of interactivity than the other approach but still has issues:
-                        * PDB runs within python, which we can't do anything with while it is running, so we must prepare the input stream before we run the python
-                        * Can't just input go to the next line, as it may not exist or be more lines
-                        * We need to change the number of ns as we go
-                 */
-                InputStream is = new ByteArrayInputStream("n\n".getBytes(StandardCharsets.UTF_8));
+                // Possible FIXME: May be too slow?? We'll see
+                InputStream is = new ByteArrayInputStream((String.join("", Collections.nCopies(++stepper, "n\n")) + "q\n").getBytes(StandardCharsets.UTF_8));
                 py.setIn(is);
                 py.exec(setup);
             } catch (Exception e) { error(e.toString()); }
@@ -93,12 +95,7 @@ public class Python {
      */
     public void stop() {
         if(setup != null) {
-            try {
-                InputStream is = new ByteArrayInputStream("q\n".getBytes(StandardCharsets.UTF_8));
-                py.setIn(is);
-                py.exec(setup);
-                running = false;
-            } catch (Exception e) { error(e.toString()); }
+            running = false;
         }
     }
 
@@ -110,6 +107,7 @@ public class Python {
         // TODO: This should be a console!!
         setup = null;
         running = false;
+        stepper = 0;
         System.err.println("ERROR: " + error);
     }
 

@@ -7,7 +7,11 @@ public class StandardParser implements IParser {
         int linenum = 0;
 
         for(String line : lines) {
-            if(line.contains("import")) return "Cannot use import statement on line " + linenum;
+            line = line.toLowerCase();
+            if(line.contains("import")) return "Import statement on line " + linenum + " is not allowed.";
+            else if(line.contains("pdb")) return "Use of 'pdb' on line " + linenum + " is forbidden.";
+            else if(line.contains("open")) return "Cannot use 'open' on line " + linenum + ",";
+            else if(line.contains("raw_input")) return "Input is not allowed on line " + linenum + ".";
             linenum++;
         } return null;
     }
