@@ -41,9 +41,9 @@ public class Main extends PApplet {
         parsers = new Parsers();
 
         // Setup the python interpreter
-        py.runLine("from java.lang import System", parsers.get("none"));
         py.runLine("import pdb", parsers.get("none"));
         py.runLine("import bots.Basebot", parsers.get("none"));
+        py.set("console", console);
         py.runLine("bot = bots.Basebot(4)", parsers.get("none"));
         py.runLine("print(bot.getValue())", parsers.get("none"));
         bot = (Basebot) py.get("bot").__tojava__(Basebot.class);

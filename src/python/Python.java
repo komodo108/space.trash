@@ -89,6 +89,7 @@ public class Python {
         if(setup != null) {
             try {
                 // Possible FIXME: May be too slow?? We'll see
+                // Also TODO: Allow python code to stop running
                 InputStream is = new ByteArrayInputStream((String.join("", Collections.nCopies(++stepper, "n\n")) + "q\n").getBytes(StandardCharsets.UTF_8));
                 py.setIn(is);
                 py.exec(setup);
@@ -110,11 +111,10 @@ public class Python {
      * @param error an error
      */
     public void error(String error) {
-        // TODO: This should be a console!!
         setup = null;
         running = false;
         stepper = 0;
-        System.err.println("ERROR: " + error);
+        console.error(error);
     }
 
     /**
@@ -127,6 +127,12 @@ public class Python {
             return py.get(variable);
         } catch (Exception e) { error(e.toString()); }
         return null;
+    }
+
+    public void set(String variable, Object value) {
+        try {
+            py.set(variable, value);
+        } catch (Exception e) { error(e.toString()); }
     }
 
 }

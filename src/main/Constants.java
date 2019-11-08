@@ -13,6 +13,8 @@ public final class Constants {
     // GUI constants
     public static final int EDITOR_WIDTH = WIDTH / 3;
     public static final int EDITOR_HEIGHT = HEIGHT - 100;
+    public static final int CONSOLE_WIDTH = EDITOR_WIDTH * 2;
+    public static final int CONSOLE_HEIGHT = EDITOR_HEIGHT / 3;
 
     // Bot parameters
 

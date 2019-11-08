@@ -11,6 +11,7 @@ public class StandardParser implements IParser {
             line = line.toLowerCase();
             if(line.contains("import")) return "Import on line " + linenum + " is not allowed.";
             if(line.contains("pdb")) return "Use of 'pdb' on line " + linenum + " is forbidden.";
+            if(line.contains("badconsole")) return "Use of 'console' is not allowed on line " + linenum + ".";
             if(line.contains("file")) return "Cannot use 'file' on line " + linenum + ",";
             if(line.contains("open")) return "Cannot use 'open' on line " + linenum + ",";
             if(line.contains("input")) return "Input is not allowed on line " + linenum + ".";
@@ -25,7 +26,10 @@ public class StandardParser implements IParser {
         String newcode = code;
         newcode = newcode.replace("\"", "\'");
         newcode = newcode.replace("\n", "\\n");
-        // TODO: Replace calls to print() and help()
+
+        newcode = newcode.toLowerCase().replace("console", "badconsole");
+        newcode = newcode.toLowerCase().replace("print(", "console.print(");
+        newcode = newcode.toLowerCase().replace("help()", "console.help()");
         return newcode;
     }
 }
