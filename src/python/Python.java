@@ -88,8 +88,7 @@ public class Python {
     public void step() {
         if(setup != null) {
             try {
-                // Possible FIXME: May be too slow?? We'll see
-                // Also TODO: Allow python code to stop running
+                // TODO: Replace this
                 InputStream is = new ByteArrayInputStream((String.join("", Collections.nCopies(++stepper, "n\n")) + "q\n").getBytes(StandardCharsets.UTF_8));
                 py.setIn(is);
                 py.exec(setup);
