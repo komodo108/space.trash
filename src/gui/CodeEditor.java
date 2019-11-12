@@ -16,6 +16,7 @@ public class CodeEditor {
     private PApplet applet = AppletSingleton.getInstance().getApplet();
 
     public CodeEditor() {
+        // TODO: Combine this with the console?
         // Setup new colour theme
         GCScheme.makeColorSchemes(applet);
         GCScheme.copyPalette(GConstants.ORANGE_SCHEME, 8);

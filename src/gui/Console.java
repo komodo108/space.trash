@@ -29,6 +29,7 @@ public class Console {
     }
 
     public void error(String message) {
+        // TODO: Color this
         area.appendText("ERR> " + message + "\n");
     }
 

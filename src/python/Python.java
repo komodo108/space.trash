@@ -17,7 +17,6 @@ public class Python {
     private PythonInterpreter py;
     private Console console;
     private String setup;
-    private InputStream is;
     private boolean running;
     private int stepper;
 

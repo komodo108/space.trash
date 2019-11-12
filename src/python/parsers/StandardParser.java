@@ -1,6 +1,6 @@
 package python.parsers;
 
-public class StandardParser implements IParser {
+public class StandardParser extends AParser implements IParser {
     @Override
     public String parse(String code) {
         code = code.replace("\\n", "\n");
@@ -27,9 +27,9 @@ public class StandardParser implements IParser {
         newcode = newcode.replace("\"", "\'");
         newcode = newcode.replace("\n", "\\n");
 
-        newcode = newcode.toLowerCase().replace("console", "badconsole");
-        newcode = newcode.toLowerCase().replace("print(", "console.print(");
-        newcode = newcode.toLowerCase().replace("help()", "console.help()");
+        newcode = newcode.replaceAll(genRegex("console"), "badconsole");
+        newcode = newcode.replaceAll(genRegex("print("), "console.print(");
+        newcode = newcode.replaceAll(genRegex("help()"), "console.help()");
         return newcode;
     }
 }

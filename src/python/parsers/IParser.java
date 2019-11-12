@@ -15,4 +15,11 @@ public interface IParser {
      * @return the edited code
      */
     String change(String code);
+
+    /**
+     * Generate regex matching all variations of a given word (e.g. "con" -> "cOn", "CoN")
+     * @param word a string
+     * @return regex which matches all variations of it
+     */
+    String genRegex(String word);
 }

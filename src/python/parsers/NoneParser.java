@@ -1,6 +1,6 @@
 package python.parsers;
 
-public class NoneParser implements IParser {
+public class NoneParser extends AParser implements IParser {
     @Override
     public String parse(String code) {
         return null;
