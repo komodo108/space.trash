@@ -37,7 +37,7 @@ public class Main extends PApplet {
         // Setup components
         editor = new CodeEditor();
         console = new Console();
-        py = new Python(console); // TODO: The 'print' function should be replaced with a print to console.
+        py = new Python(console);
         parsers = new Parsers();
 
         // Setup the python interpreter
@@ -63,16 +63,15 @@ public class Main extends PApplet {
     public void handleButtonEvents(GButton button, GEvent event) {
         switch (button.getText()) {
             case "Go":
-                if(py.setup(editor.getText(), parsers.get("standard"))) {
-                    editor.setOn();
-                    py.start();
-                } break;
+                editor.setOn();
+                py.run(editor.getText(), parsers.get("standard"));
+                break;
             case "Stop":
                 editor.setOff();
-                py.stop();
+                py.setRunning(false);
                 break;
             case "Step":
-                if(py.setup(editor.getText(), parsers.get("standard"))) py.step();
+                py.step();
                 break;
         }
     }
@@ -84,7 +83,5 @@ public class Main extends PApplet {
     }
 
     @Override
-    public void keyReleased() {
-
-    }
+    public void keyReleased() { }
 }

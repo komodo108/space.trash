@@ -21,11 +21,18 @@ public class StandardParser extends AParser implements IParser {
         } return null;
     }
 
+    /**
+     * Change the code to perform with our execution
+     * For this instance, we need to change " to ', and replace all \n with \\n so pdb won't complain
+     * Then we need to remove all instances of console, replace print and help with calls to console.whatever
+     * @param code the code
+     * @return changed code
+     */
     @Override
     public String change(String code) {
         String newcode = code;
         newcode = newcode.replace("\"", "\'");
-        newcode = newcode.replace("\n", "\\n");
+        //newcode = newcode.replace("\n", "\\n");
 
         newcode = newcode.replaceAll(genRegex("console"), "badconsole");
         newcode = newcode.replaceAll(genRegex("print("), "console.print(");
