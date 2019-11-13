@@ -13,7 +13,7 @@ public class Python {
     private Console console;
     private PythonThread thread;
     private int step;
-    private boolean running;
+    boolean running;
 
     /**
      * Multi-threaded python
@@ -39,28 +39,46 @@ public class Python {
         } catch (Exception e) { error(e.getMessage()); }
     }
 
+    /**
+     * Returns if we are running
+     * @return if we are running
+     */
     public boolean isRunning() {
         return running;
     }
 
     /**
-     * Set if we should run or stop
+     * Setup a new thread to run user-code
+     * @param code user generated code
+     * @param parser a parser, which we will parse the user code with
      */
-    public void setRunning(boolean running) {
-        this.running = running;
-    }
-
-    /**
-     * Runs the script
-     */
-    public void run(String code, IParser parser) {
+    public void setup(String code, IParser parser) {
         String run = parser.change(code);
         String error = parser.parse(run);
         if(error == null) {
-            thread = new PythonThread(py, run);
-            thread.start();
+            thread = new PythonThread(this, py, run);
         } else {
             error(error);
+        }
+    }
+
+    /**
+     * Start running the code
+     */
+    public void start() {
+        if(thread != null) {
+            thread.start();
+            running = true;
+        }
+    }
+
+    /**
+     * Stop running the code
+     */
+    public void stop() {
+        if(thread != null) {
+            thread.interrupt();
+            running = false;
         }
     }
 
@@ -68,7 +86,7 @@ public class Python {
      * Step through a single line of the code
      */
     public void step() {
-        // TODO: This
+        // TODO: Allow for stepping
     }
 
     /**

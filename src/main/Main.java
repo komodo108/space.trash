@@ -64,11 +64,12 @@ public class Main extends PApplet {
         switch (button.getText()) {
             case "Go":
                 editor.setOn();
-                py.run(editor.getText(), parsers.get("standard"));
+                py.setup(editor.getText(), parsers.get("standard"));
+                py.start();
                 break;
             case "Stop":
                 editor.setOff();
-                py.setRunning(false);
+                py.stop();
                 break;
             case "Step":
                 py.step();
