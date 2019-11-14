@@ -56,7 +56,7 @@ public class Python {
         String run = parser.change(code);
         String error = parser.parse(run);
         if(error == null) {
-            thread = new PythonThread(this, py, run);
+            thread = new PythonThread(this, run);
         } else {
             error(error);
         }

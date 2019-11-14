@@ -5,8 +5,10 @@ import g4p_controls.GButton;
 import g4p_controls.GEvent;
 import gui.CodeEditor;
 import gui.Console;
+import org.python.core.Py;
 import processing.core.PApplet;
 import python.Python;
+import python.PythonTraceFunction;
 import python.parsers.Parsers;
 
 import static main.Constants.*;
