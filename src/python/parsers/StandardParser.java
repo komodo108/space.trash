@@ -35,7 +35,7 @@ public class StandardParser extends AParser implements IParser {
         //newcode = newcode.replace("\n", "\\n");
 
         newcode = newcode.replaceAll(genRegex("console"), "badconsole");
-        //newcode = newcode.replaceAll(genRegex("print("), "console.print(");
+        newcode = newcode.replaceAll(genRegex("print("), "console.print(");
         newcode = newcode.replaceAll(genRegex("help()"), "console.help()");
         return newcode;
     }
