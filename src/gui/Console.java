@@ -7,6 +7,8 @@ import g4p_controls.GTextArea;
 import main.AppletSingleton;
 import processing.core.PApplet;
 
+import java.awt.*;
+
 import static main.Constants.*;
 
 public class Console {
@@ -23,19 +25,21 @@ public class Console {
         area = new GTextArea(applet, 10, 25, CONSOLE_WIDTH - 20, CONSOLE_HEIGHT - 35, G4P.SCROLLBARS_VERTICAL_ONLY | G4P.SCROLLBARS_AUTOHIDE);
         area.setOpaque(true);
         area.setLocalColorScheme(GConstants.PURPLE_SCHEME);
-        area.setText("SinglePython 2.7 for " + NAME + ".\n");
+        area.setText("Python 2.7 for " + NAME + ".\n");
         area.setTextEditEnabled(false);
         panel.addControl(area);
     }
 
     public void error(String message) {
-        // TODO: Color this
-        area.appendText("ERR> " + message + "\n");
+        // FIXME
+        area.appendText("ERROR > " + message + "\n");
+        area.addStyle(G4P.FOREGROUND, new Color(255, 0, 0), area.getText().split("\n").length - 1, 0, 100);
     }
 
     public void print(String message) {
-        // FIXME: Possible CME
+        // FIXME: Possible Concurrent modification exceptions here and elsewhere
         area.appendText("> " + message + "\n");
+        area.addStyle(G4P.FOREGROUND, new Color(0, 0, 0), area.getText().split("\n").length - 1, 0, 100);
     }
 
     public void help() {
