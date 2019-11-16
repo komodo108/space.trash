@@ -1,2 +1,2 @@
-@ParserAnnotation(implementations = {NoneParser.class, StandardParser.class})
+@ParserAnnotation(implementations = {StandardParser.class})
 package python.parsers;

@@ -3,20 +3,25 @@ package python.parsers;
 public class StandardParser extends AParser implements IParser {
     @Override
     public String parse(String code) {
-        code = code.replace("\\n", "\n");
         String[] lines = code.split("\n");
         int linenum = 0;
 
         for(String line : lines) {
             line = line.toLowerCase();
+
+            // Disable things from builtins
             if(line.contains("import")) return "Import on line " + linenum + " is not allowed.";
-            if(line.contains("pdb")) return "Use of 'pdb' on line " + linenum + " is forbidden.";
-            if(line.contains("badconsole")) return "Use of 'console' is not allowed on line " + linenum + ".";
-            if(line.contains("file")) return "Cannot use 'file' on line " + linenum + ",";
-            if(line.contains("open")) return "Cannot use 'open' on line " + linenum + ",";
+            if(line.contains("file")) return "Cannot use 'file' on line " + linenum + ".";
+            if(line.contains("open")) return "Cannot use 'open' on line " + linenum + ".";
             if(line.contains("input")) return "Input is not allowed on line " + linenum + ".";
             if(line.contains("breakpoint")) return "Breakpoints are forbidden on line " + linenum + ".";
             if(line.contains("exec")) return "The use of 'exec' is forbidden on line " + linenum + ".";
+
+            // Disable access to set variables
+            if(line.contains("badconsole")) return "Use of 'console' is not allowed on line " + linenum + ".";
+            if(line.contains("py.") || line.contains("py ")) return "Cannot refer to 'Py' on line " + linenum + ".";
+            if(line.contains("python.PythonTraceFunction")) return "Use of 'python.PythonTraceFunction' is not allowed on line " + linenum + ".";
+            if(line.contains("ptf")) return "Illegal use of 'ptf' on line " + linenum + ".";
             linenum++;
         } return null;
     }
@@ -32,7 +37,6 @@ public class StandardParser extends AParser implements IParser {
     public String change(String code) {
         String newcode = code;
         newcode = newcode.replace("\"", "\'");
-        //newcode = newcode.replace("\n", "\\n");
 
         newcode = newcode.replaceAll(genRegex("console"), "badconsole");
         newcode = newcode.replaceAll(genRegex("print("), "console.print(");

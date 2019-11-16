@@ -34,6 +34,7 @@ public class Console {
     }
 
     public void print(String message) {
+        // FIXME: Possible CME
         area.appendText("> " + message + "\n");
     }
 

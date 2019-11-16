@@ -18,12 +18,14 @@ public class PythonTraceFunction extends TraceFunction {
 
     @Override
     public TraceFunction traceCall(PyFrame pyFrame) {
+        sleep(10);
         if(python.abort) throw new PythonStopException();
         return this;
     }
 
     @Override
     public TraceFunction traceReturn(PyFrame pyFrame, PyObject pyObject) {
+        sleep(10);
         if(python.abort) throw new PythonStopException();
         return this;
     }
@@ -37,6 +39,7 @@ public class PythonTraceFunction extends TraceFunction {
 
     @Override
     public TraceFunction traceException(PyFrame pyFrame, PyException e) {
+        sleep(10);
         if(python.abort) throw new PythonStopException();
         return this;
     }
