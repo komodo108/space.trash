@@ -9,15 +9,16 @@ import python.parsers.IParser;
  */
 public class Python {
     Console console;
-    // TODO: Bots
-    private PythonThread thread; // TODO: We need to avoid concurrent modifications, interrupting the thread doesn't stop it.
+    Basebot bot;
+    private PythonThread thread;
     private int step;
-    boolean running;
+    boolean running, abort;
 
     /**
      * Multi-threaded python
      */
     public Python(Basebot bot, Console console) {
+        this.bot = bot;
         this.console = console;
     }
 
@@ -39,6 +40,7 @@ public class Python {
         String error = parser.parse(run);
         if(error == null) {
             thread = new PythonThread(this, run);
+            thread.setBot(bot);
         } else {
             error(error);
         }
@@ -59,7 +61,7 @@ public class Python {
      */
     public void stop() {
         if(thread != null) {
-            thread.interrupt();
+            abort = true;
             running = false;
         }
     }
@@ -68,7 +70,7 @@ public class Python {
      * Step through a single line of the code
      */
     public void step() {
-        // TODO: Allow for stepping
+        // TODO: Remove stepping
     }
 
     /**
@@ -77,6 +79,7 @@ public class Python {
      */
     private void error(String error) {
         running = false;
+        abort = false;
         step = 0;
         console.error(error);
     }

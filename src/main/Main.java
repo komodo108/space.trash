@@ -37,6 +37,7 @@ public class Main extends PApplet {
         // Setup components
         editor = new CodeEditor();
         console = new Console();
+        bot = new Basebot(4);
         py = new Python(bot, console);
         parsers = new Parsers();
     }

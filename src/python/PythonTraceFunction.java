@@ -6,29 +6,38 @@ import org.python.core.PyObject;
 import org.python.core.TraceFunction;
 
 public class PythonTraceFunction extends TraceFunction {
-    // TODO: Update the thread so we can be interrupted without breaking the JVM
+    private Python python;
+
+    /**
+     * The trace function for multi-threaded execution
+     * @param python a python manager
+     */
+    PythonTraceFunction(Python python) {
+        this.python = python;
+    }
+
     @Override
     public TraceFunction traceCall(PyFrame pyFrame) {
-        sleep(100);
+        if(python.abort) throw new PythonStopException();
         return this;
     }
 
     @Override
     public TraceFunction traceReturn(PyFrame pyFrame, PyObject pyObject) {
-        sleep(100);
+        if(python.abort) throw new PythonStopException();
         return this;
     }
 
     @Override
     public TraceFunction traceLine(PyFrame pyFrame, int i) {
-        sleep(100);
-        // Throw exception if abort flag is set
+        sleep(50);
+        if(python.abort) throw new PythonStopException();
         return this;
     }
 
     @Override
     public TraceFunction traceException(PyFrame pyFrame, PyException e) {
-        sleep(100);
+        if(python.abort) throw new PythonStopException();
         return this;
     }
 
