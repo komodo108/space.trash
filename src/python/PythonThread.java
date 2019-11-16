@@ -50,7 +50,7 @@ public class PythonThread extends Thread {
     public void run() {
         try {
             setup();
-            py.exec(code);
+            py.exec(code); // TODO: Allowed calls in here must be synchronized!
             abort();
         } catch (Exception e) {
             abort();

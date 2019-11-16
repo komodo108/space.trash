@@ -16,6 +16,18 @@ public class PythonTraceFunction extends TraceFunction {
         this.python = python;
     }
 
+    /*
+        Thank you @tkohn for explaining how to kill the thread without killing Python executions!
+        https://bugs.jython.org/issue2530 <3
+
+        As they explain, instead of using Thread.interrupt(), we use this Trace Function to see if
+        an abort flag has been set. If the flag is set, then we throw an Exception to kill Python,
+        catch the Exception within the thread and then the thread will stop itself.
+
+        Also note, that working on complex interactions with Jython is non-trivial.
+        Hope you enjoy reading old documentation :^).
+     */
+
     @Override
     public TraceFunction traceCall(PyFrame pyFrame) {
         sleep(10);
