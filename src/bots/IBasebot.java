@@ -5,11 +5,15 @@ import python.middleware.ActionString;
 import python.middleware.Actions;
 import python.middleware.PythonImplementation;
 
-public class IBasebot implements PythonImplementation {
-    int value;
+import static main.Constants.KEY;
 
-    IBasebot(int value) {
+public class IBasebot implements PythonImplementation {
+    private int value;
+    private ActionQueue queue;
+
+    public IBasebot(int value) {
         this.value = value;
+        this.queue = new ActionQueue();
     }
 
     public int getValue() {
@@ -17,11 +21,18 @@ public class IBasebot implements PythonImplementation {
     }
 
     public void setValue(int value) {
-        this.value = value;
         queue.add(new ActionString(value + "", Actions.PUT));
     }
 
-    ActionQueue getQueue() {
-        return queue;
+    public void setValue(int value, String key) {
+        if(key.equals(KEY)) {
+            this.value = value;
+        }
+    }
+
+    public ActionQueue getQueue(String key) {
+        if(key.equals(KEY)) {
+            return queue;
+        } else return null;
     }
 }

@@ -5,6 +5,9 @@ package main;
  */
 public final class Constants {
 
+    // Important constants
+    public static final String KEY = "import";
+
     // Window constants
     public static final String NAME = "./Space.trash";
     public static final int WIDTH = 800;

@@ -61,6 +61,7 @@ public class Python {
         if(thread != null) {
             abort = true;
             running = false;
+            // TODO: May want to reset things here?
         }
     }
 

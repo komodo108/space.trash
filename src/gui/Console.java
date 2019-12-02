@@ -23,7 +23,6 @@ public class Console implements PythonInteractable {
 
     public Console() {
         implementation = new IConsole();
-
         panel = new GPanel(applet, 0, 0, CONSOLE_WIDTH, CONSOLE_HEIGHT);
         panel.setOpaque(true);
         panel.setLocalColorScheme(GConstants.PURPLE_SCHEME);
@@ -39,14 +38,16 @@ public class Console implements PythonInteractable {
 
     @Override
     public void update() {
-        ActionQueue queue = implementation.getQueue();
+        ActionQueue queue = implementation.getQueue(KEY);
         while(queue.peek() != null) {
             ActionString as = queue.remove();
             switch (as.action) {
                 case ERROR:
+                    area.appendText(as.message);
                     area.addStyle(G4P.FOREGROUND, Color.RED, area.getText().split("\n").length - 1, 0, 255);
                     break;
                 case PRINT: case HELP:
+                    area.appendText(as.message);
                     area.addStyle(G4P.FOREGROUND, Color.BLACK, area.getText().split("\n").length - 1, 0, 255);
                     break;
             }

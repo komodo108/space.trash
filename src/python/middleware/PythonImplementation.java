@@ -1,5 +1,5 @@
 package python.middleware;
 
 public interface PythonImplementation {
-    ActionQueue queue = new ActionQueue();
+    ActionQueue getQueue(String key);
 }

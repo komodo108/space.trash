@@ -5,7 +5,15 @@ import python.middleware.ActionString;
 import python.middleware.Actions;
 import python.middleware.PythonImplementation;
 
-class IConsole implements PythonImplementation {
+import static main.Constants.KEY;
+
+public class IConsole implements PythonImplementation {
+    private ActionQueue queue;
+
+    public IConsole() {
+        this.queue = new ActionQueue();
+    }
+
     public void error(String message) {
         message = "ERROR > " + message + "\n";
         for(String line : message.split("\n")) {
@@ -27,7 +35,10 @@ class IConsole implements PythonImplementation {
         }
     }
 
-    ActionQueue getQueue() {
-        return queue;
+    @Override
+    public ActionQueue getQueue(String key) {
+        if(key.equals(KEY)) {
+            return queue;
+        } else return null;
     }
 }
