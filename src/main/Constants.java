@@ -6,6 +6,9 @@ package main;
 public final class Constants {
 
     // Important constants
+    /**
+     * This string should be one which a user isn't allowed to type in with ANY of the parsers
+     */
     public static final String KEY = "import";
 
     // Window constants
