@@ -12,7 +12,7 @@ import static main.Constants.*;
 public class CodeEditor {
     private GPanel panel;
     private GTextArea area;
-    private GButton go, step;
+    private GButton go;
     private PApplet applet = AppletSingleton.getInstance().getApplet();
 
     public CodeEditor() {
@@ -38,17 +38,11 @@ public class CodeEditor {
         panel.addControl(area);
 
         // Setup buttons
-        go = new GButton(applet, 10, EDITOR_HEIGHT - 45, EDITOR_WIDTH / 2 - 10, 40);
+        go = new GButton(applet, 10, EDITOR_HEIGHT - 45, EDITOR_WIDTH - 20, 40);
         go.setText("Go");
         go.setLocalColorScheme(GConstants.GREEN_SCHEME);
         go.setOpaque(true);
         panel.addControl(go);
-
-        step = new GButton(applet, EDITOR_WIDTH / 2 + 5, EDITOR_HEIGHT - 45, EDITOR_WIDTH / 2 - 10, 40);
-        step.setText("Step");
-        step.setLocalColorScheme(GConstants.BLUE_SCHEME);
-        step.setOpaque(true);
-        panel.addControl(step);
     }
 
     public String getText() {
@@ -62,13 +56,11 @@ public class CodeEditor {
     public void setOff() {
         go.setText("Go");
         go.setLocalColorScheme(GConstants.GREEN_SCHEME);
-        step.setEnabled(true);
     }
 
     public void setOn() {
         go.setText("Stop");
         go.setLocalColorScheme(GConstants.RED_SCHEME);
-        step.setEnabled(false);
     }
 
 }

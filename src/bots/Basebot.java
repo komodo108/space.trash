@@ -4,6 +4,7 @@ import main.AppletSingleton;
 import processing.core.PApplet;
 
 // TODO: This should be an actual bot, not just a wrapped value & applet
+// TODO: The bot is discoupled from the actual python, so have a queue of actions like in Console
 public class Basebot {
     private int value;
     private PApplet applet;

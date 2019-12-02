@@ -49,7 +49,7 @@ public class Main extends PApplet {
         if(test) rect(0, 0, 100, 100);
         else rect(100, 100, 100, 100);
 
-        //if(py.isRunning()) py.step();
+        console.update();
         if(!py.isRunning() && !editor.isOn()) editor.setOff();
     }
 
@@ -63,9 +63,6 @@ public class Main extends PApplet {
             case "Stop":
                 editor.setOff();
                 py.stop();
-                break;
-            case "Step":
-                py.step();
                 break;
         }
     }

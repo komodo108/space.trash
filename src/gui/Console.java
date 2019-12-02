@@ -8,13 +8,30 @@ import main.AppletSingleton;
 import processing.core.PApplet;
 
 import java.awt.*;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import static main.Constants.*;
 
 public class Console {
+    private static class ColorString {
+        enum Types {
+            PRINT, ERROR
+        }
+
+        public String message;
+        public Types type;
+
+        ColorString(String message, Types type) {
+            this.message = message;
+            this.type = type;
+        }
+    }
+
     private GPanel panel;
     private GTextArea area;
     private PApplet applet = AppletSingleton.getInstance().getApplet();
+    private Queue<ColorString> actions = new ConcurrentLinkedQueue<>();
 
     public Console() {
         panel = new GPanel(applet, 0, 0, CONSOLE_WIDTH, CONSOLE_HEIGHT);
@@ -30,19 +47,40 @@ public class Console {
         panel.addControl(area);
     }
 
+    public void update() {
+        while(actions.peek() != null) {
+            ColorString cs = actions.remove();
+            area.appendText(cs.message);
+            switch (cs.type) {
+                case ERROR:
+                    area.addStyle(G4P.FOREGROUND, Color.RED, area.getText().split("\n").length - 1, 0, 255);
+                    break;
+                default:
+                    area.addStyle(G4P.FOREGROUND, Color.BLACK, area.getText().split("\n").length - 1, 0, 255);
+                    break;
+            }
+        }
+    }
+
     public void error(String message) {
-        // FIXME
-        area.appendText("ERROR > " + message + "\n");
-        area.addStyle(G4P.FOREGROUND, new Color(255, 0, 0), area.getText().split("\n").length - 1, 0, 100);
+        message = "ERROR > " + message + "\n";
+        for(String line : message.split("\n")) {
+            actions.add(new ColorString(line, ColorString.Types.ERROR));
+        }
     }
 
     public void print(String message) {
         // FIXME: Possible Concurrent modification exceptions here and elsewhere
-        area.appendText("> " + message + "\n");
-        area.addStyle(G4P.FOREGROUND, new Color(0, 0, 0), area.getText().split("\n").length - 1, 0, 100);
+        message = "> " + message + "\n";
+        for(String line : message.split("\n")) {
+            actions.add(new ColorString(line, ColorString.Types.PRINT));
+        }
     }
 
     public void help() {
-        area.appendText("Help is available from http://help.net/" + "\n");
+        String message = "Help is available from http://help.net/" + "\n";
+        for(String line : message.split("\n")) {
+            actions.add(new ColorString(line, ColorString.Types.PRINT));
+        }
     }
 }

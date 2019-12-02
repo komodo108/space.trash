@@ -67,13 +67,6 @@ public class Python {
     }
 
     /**
-     * Step through a single line of the code
-     */
-    public void step() {
-        // TODO: Remove stepping
-    }
-
-    /**
      * Output an error to the user
      * @param error an error
      */
