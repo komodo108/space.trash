@@ -1,6 +1,5 @@
-package python;
+package python.main;
 
-import bots.Basebot;
 import org.python.util.PythonInterpreter;
 
 public class PythonThread extends Thread {
@@ -8,9 +7,6 @@ public class PythonThread extends Thread {
     private String code;
     private PythonTraceFunction ptf;
     private PythonInterpreter py;
-
-    // Assets
-    private Basebot bot;
 
     /**
      * A thread running some Python
@@ -27,15 +23,11 @@ public class PythonThread extends Thread {
      */
     private void setup() {
         py.exec("from org.python.core import Py");
-        py.exec("import python.PythonTraceFunction");
+        py.exec("import python.main.PythonTraceFunction");
         py.set("ptf", ptf);
         py.exec("Py.getThreadState().tracefunc = ptf");
-        py.set("console", python.console);
-    }
-
-    public void setBot(Basebot bot) {
-        this.bot = bot;
-        py.set("bot", bot);
+        py.set("console", python.console.getImplementation());
+        py.set("bot", python.bot.getImplementation());
     }
 
     /**
@@ -50,7 +42,7 @@ public class PythonThread extends Thread {
     public void run() {
         try {
             setup();
-            py.exec(code); // TODO: Allowed calls in here must be synchronized!
+            py.exec(code);
             abort();
         } catch (Exception e) {
             abort();

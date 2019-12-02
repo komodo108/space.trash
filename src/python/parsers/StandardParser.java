@@ -20,7 +20,7 @@ public class StandardParser extends AParser implements IParser {
             // Disable access to set variables
             if(line.contains("badconsole")) return "Use of 'console' is not allowed on line " + linenum + ".";
             if(line.contains("py.") || line.contains("py ")) return "Cannot refer to 'Py' on line " + linenum + ".";
-            if(line.contains("python.PythonTraceFunction")) return "Use of 'python.PythonTraceFunction' is not allowed on line " + linenum + ".";
+            if(line.contains("python.main.PythonTraceFunction")) return "Use of 'python.main.PythonTraceFunction' is not allowed on line " + linenum + ".";
             if(line.contains("ptf")) return "Illegal use of 'ptf' on line " + linenum + ".";
             linenum++;
         } return null;

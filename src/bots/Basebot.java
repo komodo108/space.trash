@@ -1,33 +1,37 @@
 package bots;
 
-import main.AppletSingleton;
-import processing.core.PApplet;
+import python.middleware.ActionQueue;
+import python.middleware.ActionString;
+import python.middleware.PythonImplementation;
+import python.middleware.PythonInteractable;
 
 // TODO: This should be an actual bot, not just a wrapped value & applet
-// TODO: The bot is discoupled from the actual python, so have a queue of actions like in Console
-public class Basebot {
+public class Basebot implements PythonInteractable {
+    private IBasebot implementation;
     private int value;
-    private PApplet applet;
 
     public Basebot(int value) {
-        this.value = value;
-        this.applet = AppletSingleton.getInstance().getApplet();
+        implementation = new IBasebot(value);
+    }
+
+    @Override
+    public void update() {
+        ActionQueue queue = implementation.getQueue();
+        while(queue.peek() != null) {
+            ActionString as = queue.remove();
+            switch (as.action) {
+                case PUT:
+                    value = Integer.parseInt(as.message);
+            }
+        } implementation.value = value;
     }
 
     public int getValue() {
         return value;
     }
 
-    public void setValue(int value) {
-        this.value = value;
-    }
-
-    public PApplet getApplet() {
-        return applet;
-    }
-
-    public void draw() {
-        applet.fill(255, 0, 0);
-        applet.rect(90, 90, 100, 100);
+    @Override
+    public PythonImplementation getImplementation() {
+        return implementation;
     }
 }

@@ -6,34 +6,24 @@ import g4p_controls.GPanel;
 import g4p_controls.GTextArea;
 import main.AppletSingleton;
 import processing.core.PApplet;
+import python.middleware.ActionQueue;
+import python.middleware.ActionString;
+import python.middleware.PythonImplementation;
+import python.middleware.PythonInteractable;
 
 import java.awt.*;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 import static main.Constants.*;
 
-public class Console {
-    private static class ColorString {
-        enum Types {
-            PRINT, ERROR
-        }
-
-        public String message;
-        public Types type;
-
-        ColorString(String message, Types type) {
-            this.message = message;
-            this.type = type;
-        }
-    }
-
+public class Console implements PythonInteractable {
     private GPanel panel;
     private GTextArea area;
     private PApplet applet = AppletSingleton.getInstance().getApplet();
-    private Queue<ColorString> actions = new ConcurrentLinkedQueue<>();
+    private IConsole implementation;
 
     public Console() {
+        implementation = new IConsole();
+
         panel = new GPanel(applet, 0, 0, CONSOLE_WIDTH, CONSOLE_HEIGHT);
         panel.setOpaque(true);
         panel.setLocalColorScheme(GConstants.PURPLE_SCHEME);
@@ -47,40 +37,28 @@ public class Console {
         panel.addControl(area);
     }
 
+    @Override
     public void update() {
-        while(actions.peek() != null) {
-            ColorString cs = actions.remove();
-            area.appendText(cs.message);
-            switch (cs.type) {
+        ActionQueue queue = implementation.getQueue();
+        while(queue.peek() != null) {
+            ActionString as = queue.remove();
+            switch (as.action) {
                 case ERROR:
                     area.addStyle(G4P.FOREGROUND, Color.RED, area.getText().split("\n").length - 1, 0, 255);
                     break;
-                default:
+                case PRINT: case HELP:
                     area.addStyle(G4P.FOREGROUND, Color.BLACK, area.getText().split("\n").length - 1, 0, 255);
                     break;
             }
         }
     }
 
-    public void error(String message) {
-        message = "ERROR > " + message + "\n";
-        for(String line : message.split("\n")) {
-            actions.add(new ColorString(line, ColorString.Types.ERROR));
-        }
+    public void error(String error) {
+        implementation.error(error);
     }
 
-    public void print(String message) {
-        // FIXME: Possible Concurrent modification exceptions here and elsewhere
-        message = "> " + message + "\n";
-        for(String line : message.split("\n")) {
-            actions.add(new ColorString(line, ColorString.Types.PRINT));
-        }
-    }
-
-    public void help() {
-        String message = "Help is available from http://help.net/" + "\n";
-        for(String line : message.split("\n")) {
-            actions.add(new ColorString(line, ColorString.Types.PRINT));
-        }
+    @Override
+    public PythonImplementation getImplementation() {
+        return implementation;
     }
 }

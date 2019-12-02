@@ -1,4 +1,4 @@
-package python;
+package python.main;
 
 /**
  * An exception to stop python execution

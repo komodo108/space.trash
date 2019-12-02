@@ -6,7 +6,7 @@ import g4p_controls.GEvent;
 import gui.CodeEditor;
 import gui.Console;
 import processing.core.PApplet;
-import python.Python;
+import python.main.Python;
 import python.parsers.Parsers;
 
 import static main.Constants.*;
@@ -50,9 +50,12 @@ public class Main extends PApplet {
         else rect(100, 100, 100, 100);
 
         console.update();
+        bot.update();
+
         if(!py.isRunning() && !editor.isOn()) editor.setOff();
     }
 
+    @SuppressWarnings("unused")
     public void handleButtonEvents(GButton button, GEvent event) {
         switch (button.getText()) {
             case "Go":

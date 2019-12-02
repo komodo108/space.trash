@@ -1,4 +1,4 @@
-package python;
+package python.main;
 
 import org.python.core.PyException;
 import org.python.core.PyFrame;

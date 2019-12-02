@@ -1,4 +1,4 @@
-package python;
+package python.main;
 
 import bots.Basebot;
 import gui.Console;
@@ -11,7 +11,6 @@ public class Python {
     Console console;
     Basebot bot;
     private PythonThread thread;
-    private int step;
     boolean running, abort;
 
     /**
@@ -40,7 +39,6 @@ public class Python {
         String error = parser.parse(run);
         if(error == null) {
             thread = new PythonThread(this, run);
-            thread.setBot(bot);
         } else {
             error(error);
         }
@@ -73,7 +71,6 @@ public class Python {
     private void error(String error) {
         running = false;
         abort = false;
-        step = 0;
         console.error(error);
     }
 
