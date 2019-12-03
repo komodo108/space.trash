@@ -5,6 +5,9 @@ import org.python.core.PyFrame;
 import org.python.core.PyObject;
 import org.python.core.TraceFunction;
 
+import static main.Constants.LONG_SLEEP_TIME;
+import static main.Constants.SHORT_SLEEP_TIME;
+
 public class PythonTraceFunction extends TraceFunction {
     private Python python;
 
@@ -30,28 +33,28 @@ public class PythonTraceFunction extends TraceFunction {
 
     @Override
     public TraceFunction traceCall(PyFrame pyFrame) {
-        sleep(10);
+        sleep(SHORT_SLEEP_TIME);
         if(python.abort) throw new PythonStopException();
         return this;
     }
 
     @Override
     public TraceFunction traceReturn(PyFrame pyFrame, PyObject pyObject) {
-        sleep(10);
+        sleep(SHORT_SLEEP_TIME);
         if(python.abort) throw new PythonStopException();
         return this;
     }
 
     @Override
     public TraceFunction traceLine(PyFrame pyFrame, int i) {
-        sleep(50);
+        sleep(LONG_SLEEP_TIME);
         if(python.abort) throw new PythonStopException();
         return this;
     }
 
     @Override
     public TraceFunction traceException(PyFrame pyFrame, PyException e) {
-        sleep(10);
+        sleep(SHORT_SLEEP_TIME);
         if(python.abort) throw new PythonStopException();
         return this;
     }

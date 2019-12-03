@@ -9,7 +9,7 @@ public class StandardParser extends AParser implements IParser {
         for(String line : lines) {
             line = line.toLowerCase();
 
-            // Disable things from builtins
+            // Disable things from builtins (KEY should be one of these)
             if(line.contains("import")) return "Import on line " + linenum + " is not allowed.";
             if(line.contains("file")) return "Cannot use 'file' on line " + linenum + ".";
             if(line.contains("open")) return "Cannot use 'open' on line " + linenum + ".";

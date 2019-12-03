@@ -19,6 +19,7 @@ public class Python {
     public Python(Basebot bot, Console console) {
         this.bot = bot;
         this.console = console;
+        this.thread = new PythonThread(this, ""); // Remove to load thread upon Go clicked
     }
 
     /**
@@ -48,21 +49,21 @@ public class Python {
      * Start running the code
      */
     public void start() {
-        if(thread != null) {
+        try {
             thread.start();
             running = true;
-        }
+        } catch (Exception e) { /* No content */ }
     }
 
     /**
      * Stop running the code
      */
     public void stop() {
-        if(thread != null) {
+        try {
             abort = true;
             running = false;
             // TODO: May want to reset things here?
-        }
+        } catch (Exception e) { /* No content */ }
     }
 
     /**

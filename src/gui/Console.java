@@ -41,13 +41,18 @@ public class Console implements PythonInteractable {
         ActionQueue queue = implementation.getQueue(KEY);
         while(queue.peek() != null) {
             ActionString as = queue.remove();
-            switch (as.action) {
+            area.appendText(as.message);
+            if(area.getText().split("\n").length > MAX_LENGTH) {
+                String[] text = area.getTextAsArray();
+                String[] newtext = new String[NEW_LENGTH];
+                System.arraycopy(text, MAX_LENGTH - NEW_LENGTH, newtext, 0, NEW_LENGTH);
+                area.setText(newtext);
+
+            } switch (as.action) {
                 case ERROR:
-                    area.appendText(as.message);
                     area.addStyle(G4P.FOREGROUND, Color.RED, area.getText().split("\n").length - 1, 0, 255);
                     break;
                 case PRINT: case HELP:
-                    area.appendText(as.message);
                     area.addStyle(G4P.FOREGROUND, Color.BLACK, area.getText().split("\n").length - 1, 0, 255);
                     break;
             }
