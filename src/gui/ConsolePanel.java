@@ -21,7 +21,7 @@ public class ConsolePanel extends GPanel implements PythonInteractable {
     private int time = 0;
 
     public ConsolePanel(PApplet applet, GPanel panel) {
-        super(applet, ("Console").length() * 12, 0, panel.getWidth(), panel.getHeight() - 50);
+        super(applet, ("Code Window").length() * 9, 0, panel.getWidth(), panel.getHeight() - 50);
 
         // Setup console
         implementation = new IConsole();

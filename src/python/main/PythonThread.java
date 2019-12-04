@@ -7,6 +7,7 @@ public class PythonThread extends Thread {
     private String code;
     private PythonTraceFunction ptf;
     private PythonInterpreter py;
+    private PythonAbortSingleton abort = PythonAbortSingleton.getInstance();
 
     /**
      * A thread running some Python
@@ -14,7 +15,7 @@ public class PythonThread extends Thread {
     PythonThread(Python python, String code) {
         this.python = python;
         this.code = code;
-        this.ptf = new PythonTraceFunction(python);
+        this.ptf = new PythonTraceFunction();
         this.py = new PythonInterpreter();
     }
 
@@ -35,7 +36,7 @@ public class PythonThread extends Thread {
      */
     private void abort() {
         python.running = false;
-        python.abort = false;
+        abort.setAbort(false);
     }
 
     @Override

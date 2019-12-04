@@ -11,7 +11,8 @@ public class Python {
     ConsolePanel panel;
     Basebot bot;
     private PythonThread thread;
-    boolean running, abort;
+    private PythonAbortSingleton abort = PythonAbortSingleton.getInstance();
+    boolean running;
 
     /**
      * Multi-threaded python
@@ -60,7 +61,7 @@ public class Python {
      */
     public void stop() {
         try {
-            abort = true;
+            abort.setAbort(true);
             running = false;
             // TODO: May want to reset things here?
         } catch (Exception e) { /* No content */ }
@@ -72,7 +73,7 @@ public class Python {
      */
     private void error(String error) {
         running = false;
-        abort = false;
+        abort.setAbort(false);
         panel.error(error);
     }
 

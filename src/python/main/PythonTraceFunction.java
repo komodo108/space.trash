@@ -9,15 +9,12 @@ import static main.Constants.LONG_SLEEP_TIME;
 import static main.Constants.SHORT_SLEEP_TIME;
 
 public class PythonTraceFunction extends TraceFunction {
-    private Python python;
+    private PythonAbortSingleton abort = PythonAbortSingleton.getInstance();
 
     /**
      * The trace function for multi-threaded execution
-     * @param python a python manager
      */
-    PythonTraceFunction(Python python) {
-        this.python = python;
-    }
+    PythonTraceFunction() { }
 
     /*
         Thank you @tkohn for explaining how to kill the thread without killing Python executions!
@@ -34,28 +31,28 @@ public class PythonTraceFunction extends TraceFunction {
     @Override
     public TraceFunction traceCall(PyFrame pyFrame) {
         sleep(SHORT_SLEEP_TIME);
-        if(python.abort) throw new PythonStopException();
+        if(abort.isAbort()) throw new PythonStopException();
         return this;
     }
 
     @Override
     public TraceFunction traceReturn(PyFrame pyFrame, PyObject pyObject) {
         sleep(SHORT_SLEEP_TIME);
-        if(python.abort) throw new PythonStopException();
+        if(abort.isAbort()) throw new PythonStopException();
         return this;
     }
 
     @Override
     public TraceFunction traceLine(PyFrame pyFrame, int i) {
         sleep(LONG_SLEEP_TIME);
-        if(python.abort) throw new PythonStopException();
+        if(abort.isAbort()) throw new PythonStopException();
         return this;
     }
 
     @Override
     public TraceFunction traceException(PyFrame pyFrame, PyException e) {
         sleep(SHORT_SLEEP_TIME);
-        if(python.abort) throw new PythonStopException();
+        if(abort.isAbort()) throw new PythonStopException();
         return this;
     }
 

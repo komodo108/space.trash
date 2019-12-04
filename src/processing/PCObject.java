@@ -1,5 +1,6 @@
 package processing;
 
+import ai.Steer;
 import processing.core.PVector;
 
 import java.util.List;
@@ -7,7 +8,8 @@ import java.util.List;
 public abstract class PCObject extends PObject {
     public PVector pos, vel;
     public float width, height;
-    public float ori, rot;
+    public float ori;
+    public Steer steer;
     protected boolean dead = false;
 
     /**
@@ -18,6 +20,10 @@ public abstract class PCObject extends PObject {
 
         pos = new PVector(0, 0);
         vel = new PVector(0, 0);
+        steer = new Steer();
+        width = 1;
+        height = 1;
+        ori = 0;
     }
 
     @Override

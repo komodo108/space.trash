@@ -5,5 +5,5 @@ public enum Actions {
     HELP,
     ERROR,
 
-    MOVE
+    MOVE, MOVE_D
 }
