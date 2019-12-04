@@ -26,7 +26,7 @@ public class PythonThread extends Thread {
         py.exec("import python.main.PythonTraceFunction");
         py.set("ptf", ptf);
         py.exec("Py.getThreadState().tracefunc = ptf");
-        py.set("console", python.console.getImplementation());
+        py.set("console", python.panel.getImplementation());
         py.set("bot", python.bot.getImplementation());
     }
 
@@ -47,7 +47,7 @@ public class PythonThread extends Thread {
         } catch (Exception e) {
             abort();
             if(!(e instanceof PythonStopException)) {
-                python.console.error(e.toString());
+                python.panel.error(e.toString());
                 e.printStackTrace();
             }
         }

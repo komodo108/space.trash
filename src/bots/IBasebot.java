@@ -1,32 +1,29 @@
 package bots;
 
+import processing.core.PVector;
 import python.middleware.ActionQueue;
 import python.middleware.ActionString;
-import python.middleware.Actions;
 import python.middleware.PythonImplementation;
 
 import static main.Constants.KEY;
+import static python.middleware.Actions.MOVE;
 
 public class IBasebot implements PythonImplementation {
-    private int value;
+    private PVector pos;
     private ActionQueue queue;
 
-    public IBasebot(int value) {
-        this.value = value;
+    public IBasebot() {
+        this.pos = new PVector(0, 0);
         this.queue = new ActionQueue();
     }
 
-    public int getValue() {
-        return value;
+    public void move(int x) {
+        queue.add(new ActionString("" + x + ",0", MOVE));
     }
 
-    public void setValue(int value) {
-        queue.add(new ActionString(value + "", Actions.PUT));
-    }
-
-    public void setValue(int value, String key) {
+    public void move(int x, String key) {
         if(key.equals(KEY)) {
-            this.value = value;
+            this.pos.x = x;
         }
     }
 

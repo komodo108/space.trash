@@ -5,5 +5,5 @@ public enum Actions {
     HELP,
     ERROR,
 
-    PUT
+    MOVE
 }

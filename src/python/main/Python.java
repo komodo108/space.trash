@@ -1,14 +1,14 @@
 package python.main;
 
 import bots.Basebot;
-import gui.Console;
+import gui.ConsolePanel;
 import python.parsers.IParser;
 
 /**
  * Safe access to a sandboxed python interpreter
  */
 public class Python {
-    Console console;
+    ConsolePanel panel;
     Basebot bot;
     private PythonThread thread;
     boolean running, abort;
@@ -16,10 +16,10 @@ public class Python {
     /**
      * Multi-threaded python
      */
-    public Python(Basebot bot, Console console) {
+    public Python(Basebot bot, ConsolePanel panel) {
         this.bot = bot;
-        this.console = console;
-        this.thread = new PythonThread(this, ""); // Remove to load thread upon Go clicked
+        this.panel = panel;
+        //this.thread = new PythonThread(this, ""); // Remove to load thread upon Go clicked
     }
 
     /**
@@ -73,7 +73,7 @@ public class Python {
     private void error(String error) {
         running = false;
         abort = false;
-        console.error(error);
+        panel.error(error);
     }
 
 }

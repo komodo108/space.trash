@@ -15,14 +15,13 @@ public final class Constants {
 
     // Window constants
     public static final String NAME = "./Space.trash";
-    public static final int WIDTH = 800;
-    public static final int HEIGHT = 600;
+    public static final int WIDTH = 1500;
+    public static final int HEIGHT = 900;
 
     // GUI constants
-    public static final int EDITOR_WIDTH = WIDTH / 3;
+    public static final int EDITOR_WIDTH = WIDTH / 4;
     public static final int EDITOR_HEIGHT = HEIGHT - 100;
-    public static final int CONSOLE_WIDTH = EDITOR_WIDTH * 2;
-    public static final int CONSOLE_HEIGHT = EDITOR_HEIGHT / 3;
+    public static final int CONSOLE_TIME = 100;
     public static final int MAX_LENGTH = 100;
     public static final int NEW_LENGTH = 10;
 

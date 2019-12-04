@@ -1,6 +1,8 @@
 package gui;
 
-import g4p_controls.*;
+import g4p_controls.GButton;
+import g4p_controls.GCScheme;
+import g4p_controls.GConstants;
 import main.AppletSingleton;
 import processing.core.PApplet;
 
@@ -9,14 +11,13 @@ import static main.Constants.*;
 /**
  * A Class for the Code Editor GUI Panel using G4P
  */
-public class CodeEditor {
-    private GPanel panel;
-    private GTextArea area;
+public class GUI {
+    private EditorPanel editorPanel;
+    private ConsolePanel consolePanel;
     private GButton go;
     private PApplet applet = AppletSingleton.getInstance().getApplet();
 
-    public CodeEditor() {
-        // TODO: Combine this with the console?
+    public GUI() {
         // Setup new colour theme
         GCScheme.makeColorSchemes(applet);
         GCScheme.copyPalette(GConstants.ORANGE_SCHEME, 8);
@@ -25,28 +26,19 @@ public class CodeEditor {
         } GCScheme.changePaletteColor(8, 11, applet.color(0));
 
         // Setup panel
-        panel = new GPanel(applet, WIDTH - EDITOR_WIDTH - 10, 10, EDITOR_WIDTH, EDITOR_HEIGHT);
-        panel.setText("Code Window");
-        panel.setLocalColorScheme(8);
-        panel.setOpaque(true);
-
-        // Setup text area
-        area = new GTextArea(applet, 10, 25, EDITOR_WIDTH - 20, EDITOR_HEIGHT - 75, G4P.SCROLLBARS_VERTICAL_ONLY | G4P.SCROLLBARS_AUTOHIDE);
-        area.setText("# Enter Code Here.");
-        area.setLocalColorScheme(8);
-        area.setOpaque(true);
-        panel.addControl(area);
+        editorPanel = new EditorPanel(applet, WIDTH - EDITOR_WIDTH - 10, 10, EDITOR_WIDTH, EDITOR_HEIGHT);
+        consolePanel = new ConsolePanel(applet, editorPanel);
 
         // Setup buttons
         go = new GButton(applet, 10, EDITOR_HEIGHT - 45, EDITOR_WIDTH - 20, 40);
         go.setText("Go");
         go.setLocalColorScheme(GConstants.GREEN_SCHEME);
         go.setOpaque(true);
-        panel.addControl(go);
+        editorPanel.addControl(go);
     }
 
     public String getText() {
-        return area.getText();
+        return editorPanel.getEditor().getText();
     }
 
     public boolean isOn() {
@@ -63,4 +55,7 @@ public class CodeEditor {
         go.setLocalColorScheme(GConstants.RED_SCHEME);
     }
 
+    public ConsolePanel getConsolePanel() {
+        return consolePanel;
+    }
 }

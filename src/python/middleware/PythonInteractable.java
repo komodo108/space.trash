@@ -8,7 +8,7 @@ public interface PythonInteractable {
     /**
      * Take items from the implementation queue and processes them
      */
-    void update();
+    boolean update();
 
     /**
      * Gets the implementation
