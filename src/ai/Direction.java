@@ -22,7 +22,7 @@ public enum Direction {
 
     public static Direction fromChar(char name) {
         for(Direction d : Direction.values()) {
-            if(d.name == name) return d;
+            if(d.name == Character.toUpperCase(name)) return d;
         } return null;
     }
 }

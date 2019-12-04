@@ -1,7 +1,6 @@
 package gui;
 
 import g4p_controls.G4P;
-import g4p_controls.GConstants;
 import g4p_controls.GPanel;
 import g4p_controls.GTextArea;
 import processing.core.PApplet;
@@ -12,12 +11,12 @@ import python.middleware.PythonInteractable;
 
 import java.awt.*;
 
-import static main.Constants.*;
+import static common.Constants.*;
 
 public class ConsolePanel extends GPanel implements PythonInteractable {
     private GTextArea console;
     private IConsole implementation;
-    private boolean updated;
+    private int updated;
     private int time = 0;
 
     public ConsolePanel(PApplet applet, GPanel panel) {
@@ -35,7 +34,7 @@ public class ConsolePanel extends GPanel implements PythonInteractable {
         console.setOpaque(true);
         console.setText("Python 2.7 for " + NAME + ".\n");
         console.setTextEditEnabled(false);
-        setColorScheme(GConstants.PURPLE_SCHEME);
+        setColorScheme(PURPLE_SCHEME);
         this.addControl(console);
 
         // Add to editor
@@ -45,13 +44,13 @@ public class ConsolePanel extends GPanel implements PythonInteractable {
     @Override
     public boolean update() {
         // Flash the panel if updated
-        if(updated) {
+        if(updated != 0) {
             time++;
             time %= CONSOLE_TIME;
             if(time < CONSOLE_TIME / 2) {
-                setColorScheme(GConstants.RED_SCHEME);
+                setColorScheme(updated == 1 ? RED_SCHEME : GREEN_SCHEME);
             } else {
-                setColorScheme(GConstants.PURPLE_SCHEME);
+                setColorScheme(PURPLE_SCHEME);
             }
         }
 
@@ -60,7 +59,6 @@ public class ConsolePanel extends GPanel implements PythonInteractable {
         while(queue.peek() != null) {
             ActionString as = queue.remove();
             console.appendText(as.message);
-            if(this.isCollapsed()) updated = true;
             if(console.getText().split("\n").length > MAX_LENGTH) {
                 String[] text = console.getTextAsArray();
                 String[] newtext = new String[NEW_LENGTH];
@@ -68,9 +66,11 @@ public class ConsolePanel extends GPanel implements PythonInteractable {
                 console.setText(newtext);
             } switch (as.action) {
                 case ERROR:
+                    if(this.isCollapsed()) updated = 1;
                     console.addStyle(G4P.FOREGROUND, Color.RED, console.getText().split("\n").length - 1, 0, 255);
                     break;
                 case PRINT: case HELP:
+                    if(this.isCollapsed()) updated = 2;
                     console.addStyle(G4P.FOREGROUND, Color.BLACK, console.getText().split("\n").length - 1, 0, 255);
                     break;
             }
@@ -87,9 +87,9 @@ public class ConsolePanel extends GPanel implements PythonInteractable {
     }
 
     public void updated() {
-        updated = false;
+        updated = 0;
         time = 0;
-        setColorScheme(GConstants.PURPLE_SCHEME);
+        setColorScheme(PURPLE_SCHEME);
     }
 
     @Override

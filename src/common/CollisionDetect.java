@@ -1,6 +1,4 @@
-package processing;
-
-import processing.core.PVector;
+package common;
 
 public final class CollisionDetect {
 

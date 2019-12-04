@@ -1,9 +1,9 @@
 package ai;
 
-import processing.PCObject;
+import common.PCObject;
 import processing.core.PVector;
 
-import static main.Constants.*;
+import static common.Constants.*;
 
 /**
  * Some content taken from lectures
@@ -30,7 +30,7 @@ public class Steer {
 
     public void seekFast(PCObject object, PVector target) {
         PVector tcopy = target.copy();
-        tcopy.normalize().mult(MAX_ACCER);
+        tcopy.normalize().mult(MAX_ACCELERATION);
         object.vel.add(tcopy);
         if(object.vel.mag() > MAX_SPEED) object.vel.normalize().mult(MAX_SPEED);
     }
@@ -45,7 +45,7 @@ public class Steer {
             PVector tVel = tcopy.normalize().mult(tSpeed);
             PVector acc = tVel.copy().sub(object.vel);
 
-            if(acc.mag() > MAX_ACCER) acc.normalize().mult(MAX_ACCER);
+            if(acc.mag() > MAX_ACCELERATION) acc.normalize().mult(MAX_ACCELERATION);
             object.vel.add(acc);
             if(object.vel.mag() > MAX_SPEED) object.vel.normalize().mult(MAX_SPEED);
         } object.vel.mult(DAMPING);

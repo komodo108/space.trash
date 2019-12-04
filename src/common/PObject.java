@@ -1,6 +1,5 @@
-package processing;
+package common;
 
-import main.AppletSingleton;
 import processing.core.PApplet;
 
 public abstract class PObject {

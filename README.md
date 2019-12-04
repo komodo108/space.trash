@@ -62,7 +62,11 @@ This Exception is caught on the Python thread, and the thread concludes it's exe
 
 #### External Interaction
 We want Jython to be able to affect things on the main thread, e.g. moving the bots around. We cannot directly call these since some data structures are not concurrent, and we want to ensure the developer knows which functions are visible to Python. 
-We expose some implementation to Python, and transfer information between there and the main object using a concurrent queue. Please see the implementation for more on how this is done.
+We expose some implementation to Python, and transfer information between there and the main object in one of two ways.
+
+If the object we are updating is *not* concurrent, then we will use a concurrent action queue to transfer the call between the two threads.
+If not, then Python will directly execute Java code which will update the concurrent object (please ensure you still maintain the ability to abort & sleeping loops on the Python thread).
+Please see the implementation for more on how this is done.
 
 ### Running the Game
 WIP

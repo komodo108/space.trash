@@ -49,7 +49,6 @@ public class PythonThread extends Thread {
             abort();
             if(!(e instanceof PythonStopException)) {
                 python.panel.error(e.toString());
-                e.printStackTrace();
             }
         }
     }

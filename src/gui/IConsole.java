@@ -1,11 +1,8 @@
 package gui;
 
-import python.middleware.ActionQueue;
-import python.middleware.ActionString;
-import python.middleware.Actions;
-import python.middleware.PythonImplementation;
+import python.middleware.*;
 
-import static main.Constants.KEY;
+import static common.Constants.KEY;
 
 public class IConsole implements PythonImplementation {
     private ActionQueue queue;
@@ -14,6 +11,7 @@ public class IConsole implements PythonImplementation {
         this.queue = new ActionQueue();
     }
 
+    @Pythond
     public void error(String message) {
         message = "ERROR > " + message + "\n";
         for(String line : message.split("\n")) {
@@ -21,6 +19,7 @@ public class IConsole implements PythonImplementation {
         }
     }
 
+    @Pythond
     public void print(String message) {
         message = "> " + message + "\n";
         for(String line : message.split("\n")) {
@@ -28,8 +27,9 @@ public class IConsole implements PythonImplementation {
         }
     }
 
+    @Pythond
     public void help() {
-        String message = "Help is available from http://help.net/" + "\n";
+        String message = "Please see the help page on [TODO]" + "\n";
         for(String line : message.split("\n")) {
             queue.add(new ActionString(line, Actions.HELP));
         }

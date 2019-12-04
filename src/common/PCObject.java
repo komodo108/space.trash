@@ -1,4 +1,4 @@
-package processing;
+package common;
 
 import ai.Steer;
 import processing.core.PVector;
@@ -50,4 +50,5 @@ public abstract class PCObject extends PObject {
         this.dead = true;
     }
 
+    // TODO: Add collision detection here
 }

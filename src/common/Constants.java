@@ -1,4 +1,4 @@
-package main;
+package common;
 
 /**
  * Static class for constant variables and static functions
@@ -28,7 +28,7 @@ public final class Constants {
     // Bot parameters
     public static final float TARGET_RADIUS = 3f;
     public static final float SLOW_RADIUS = 1f;
-    public static final float MAX_ACCER = 0.04f;
+    public static final float MAX_ACCELERATION = 0.04f;
     public static final float MAX_SPEED = 0.32f;
     public static final double ORIENTATION_BASE = Math.PI / 32;
     public static final float DAMPING = 0.92f;

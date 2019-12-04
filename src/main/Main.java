@@ -1,22 +1,29 @@
 package main;
 
 import bots.Basebot;
+import common.AppletSingleton;
 import g4p_controls.GButton;
 import g4p_controls.GEvent;
 import g4p_controls.GPanel;
 import gui.ConsolePanel;
 import gui.GUI;
+import level.item.Item;
+import level.item.TestItem;
 import processing.core.PApplet;
 import python.main.Python;
 import python.parsers.Parsers;
 
-import static main.Constants.*;
+import java.util.ArrayList;
+
+import static common.Constants.*;
 
 public class Main extends PApplet {
     private Parsers parsers;
     private Python py;
     private GUI gui;
     private Basebot bot;
+
+    private Item item;
 
     @Override
     public void settings() {
@@ -35,6 +42,9 @@ public class Main extends PApplet {
         // Setup components
         gui = new GUI();
         bot = new Basebot();
+        item = new TestItem(500, 500);
+
+        // Setup Python
         py = new Python(bot, gui.getConsolePanel());
         parsers = new Parsers();
     }
@@ -42,13 +52,21 @@ public class Main extends PApplet {
     @Override
     public void draw() {
         background(0);
-
         gui.getConsolePanel().update();
 
         bot.update();
         bot.render();
 
-        if(!py.isRunning() && !gui.isOn()) gui.setOff();
+        // All for testing
+        if(!item.update()) {
+            item.render(); // Remove the item if update fails
+
+            ArrayList test = new ArrayList();
+            test.add(bot);
+            item.interactOthers(test);
+
+            if(!py.isRunning() && !gui.isOn()) gui.setOff();
+        }
     }
 
     @SuppressWarnings("unused")

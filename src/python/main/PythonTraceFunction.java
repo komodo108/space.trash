@@ -5,8 +5,8 @@ import org.python.core.PyFrame;
 import org.python.core.PyObject;
 import org.python.core.TraceFunction;
 
-import static main.Constants.LONG_SLEEP_TIME;
-import static main.Constants.SHORT_SLEEP_TIME;
+import static common.Constants.LONG_SLEEP_TIME;
+import static common.Constants.SHORT_SLEEP_TIME;
 
 public class PythonTraceFunction extends TraceFunction {
     private PythonAbortSingleton abort = PythonAbortSingleton.getInstance();
