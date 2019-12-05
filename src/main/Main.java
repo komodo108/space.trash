@@ -1,29 +1,26 @@
 package main;
 
 import bots.Basebot;
-import common.AppletSingleton;
 import g4p_controls.GButton;
 import g4p_controls.GEvent;
 import g4p_controls.GPanel;
 import gui.ConsolePanel;
 import gui.GUI;
-import level.item.Item;
-import level.item.TestItem;
+import level.Level;
+import level.Map;
 import processing.core.PApplet;
 import python.main.Python;
 import python.parsers.Parsers;
 
-import java.util.ArrayList;
-
-import static common.Constants.*;
+import static main.Constants.*;
 
 public class Main extends PApplet {
     private Parsers parsers;
     private Python py;
-    private GUI gui;
-    private Basebot bot;
 
-    private Item item;
+    private GUI gui;
+    private Map map;
+    private Level level;
 
     @Override
     public void settings() {
@@ -36,13 +33,14 @@ public class Main extends PApplet {
         surface.setTitle(NAME);
         surface.setCursor(CROSS);
 
-        // Setup an applet
+        // Setup the applet & gui
         AppletSingleton.getInstance().setApplet(this);
-
-        // Setup components
         gui = new GUI();
-        bot = new Basebot();
-        item = new TestItem(500, 500);
+
+        // Setup the level
+        level = new Level("TODO");
+        map = level.getMap();
+        Basebot bot = level.getBot();
 
         // Setup Python
         py = new Python(bot, gui.getConsolePanel());
@@ -51,22 +49,16 @@ public class Main extends PApplet {
 
     @Override
     public void draw() {
+        // Draw the map
         background(0);
+        map.render();
+
+        // Update GUI & Python
         gui.getConsolePanel().update();
+        if(!py.isRunning() && !gui.isOn()) gui.setOff();
 
-        bot.update();
-        bot.render();
-
-        // All for testing
-        if(!item.update()) {
-            item.render(); // Remove the item if update fails
-
-            ArrayList test = new ArrayList();
-            test.add(bot);
-            item.interactOthers(test);
-
-            if(!py.isRunning() && !gui.isOn()) gui.setOff();
-        }
+        // Update the level
+        if(level.update()) System.out.println("beep level over yay"); // next level
     }
 
     @SuppressWarnings("unused")

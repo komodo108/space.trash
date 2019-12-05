@@ -5,8 +5,8 @@ import g4p_controls.GPanel;
 import g4p_controls.GTextArea;
 import processing.core.PApplet;
 
-import static common.Constants.EDITOR_HEIGHT;
-import static common.Constants.EDITOR_WIDTH;
+import static main.Constants.EDITOR_HEIGHT;
+import static main.Constants.EDITOR_WIDTH;
 
 public class EditorPanel extends GPanel {
     private GTextArea editor;

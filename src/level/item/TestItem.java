@@ -1,12 +1,10 @@
 package level.item;
 
-import processing.core.PVector;
-
 public class TestItem extends Item {
     public TestItem(int x, int y) {
-        width = 10;
-        height = 10;
-        pos = new PVector(x, y);
+        super(x, y);
+        width = 18;
+        height = 18;
     }
 
     @Override

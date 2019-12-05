@@ -1,9 +1,9 @@
 package ai;
 
-import common.PCObject;
+import processing.PCObject;
 import processing.core.PVector;
 
-import static common.Constants.*;
+import static main.Constants.*;
 
 /**
  * Some content taken from lectures

@@ -1,20 +1,23 @@
 package bots;
 
 import ai.Direction;
+import level.item.Item;
+import processing.CollisionDetect;
 import processing.core.PVector;
-import python.main.PythonAbortSingleton;
 import python.main.PythonError;
 import python.middleware.ActionQueue;
 import python.middleware.PythonImplementation;
 import python.middleware.Pythond;
 
-import static common.Constants.KEY;
-import static common.Constants.TARGET_RADIUS;
+import java.util.ArrayList;
+import java.util.List;
+
+import static main.Constants.KEY;
+import static main.Constants.TARGET_RADIUS;
 
 public class IBasebot implements PythonImplementation {
     private Basebot parent;
     private ActionQueue queue;
-    private PythonAbortSingleton abort = PythonAbortSingleton.getInstance();
 
     public IBasebot(Basebot parent) {
         this.parent = parent;
@@ -47,6 +50,29 @@ public class IBasebot implements PythonImplementation {
             float tori = (float) Math.atan2(d.getMove().y, d.getMove().x);
             parent.ori = tori;
         } else throw new PythonError("Cannot go in direction '" + direction + "'.");
+    }
+
+    @Pythond
+    public void hold() {
+        List<Item> items = parent.map.getItems();
+        List<Item> removed = new ArrayList<>();
+        for(Item item : items) {
+            if(CollisionDetect.isInside(item, parent) && !item.isDead()) {
+                removed.add(item);
+                System.out.println("owo");
+                // Add item to the bot
+            }
+        } items.removeAll(removed);
+    }
+
+    @Pythond
+    public int getX() {
+        return (int) parent.pos.x;
+    }
+
+    @Pythond
+    public int getY() {
+        return (int) parent.pos.y;
     }
 
     public ActionQueue getQueue(String key) {

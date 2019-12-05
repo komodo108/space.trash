@@ -1,19 +1,24 @@
 package bots;
 
-import common.PCObject;
+import level.Map;
+import processing.PCObject;
+import processing.PObject;
 import processing.core.PVector;
 import python.middleware.PythonImplementation;
 import python.middleware.PythonInteractable;
 
 import java.util.List;
 
+import static processing.Shape.CIRCLE;
+
 public class Basebot extends PCObject implements PythonInteractable {
     private IBasebot implementation;
 
-    public Basebot() {
+    public Basebot(Map map) {
+        super(map, CIRCLE);
         width = 15;
         height = 15;
-        pos = new PVector(0, 0);
+        pos = new PVector(10, 10);
         implementation = new IBasebot(this);
     }
 
@@ -29,12 +34,7 @@ public class Basebot extends PCObject implements PythonInteractable {
     }
 
     @Override
-    public boolean update() {
-        return super.update();
-    }
-
-    @Override
-    public void interactOthers(List<PCObject> others) {
+    public void interactOthers(List<PObject> others) {
         /* no content */
     }
 

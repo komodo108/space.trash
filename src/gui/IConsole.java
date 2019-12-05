@@ -2,7 +2,7 @@ package gui;
 
 import python.middleware.*;
 
-import static common.Constants.KEY;
+import static main.Constants.KEY;
 
 public class IConsole implements PythonImplementation {
     private ActionQueue queue;

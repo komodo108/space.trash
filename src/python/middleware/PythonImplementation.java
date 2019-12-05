@@ -1,6 +1,6 @@
 package python.middleware;
 
-import common.Constants;
+import main.Constants;
 import python.main.PythonAbortSingleton;
 import python.main.PythonStopException;
 

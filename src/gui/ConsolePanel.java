@@ -11,7 +11,7 @@ import python.middleware.PythonInteractable;
 
 import java.awt.*;
 
-import static common.Constants.*;
+import static main.Constants.*;
 
 public class ConsolePanel extends GPanel implements PythonInteractable {
     private GTextArea console;

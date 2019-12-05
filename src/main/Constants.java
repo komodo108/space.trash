@@ -1,4 +1,4 @@
-package common;
+package main;
 
 /**
  * Static class for constant variables and static functions

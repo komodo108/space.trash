@@ -1,12 +1,12 @@
 package gui;
 
-import common.AppletSingleton;
 import g4p_controls.GButton;
 import g4p_controls.GCScheme;
 import g4p_controls.GConstants;
+import main.AppletSingleton;
 import processing.core.PApplet;
 
-import static common.Constants.*;
+import static main.Constants.*;
 
 /**
  * A Class for the Code Editor GUI Panel using G4P
