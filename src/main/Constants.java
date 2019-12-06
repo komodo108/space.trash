@@ -10,6 +10,7 @@ public final class Constants {
      * This string should be one which a user isn't allowed to type in with ANY of the parsers
      */
     public static final String KEY = "exec";
+    public static final int THREAD_SLEEP_TIME = 7;
     public static final int SHORT_SLEEP_TIME = 10;
     public static final int LONG_SLEEP_TIME = 50;
 

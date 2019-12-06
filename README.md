@@ -20,11 +20,66 @@ the trashed bots to help you acquire the resources needed to progress.
 * Many levels where all the bots features will need to be used
 
 ### Levels
-A level itself should be a winable puzzle with its own environment made from the components implemented in the game.
+A level itself should be a winnable puzzle with its own environment made from the components implemented in the game.
 The player should be able to fully explore the level & interact with stuff inside the level.
 
 #### Making levels
-WIP, load levels from file...
+A level is defined by a level JSON file, which is then loaded in by the game. This level file ***must*** be in correct format for the loader to function.
+An example level JSON file is given below, for it to be valid comments will need to be removed & values must be added:
+```json
+{
+  "map": {
+    // A setting from level.map.Settings - will set the background image
+    "setting": "MARS",
+    
+    // [OPTIONAL] An array of all walls in the level, position and sizes must be given
+    "walls": [
+      {
+        "wall": {
+          "x": 1,
+          "y": 1,
+          "height": 1,
+          "width": 1
+        }
+      }
+    ],
+
+    // [OPTIONAL] Location of the goal cell
+    "goal": {
+      "x": 14,
+      "y": 14
+    },
+
+    // [OPTIONAL] An array of all items in the level, position and type must be given
+    "items": [
+      {
+        "item" : {
+          "type": "test", // This must be the prefix of the class name in level.item, e.g. a "KeyItem" would be "key"
+          "x": 1,
+          "y": 1
+        }
+      }
+    ],
+
+    // [OPTIONAL] An array of all containers in the level, position and type must be given
+    "containers": [
+      {
+        "container": {
+          "type": "test", // This must be the prefix of the class name in level.container
+          "x": 34,
+          "y": 24
+        }
+      }
+    ]
+  },
+
+  // The position which the bot will spawn at
+  "bot": {
+    "x": 1,
+    "y": 1
+  }
+}
+```
 
 #### Player interaction
 The player needs to have functions which they can call to interact with the level.
@@ -34,12 +89,15 @@ Both of these are allowed under the python system
 #### List of bot functions
 * `move(x)` - moves the player to the `x` blocks in the direction they're facing
 * `face(direction)` - rotates the player to face a given direction
-* `hold()` - picks up and attempts to use an item
+* `hold()` - picks up and attempts to use the item the player is on top of
 * [?] `attack(direction)` - face direction & attack 
-* `interact(direction)` - face direction & interact with whatever is there
+* `interact()` - interact with whatever the player is on top of
     * [list of interactable things]
-* `canMove()` - returns if the player can move
-* [?] `isHold()` - returns if the item you're on can be held
+* `canMove(x)` - returns if the player can move `x` blocks in that direction
+* [more functions]
+
+#### Moving
+The bot and all enemies in the game have collision, and will bounce off of the side of the window & walls in the level.
 
 ### Python Integration
 We use [Jython](https://www.jython.org/) for Python integration. There are 3 important parts of the integration: parsing, executing & external interaction.

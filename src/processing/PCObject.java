@@ -8,7 +8,7 @@ import processing.core.PVector;
 
 import java.util.List;
 
-import static level.map.CellTypes.GRASS;
+import static level.map.CellTypes.WALL;
 import static main.Constants.*;
 
 public abstract class PCObject extends PObject {
@@ -49,14 +49,14 @@ public abstract class PCObject extends PObject {
 
         // Collision with the map
         // TODO: Also do corner only collision - i.e. if the top left corner is colliding then push it up and right
-        if(cellIsNot(cells, 0, GRASS) && cellIsNot(cells, 2, GRASS)) vel.x += -vel.x + PUSHING_AMOUNT;
-        if(cellIsNot(cells, 2, GRASS) && cellIsNot(cells, 3, GRASS)) vel.y += -vel.y - PUSHING_AMOUNT;
-        if(cellIsNot(cells, 0, GRASS) && cellIsNot(cells, 1, GRASS)) vel.y += -vel.y + PUSHING_AMOUNT;
-        if(cellIsNot(cells, 1, GRASS) && cellIsNot(cells, 3, GRASS)) vel.x += -vel.x - PUSHING_AMOUNT;
+        if(cellIs(cells, 0, WALL) && cellIs(cells, 2, WALL)) vel.x += -vel.x + PUSHING_AMOUNT;
+        if(cellIs(cells, 2, WALL) && cellIs(cells, 3, WALL)) vel.y += -vel.y - PUSHING_AMOUNT;
+        if(cellIs(cells, 0, WALL) && cellIs(cells, 1, WALL)) vel.y += -vel.y + PUSHING_AMOUNT;
+        if(cellIs(cells, 1, WALL) && cellIs(cells, 3, WALL)) vel.x += -vel.x - PUSHING_AMOUNT;
     }
 
-    private boolean cellIsNot(List<Cell> cells, int index, CellTypes type) {
-        return !(cells.get(index) != null && cells.get(index).getType() == type);
+    private boolean cellIs(List<Cell> cells, int index, CellTypes type) {
+        return cells.get(index) != null && cells.get(index).getType() == type;
     }
 
     /**

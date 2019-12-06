@@ -4,6 +4,8 @@ import main.Constants;
 import python.main.PythonAbortSingleton;
 import python.main.PythonStopException;
 
+import static main.Constants.THREAD_SLEEP_TIME;
+
 /**
  * The implementation of an object which interacts with Python<br>
  * <b>NOTE: EVERY METHOD HERE IS CALLABLE BY PYTHON!</b>
@@ -27,7 +29,7 @@ public interface PythonImplementation {
     default void threading() {
         if(PythonAbortSingleton.getInstance().isAbort()) throw new PythonStopException();
         try {
-            Thread.sleep(10);
+            Thread.sleep(THREAD_SLEEP_TIME);
         } catch (Exception e) { /* no content */ }
     }
 }
