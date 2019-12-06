@@ -2,6 +2,7 @@ package level.map;
 
 import bots.Basebot;
 import level.container.Container;
+import level.enemy.Enemy;
 import level.item.Item;
 import level.win.Win;
 import org.json.JSONArray;
@@ -13,6 +14,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.List;
 
 import static level.map.CellTypes.GOAL;
 import static main.Constants.TILE_SIZE;
@@ -22,6 +25,7 @@ public class LevelLoader {
     private Map map;
     private Basebot bot;
     private Win win;
+    private List<Enemy> enemies;
 
     public LevelLoader(String pathname) {
         InputStream is = null;
@@ -31,6 +35,7 @@ public class LevelLoader {
             e.printStackTrace();
         } JSONTokener tokener = new JSONTokener(is);
         JSONObject object = new JSONObject(tokener);
+        enemies = new ArrayList<>();
 
         // Load the map
         JSONObject jsonMap = object.getJSONObject("map");
@@ -98,6 +103,23 @@ public class LevelLoader {
         int y = botobject.getInt("y");
         bot = new Basebot(map, x * TILE_SIZE, y * TILE_SIZE);
 
+        // Load enemies using reflection
+        try {
+            JSONArray enemiesJson = object.getJSONArray("enemies");
+            for (int i = 0; i < enemiesJson.length(); i++) {
+                JSONObject enemy = enemiesJson.getJSONObject(i).getJSONObject("enemy");
+                String type = enemy.getString("type");
+                x = enemy.getInt("x");
+                y = enemy.getInt("y");
+
+                Class<?> emenyc = Class.forName("level.enemy." + toProper(type.toLowerCase()) + "Enemy");
+                Constructor<?> cons = emenyc.getConstructor(Map.class, Basebot.class, int.class, int.class);
+                enemies.add((Enemy) cons.newInstance(map, bot, x * TILE_SIZE, y * TILE_SIZE));
+            }
+        } catch (Exception e) {
+            if(!(e instanceof JSONException)) e.printStackTrace();
+        }
+
         // Load the win condition using reflection
         try {
             String type = object.getString("win");
@@ -131,5 +153,9 @@ public class LevelLoader {
 
     public Win getWin() {
         return win;
+    }
+
+    public List<Enemy> getEnemies() {
+        return enemies;
     }
 }

@@ -1,6 +1,7 @@
 package level;
 
 import bots.Basebot;
+import level.enemy.Enemy;
 import level.map.LevelLoader;
 import level.map.Map;
 import level.win.Win;
@@ -26,8 +27,9 @@ public class Level {
         LevelLoader loader = new LevelLoader(pathname);
         map = loader.getMap();
 
-        // TODO: Load the enemies
-
+        // Load the enemies
+        List<Enemy> enemies = loader.getEnemies();
+        objects.addAll(enemies);
 
         // TODO: Load the default code, tutorial message, etc.
         win = loader.getWin();
@@ -46,16 +48,20 @@ public class Level {
         return map;
     }
 
-    // Return true when the level is done
-    public boolean update() {
+    /**
+     * Update the level
+     * @param update true if an update is to be done
+     * @return if the level is over
+     */
+    public boolean update(boolean update) {
         List<PObject> removed = new ArrayList<>();
         for(PObject object : objects) {
-            if(object.update()) removed.add(object);
+            if(update && object.update()) removed.add(object);
             if(!object.isDead()) {
-                if(object instanceof PCObject) ((PCObject) object).interactOthers(objects);
+                if(update && object instanceof PCObject) ((PCObject) object).interactOthers(objects);
                 object.render();
             }
         } objects.removeAll(removed);
-        return win.isWin(); // win condition
+        return win.isWin();
     }
 }

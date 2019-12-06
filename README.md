@@ -30,7 +30,7 @@ An example level JSON file is given below, for it to be valid comments will need
 {
   "map": {
     // A setting from level.map.Settings - will set the background image
-    "setting": "MARS",
+    "setting": "setting",
     
     // [OPTIONAL] An array of all walls in the level, position and sizes must be given
     "walls": [
@@ -46,15 +46,15 @@ An example level JSON file is given below, for it to be valid comments will need
 
     // [OPTIONAL] Location of the goal cell
     "goal": {
-      "x": 14,
-      "y": 14
+      "x": 2,
+      "y": 2
     },
 
     // [OPTIONAL] An array of all items in the level, position and type must be given
     "items": [
       {
         "item" : {
-          "type": "test", // This must be the prefix of a class name in level.item, e.g. a "KeyItem" would be "key"
+          "type": "item", // This must be the prefix of a class name in level.item, e.g. a "KeyItem" would be "key"
           "x": 1,
           "y": 1
         }
@@ -65,16 +65,27 @@ An example level JSON file is given below, for it to be valid comments will need
     "containers": [
       {
         "container": {
-          "type": "test", // This must be the prefix of a class name in level.container
-          "x": 34,
-          "y": 24
+          "type": "container", // This must be the prefix of a class name in level.container
+          "x": 1,
+          "y": 1
         }
       }
     ]
   },
   
+  // [OPTIONAL] An array of all enemies in the level, position and type must be given
+  "enemies": [
+      {
+        "enemy": {
+          "type": "enemy", // This must be the prefix of a class name in level.enemy
+          "x": 1,
+          "y": 1
+        }
+      }
+    ],
+  
   // The win condition must be the prefix of a class name in level.win
-  "win": "test",
+  "win": "win",
 
   // The position which the bot will spawn at
   "bot": {

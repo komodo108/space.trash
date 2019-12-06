@@ -1,6 +1,7 @@
 {
   "map": {
-    "setting": "MARS",
+    "setting": "mars",
+
     "walls": [
       {
         "wall": {
@@ -41,6 +42,16 @@
       }
     ]
   },
+
+  "enemies": [
+    {
+      "enemy": {
+        "type": "test",
+        "x": 37,
+        "y": 37
+      }
+    }
+  ],
 
   "win": "test",
 

@@ -59,7 +59,7 @@ public class Main extends PApplet {
         if(!py.isRunning() && !gui.isOn()) gui.setOff();
 
         // Update the level
-        if(level.update()) System.out.println("beep level over yay"); // next level
+        if(level.update(py.isRunning())) System.out.println("beep level over yay"); // next level
     }
 
     @SuppressWarnings("unused")
