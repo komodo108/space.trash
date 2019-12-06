@@ -17,7 +17,7 @@ public class TestWin extends Win {
         List<Container> containers = map.getContainers();
         for(Container c : containers) {
             List<Item> held = c.getHeld();
-            if(held.size() > 1) return true;
+            if(held.size() == 1) return true;
         } return false;
     }
 }

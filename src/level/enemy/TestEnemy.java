@@ -11,7 +11,7 @@ public class TestEnemy extends Enemy {
     public TestEnemy(Map map, Basebot bot, int x, int y) {
         super(map, bot, CIRCLE, x, y);
         width = 3 * TILE_SIZE;
-        height = 2 * TILE_SIZE;
+        height = 3 * TILE_SIZE;
         vel = new PVector(1, 1);
     }
 

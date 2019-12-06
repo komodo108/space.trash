@@ -62,6 +62,7 @@ public final class CollisionDetect {
             // Collision of a circle (this) and a rectangle (object)
             return isCircleRectInside(other, object);
         } else {
+            // FIXME: Something seems to be wrong here? Try big boi bot with smol robot
             // Collision of two circles
             // https://stackoverflow.com/questions/8367512/how-do-i-detect-intersections-between-a-circle-and-any-other-circle-in-the-same
             return Math.hypot(other.pos.x - object.pos.x, other.pos.y - object.pos.y) <= (other.width + object.width);
