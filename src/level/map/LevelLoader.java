@@ -3,6 +3,7 @@ package level.map;
 import bots.Basebot;
 import level.container.Container;
 import level.item.Item;
+import level.win.Win;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,6 +21,7 @@ public class LevelLoader {
     private static final String LEVEL_DIR = "data/level/";
     private Map map;
     private Basebot bot;
+    private Win win;
 
     public LevelLoader(String pathname) {
         InputStream is = null;
@@ -96,6 +98,17 @@ public class LevelLoader {
         int y = botobject.getInt("y");
         bot = new Basebot(map, x * TILE_SIZE, y * TILE_SIZE);
 
+        // Load the win condition using reflection
+        try {
+            String type = object.getString("win");
+
+            Class<?> winc = Class.forName("level.win." + toProper(type.toLowerCase()) + "Win");
+            Constructor<?> cons = winc.getConstructor(Map.class, Basebot.class);
+            win = (Win) cons.newInstance(map, bot);
+        } catch (Exception e) {
+            if(!(e instanceof JSONException)) e.printStackTrace();
+        }
+
         // Close the file
         try {
             is.close();
@@ -114,5 +127,9 @@ public class LevelLoader {
 
     public Basebot getBot() {
         return bot;
+    }
+
+    public Win getWin() {
+        return win;
     }
 }

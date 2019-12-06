@@ -3,6 +3,7 @@ package level;
 import bots.Basebot;
 import level.map.LevelLoader;
 import level.map.Map;
+import level.win.Win;
 import processing.PCObject;
 import processing.PObject;
 
@@ -13,11 +14,10 @@ public class Level {
     /* TODO: A Level is a map & enemies with a win condition which uses a specific bot.
         The player must meet this win condition for the next level to load.
     */
-
-    // TODO: We will also need to add default code & a tutorial message to this
     private List<PObject> objects;
     private Basebot bot;
     private Map map;
+    private Win win;
 
     public Level(String pathname) {
         objects = new ArrayList<>();
@@ -29,11 +29,13 @@ public class Level {
         // TODO: Load the enemies
 
 
-        // TODO: Load the win condition, default code, tutorial message
+        // TODO: Load the default code, tutorial message, etc.
+        win = loader.getWin();
 
         // Load the bot
         bot = loader.getBot();
         objects.add(bot);
+        win.setObjects(objects);
     }
 
     public Basebot getBot() {
@@ -54,6 +56,6 @@ public class Level {
                 object.render();
             }
         } objects.removeAll(removed);
-        return map.getContainers().get(0).getHeld().size() == 1; // win condition
+        return win.isWin(); // win condition
     }
 }

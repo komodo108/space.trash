@@ -54,7 +54,7 @@ An example level JSON file is given below, for it to be valid comments will need
     "items": [
       {
         "item" : {
-          "type": "test", // This must be the prefix of the class name in level.item, e.g. a "KeyItem" would be "key"
+          "type": "test", // This must be the prefix of a class name in level.item, e.g. a "KeyItem" would be "key"
           "x": 1,
           "y": 1
         }
@@ -65,13 +65,16 @@ An example level JSON file is given below, for it to be valid comments will need
     "containers": [
       {
         "container": {
-          "type": "test", // This must be the prefix of the class name in level.container
+          "type": "test", // This must be the prefix of a class name in level.container
           "x": 34,
           "y": 24
         }
       }
     ]
   },
+  
+  // The win condition must be the prefix of a class name in level.win
+  "win": "test",
 
   // The position which the bot will spawn at
   "bot": {
