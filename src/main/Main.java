@@ -39,7 +39,7 @@ public class Main extends PApplet {
         gui = new GUI();
 
         // Setup the level
-        level = new Level("TODO");
+        level = new Level("level.json");
         map = level.getMap();
         Basebot bot = level.getBot();
 

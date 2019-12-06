@@ -12,7 +12,6 @@ import java.util.List;
 
 import static level.map.CellTypes.GRASS;
 import static level.map.CellTypes.WALL;
-import static level.map.Settings.MARS;
 import static main.Constants.*;
 import static processing.Shape.RECTANGLE;
 
@@ -23,11 +22,11 @@ public class Map {
     private Settings setting;
     private Cell[][] map;
 
-    public Map() {
+    public Map(Settings setting) {
         items = new ArrayList<>();
         containers = new ArrayList<>();
         map = new Cell[MAP_WIDTH][MAP_HEIGHT];
-        setting = MARS;
+        this.setting = setting;
 
         for(int x = 0; x < MAP_WIDTH; x++) {
             for(int y = 0; y < MAP_HEIGHT; y++) {
@@ -97,15 +96,14 @@ public class Map {
      */
     public void render() {
         // Render the map background
-        applet.image(Assets.getInstance().getImage("TestMap"), 0, 0);
+        applet.image(Assets.getInstance().getImage(setting.getMapName()), 0, 0);
 
         // Render the map
-        applet.noFill();
         for(int x = 0; x < MAP_WIDTH; x++) {
             for(int y = 0; y < MAP_HEIGHT; y++) {
                 map[x][y].render();
             }
-        } applet.fill(0);
+        }
 
         // Render all items
         List<Item> removedItems = new ArrayList<>();

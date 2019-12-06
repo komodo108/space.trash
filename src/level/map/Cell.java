@@ -24,6 +24,17 @@ public class Cell extends PObject {
 
     @Override
     public void render() {
-        applet.rect(pos.x, pos.y, width, height);
+        switch (type) {
+            case WALL:
+                applet.fill(0);
+                break;
+            case GOAL:
+                applet.fill(255, 255, 0);
+                break;
+            default:
+                applet.noFill();
+                break;
+        } applet.rect(pos.x, pos.y, width, height);
+        applet.fill(0);
     }
 }

@@ -1,16 +1,13 @@
 package level;
 
 import bots.Basebot;
-import level.container.TestContainer;
-import level.item.TestItem;
+import level.map.LevelLoader;
 import level.map.Map;
 import processing.PCObject;
 import processing.PObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static main.Constants.TILE_SIZE;
 
 public class Level {
     /* TODO: A Level is a map & enemies with a win condition which uses a specific bot.
@@ -24,14 +21,18 @@ public class Level {
 
     public Level(String pathname) {
         objects = new ArrayList<>();
-        // Setup the level from the pathname
-        // TODO: Generate the map & the bot
-        map = new Map();
-        map.add(new TestItem(300, 300));
-        map.add(new TestContainer(400, 400));
-        map.addWall(20, 20, 20, 2);
 
-        bot = new Basebot(map, TILE_SIZE, TILE_SIZE);
+        // Get objects from the map loader
+        LevelLoader loader = new LevelLoader(pathname);
+        map = loader.getMap();
+
+        // TODO: Load the enemies
+
+
+        // TODO: Load the win condition, default code, tutorial message
+
+        // Load the bot
+        bot = loader.getBot();
         objects.add(bot);
     }
 
