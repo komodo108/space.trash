@@ -1,6 +1,7 @@
 package level;
 
 import bots.Basebot;
+import level.container.TestContainer;
 import level.item.TestItem;
 import processing.PCObject;
 import processing.PObject;
@@ -23,7 +24,8 @@ public class Level {
         // Setup the level from the pathname
         // TODO: Generate the map & the bot
         map = new Map();
-        map.add(new TestItem(500, 500));
+        map.add(new TestItem(300, 300));
+        map.add(new TestContainer(400, 400));
 
         bot = new Basebot(map);
         objects.add(bot);
@@ -47,6 +49,6 @@ public class Level {
                 object.render();
             }
         } objects.removeAll(removed);
-        return false;
+        return map.getContainers().get(0).getHeld().size() == 1; // win condition
     }
 }

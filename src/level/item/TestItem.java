@@ -3,8 +3,8 @@ package level.item;
 public class TestItem extends Item {
     public TestItem(int x, int y) {
         super(x, y);
-        width = 18;
-        height = 18;
+        width = 10;
+        height = 10;
     }
 
     @Override

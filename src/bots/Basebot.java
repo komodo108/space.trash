@@ -1,6 +1,7 @@
 package bots;
 
 import level.Map;
+import level.item.Item;
 import processing.PCObject;
 import processing.PObject;
 import processing.core.PVector;
@@ -13,6 +14,7 @@ import static processing.Shape.CIRCLE;
 
 public class Basebot extends PCObject implements PythonInteractable {
     private IBasebot implementation;
+    private Item held;
 
     public Basebot(Map map) {
         super(map, CIRCLE);
@@ -31,6 +33,14 @@ public class Basebot extends PCObject implements PythonInteractable {
         int newy = (int) (pos.y + 2 * Math.sin(ori));
         applet.fill(0);
         applet.ellipse(newx, newy, height / 2f, width / 2f);
+    }
+
+    public void setHeld(Item held) {
+        this.held = held;
+    }
+
+    public Item getHeld() {
+        return held;
     }
 
     @Override

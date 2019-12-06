@@ -2,6 +2,7 @@ package main;
 
 import bots.Basebot;
 import g4p_controls.GButton;
+import g4p_controls.GEditableTextControl;
 import g4p_controls.GEvent;
 import g4p_controls.GPanel;
 import gui.ConsolePanel;
@@ -83,4 +84,7 @@ public class Main extends PApplet {
             console.updated();
         }
     }
+
+    @SuppressWarnings("unused")
+    public void handleTextEvents(GEditableTextControl text, GEvent event) { /* no content - keep G4P quiet */ }
 }

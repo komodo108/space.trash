@@ -1,6 +1,7 @@
 package bots;
 
 import ai.Direction;
+import level.container.Container;
 import level.item.Item;
 import processing.CollisionDetect;
 import processing.core.PVector;
@@ -28,7 +29,7 @@ public class IBasebot implements PythonImplementation {
     public void move(int x) {
         // Get a vector representing where we are facing & find the targeted location from it
         PVector facing = new PVector((float) Math.cos(parent.ori), (float) Math.sin(parent.ori)).normalize();
-        PVector target = parent.pos.copy().add(facing.mult(x));
+        PVector target = parent.pos.copy().add(facing.mult(x)); // TODO: * 10?
 
         // Block Python until we get to the destination
         while(parent.pos.dist(target) > TARGET_RADIUS) {
@@ -57,12 +58,22 @@ public class IBasebot implements PythonImplementation {
         List<Item> items = parent.map.getItems();
         List<Item> removed = new ArrayList<>();
         for(Item item : items) {
-            if(CollisionDetect.isInside(item, parent) && !item.isDead()) {
+            if(CollisionDetect.isInside(item, parent) && !item.isDead() && parent.getHeld() == null) {
                 removed.add(item);
-                System.out.println("owo");
-                // Add item to the bot
+                parent.setHeld(item);
             }
         } items.removeAll(removed);
+    }
+
+    @Pythond
+    public void interact() {
+        List<Container> containers = parent.map.getContainers();
+        for(Container container : containers) {
+            if(CollisionDetect.isInside(container, parent) && parent.getHeld() != null) {
+                if(container.interact(parent.getHeld())) parent.setHeld(container.getItem());
+                else parent.setHeld(null);
+            }
+        }
     }
 
     @Pythond
