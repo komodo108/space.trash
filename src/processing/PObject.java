@@ -4,6 +4,8 @@ import main.AppletSingleton;
 import processing.core.PApplet;
 import processing.core.PVector;
 
+import static main.Constants.TILE_SIZE;
+
 public abstract class PObject {
     public PApplet applet;
     public PVector pos;
@@ -19,8 +21,8 @@ public abstract class PObject {
         this.shape = shape;
 
         pos = new PVector(0, 0);
-        width = 1;
-        height = 1;
+        width = TILE_SIZE;
+        height = TILE_SIZE;
     }
 
     /**

@@ -1,10 +1,12 @@
 package level.item;
 
+import static main.Constants.TILE_SIZE;
+
 public class TestItem extends Item {
     public TestItem(int x, int y) {
         super(x, y);
-        width = 10;
-        height = 10;
+        width = TILE_SIZE;
+        height = TILE_SIZE;
     }
 
     @Override

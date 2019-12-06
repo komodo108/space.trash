@@ -3,11 +3,14 @@ package level;
 import bots.Basebot;
 import level.container.TestContainer;
 import level.item.TestItem;
+import level.map.Map;
 import processing.PCObject;
 import processing.PObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static main.Constants.TILE_SIZE;
 
 public class Level {
     /* TODO: A Level is a map & enemies with a win condition which uses a specific bot.
@@ -26,8 +29,9 @@ public class Level {
         map = new Map();
         map.add(new TestItem(300, 300));
         map.add(new TestContainer(400, 400));
+        map.addWall(20, 20, 20, 2);
 
-        bot = new Basebot(map);
+        bot = new Basebot(map, TILE_SIZE, TILE_SIZE);
         objects.add(bot);
     }
 

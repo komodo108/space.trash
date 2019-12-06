@@ -15,8 +15,8 @@ public final class Constants {
 
     // Window constants
     public static final String NAME = "./Space.trash";
-    public static final int WIDTH = 1500;
-    public static final int HEIGHT = 900;
+    public static final int WIDTH = 1504;
+    public static final int HEIGHT = 912;
 
     // GUI constants
     public static final int EDITOR_WIDTH = WIDTH / 4;
@@ -25,11 +25,17 @@ public final class Constants {
     public static final int MAX_LENGTH = 100;
     public static final int NEW_LENGTH = 10;
 
-    // Bot parameters
+    // Physics parameters
     public static final float TARGET_RADIUS = 3f;
     public static final float SLOW_RADIUS = 1f;
     public static final float MAX_ACCELERATION = 0.04f;
     public static final float MAX_SPEED = 0.32f;
     public static final double ORIENTATION_BASE = Math.PI / 32;
     public static final float DAMPING = 0.92f;
+    public static final float PUSHING_AMOUNT = 0.1f;
+
+    // Map parameters
+    public static final int TILE_SIZE = 16;
+    public static final int MAP_WIDTH = WIDTH / TILE_SIZE;
+    public static final int MAP_HEIGHT = HEIGHT / TILE_SIZE;
 }

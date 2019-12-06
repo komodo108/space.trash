@@ -1,7 +1,7 @@
 package bots;
 
-import level.Map;
 import level.item.Item;
+import level.map.Map;
 import processing.PCObject;
 import processing.PObject;
 import processing.core.PVector;
@@ -10,17 +10,18 @@ import python.middleware.PythonInteractable;
 
 import java.util.List;
 
+import static main.Constants.TILE_SIZE;
 import static processing.Shape.CIRCLE;
 
 public class Basebot extends PCObject implements PythonInteractable {
     private IBasebot implementation;
     private Item held;
 
-    public Basebot(Map map) {
+    public Basebot(Map map, int x, int y) {
         super(map, CIRCLE);
-        width = 15;
-        height = 15;
-        pos = new PVector(10, 10);
+        width = TILE_SIZE;
+        height = TILE_SIZE;
+        pos = new PVector(x, y);
         implementation = new IBasebot(this);
     }
 

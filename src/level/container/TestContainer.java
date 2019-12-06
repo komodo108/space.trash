@@ -3,13 +3,14 @@ package level.container;
 import level.item.Item;
 import level.item.TestItem;
 
+import static main.Constants.TILE_SIZE;
 import static processing.Shape.RECTANGLE;
 
 public class TestContainer extends Container {
     public TestContainer(int x, int y) {
         super(RECTANGLE, x, y);
-        width = 20;
-        height = 20;
+        width = 2 * TILE_SIZE;
+        height = 2 * TILE_SIZE;
     }
 
     @Override

@@ -8,7 +8,7 @@ import g4p_controls.GPanel;
 import gui.ConsolePanel;
 import gui.GUI;
 import level.Level;
-import level.Map;
+import level.map.Map;
 import processing.core.PApplet;
 import python.main.Python;
 import python.parsers.Parsers;

@@ -13,8 +13,7 @@ import python.middleware.Pythond;
 import java.util.ArrayList;
 import java.util.List;
 
-import static main.Constants.KEY;
-import static main.Constants.TARGET_RADIUS;
+import static main.Constants.*;
 
 public class IBasebot implements PythonImplementation {
     private Basebot parent;
@@ -29,14 +28,13 @@ public class IBasebot implements PythonImplementation {
     public void move(int x) {
         // Get a vector representing where we are facing & find the targeted location from it
         PVector facing = new PVector((float) Math.cos(parent.ori), (float) Math.sin(parent.ori)).normalize();
-        PVector target = parent.pos.copy().add(facing.mult(x)); // TODO: * 10?
+        PVector target = parent.pos.copy().add(facing.mult(x * TILE_SIZE));
 
         // Block Python until we get to the destination
         while(parent.pos.dist(target) > TARGET_RADIUS) {
             // Move towards the target
             PVector vTarget = target.copy().sub(parent.pos);
-            parent.steer.smoothFace(parent);
-            parent.pos.add(parent.vel);
+            parent.integrate();
             parent.steer.seek(parent, vTarget);
 
             // We are threading, so ensure the user can come out
@@ -78,12 +76,12 @@ public class IBasebot implements PythonImplementation {
 
     @Pythond
     public int getX() {
-        return (int) parent.pos.x;
+        return (int) (parent.pos.x / TILE_SIZE);
     }
 
     @Pythond
     public int getY() {
-        return (int) parent.pos.y;
+        return (int) (parent.pos.y / TILE_SIZE);
     }
 
     public ActionQueue getQueue(String key) {
