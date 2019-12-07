@@ -10,7 +10,6 @@ public final class Constants {
      * This string should be one which a user isn't allowed to type in with ANY of the parsers
      */
     public static final String KEY = "exec";
-    public static final int THREAD_SLEEP_TIME = 7;
     public static final int SHORT_SLEEP_TIME = 10;
     public static final int LONG_SLEEP_TIME = 50;
 
@@ -29,11 +28,12 @@ public final class Constants {
     // Physics parameters
     public static final float TARGET_RADIUS = 3f;
     public static final float SLOW_RADIUS = 1f;
-    public static final float MAX_ACCELERATION = 0.04f;
-    public static final float MAX_SPEED = 0.32f;
+    public static final float MAX_ACCELERATION = 0.1f;
+    public static final float MAX_SPEED = 0.72f;
+    public static final float PLAYER_MAX_SPEED = 0.22f;
     public static final double ORIENTATION_BASE = Math.PI / 32;
     public static final float DAMPING = 0.92f;
-    public static final float PUSHING_AMOUNT = 0.1f;
+    public static final float PUSHING_AMOUNT = 0.8f;
 
     // Map parameters
     public static final int TILE_SIZE = 16;

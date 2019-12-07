@@ -48,11 +48,22 @@ public abstract class PCObject extends PObject {
         }
 
         // Collision with the map
-        // TODO: Also do corner only collision - i.e. if the top left corner is colliding then push it up and right
-        if(cellIs(cells, 0, WALL) && cellIs(cells, 2, WALL)) vel.x += -vel.x + PUSHING_AMOUNT;
-        if(cellIs(cells, 2, WALL) && cellIs(cells, 3, WALL)) vel.y += -vel.y - PUSHING_AMOUNT;
-        if(cellIs(cells, 0, WALL) && cellIs(cells, 1, WALL)) vel.y += -vel.y + PUSHING_AMOUNT;
-        if(cellIs(cells, 1, WALL) && cellIs(cells, 3, WALL)) vel.x += -vel.x - PUSHING_AMOUNT;
+        if(cellIs(cells, 0, WALL)) {
+            vel.x += -vel.x + PUSHING_AMOUNT;
+            vel.y += -vel.y + PUSHING_AMOUNT;
+        } if(cellIs(cells, 0, WALL) && cellIs(cells, 2, WALL)) vel.x += -vel.x + PUSHING_AMOUNT;
+        if(cellIs(cells, 1, WALL)) {
+            vel.x += -vel.x - PUSHING_AMOUNT;
+            vel.y += -vel.y + PUSHING_AMOUNT;
+        } if(cellIs(cells, 2, WALL) && cellIs(cells, 3, WALL)) vel.y += -vel.y - PUSHING_AMOUNT;
+        if(cellIs(cells, 2, WALL)) {
+            vel.x += -vel.x + PUSHING_AMOUNT;
+            vel.y += -vel.y - PUSHING_AMOUNT;
+        } if(cellIs(cells, 0, WALL) && cellIs(cells, 1, WALL)) vel.y += -vel.y + PUSHING_AMOUNT;
+        if(cellIs(cells, 3, WALL)) {
+            vel.x += -vel.x - PUSHING_AMOUNT;
+            vel.y += -vel.y - PUSHING_AMOUNT;
+        } if(cellIs(cells, 1, WALL) && cellIs(cells, 3, WALL)) vel.x += -vel.x - PUSHING_AMOUNT;
     }
 
     private boolean cellIs(List<Cell> cells, int index, CellTypes type) {

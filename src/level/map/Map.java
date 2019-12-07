@@ -86,6 +86,11 @@ public class Map {
         } return cells;
     }
 
+    public Cell getMapCell(float x, float y) {
+        if(x >= 0 && x < MAP_WIDTH && y >= 0 && y < MAP_HEIGHT) return map[(int) x][(int) y];
+        else return null;
+    }
+
     public Cell getCell(float x, float y) {
         if(x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT) return map[(int) x / TILE_SIZE][(int) y / TILE_SIZE];
         else return null;

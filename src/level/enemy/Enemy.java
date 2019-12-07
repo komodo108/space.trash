@@ -11,15 +11,19 @@ import processing.core.PVector;
 
 import java.util.List;
 
+import static main.Constants.MAX_SPEED;
+
 public abstract class Enemy extends PCObject {
     protected Delegate delegate;
     protected Basebot bot;
+    boolean target = false;
 
     public Enemy(Map map, Basebot bot, Shape shape, int x, int y) {
         super(map, shape);
         pos = new PVector(x, y);
         delegate = new Delegate();
         this.bot = bot;
+        vel = new PVector(MAX_SPEED, MAX_SPEED);
     }
 
     @Override
@@ -27,6 +31,15 @@ public abstract class Enemy extends PCObject {
         super.integrate();
         updateEnemy();
         return super.update();
+    }
+
+    /**
+     * Standard wandering AI
+     */
+    void wander() {
+        target = false;
+        delegate.fleeWall(this, map);
+        delegate.wander(this);
     }
 
     /**

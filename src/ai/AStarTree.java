@@ -2,6 +2,8 @@ package ai;
 
 import processing.core.PVector;
 
+import static main.Constants.TILE_SIZE;
+
 public class AStarTree implements Comparable<AStarTree> {
 
     private AStarTree prev;
@@ -11,19 +13,19 @@ public class AStarTree implements Comparable<AStarTree> {
 
     public AStarTree(AStarTree prev, PVector position) {
         this.prev = prev;
-        this.position = position;
+        this.position = new PVector(position.x * TILE_SIZE, position.y * TILE_SIZE);
     }
 
     public AStarTree getPrev() {
         return prev;
     }
 
-    public void setPrev(AStarTree prev) {
-        this.prev = prev;
-    }
-
     public PVector getPosition() {
         return position;
+    }
+
+    public PVector getMapPosition() {
+        return new PVector(position.x / TILE_SIZE, position.y / TILE_SIZE);
     }
 
     public void setCost(double cost) {
@@ -40,10 +42,6 @@ public class AStarTree implements Comparable<AStarTree> {
 
     public double getCost() {
         return cost;
-    }
-
-    public double getEstimate() {
-        return estimate;
     }
 
     @Override

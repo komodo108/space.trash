@@ -1,5 +1,6 @@
 package ai;
 
+import bots.Basebot;
 import processing.PCObject;
 import processing.core.PVector;
 
@@ -32,22 +33,27 @@ public class Steer {
         PVector tcopy = target.copy();
         tcopy.normalize().mult(MAX_ACCELERATION);
         object.vel.add(tcopy);
-        if(object.vel.mag() > MAX_SPEED) object.vel.normalize().mult(MAX_SPEED);
+        if(object.vel.mag() > getSpeed(object)) object.vel.normalize().mult(getSpeed(object));
     }
 
     public void seek(PCObject object, PVector target) {
         PVector tcopy = target.copy();
         float dis = tcopy.mag();
         if(dis > TARGET_RADIUS) {
-            float tSpeed = MAX_SPEED;
-            if(dis <= SLOW_RADIUS) tSpeed = MAX_SPEED * dis / SLOW_RADIUS;
+            float tSpeed = getSpeed(object);
+            if(dis <= SLOW_RADIUS) tSpeed = getSpeed(object) * dis / SLOW_RADIUS;
 
             PVector tVel = tcopy.normalize().mult(tSpeed);
             PVector acc = tVel.copy().sub(object.vel);
 
             if(acc.mag() > MAX_ACCELERATION) acc.normalize().mult(MAX_ACCELERATION);
             object.vel.add(acc);
-            if(object.vel.mag() > MAX_SPEED) object.vel.normalize().mult(MAX_SPEED);
+            if(object.vel.mag() > getSpeed(object)) object.vel.normalize().mult(getSpeed(object));
         } object.vel.mult(DAMPING);
+    }
+
+    public float getSpeed(PCObject object) {
+        if(object instanceof Basebot) return PLAYER_MAX_SPEED;
+        else return MAX_SPEED;
     }
 }

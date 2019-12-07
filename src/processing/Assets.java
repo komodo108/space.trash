@@ -2,6 +2,7 @@ package processing;
 
 import main.AppletSingleton;
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
 
 import java.util.HashMap;
@@ -15,11 +16,18 @@ public class Assets {
 
     private PApplet applet = AppletSingleton.getInstance().getApplet();
     private Map<String, PImage> images;
+    private Map<String, PFont> fonts;
+
     private static final String IMAGE_DIR = "images/";
+    private static final String FONT_NAME = "Arial";
 
     private Assets() {
         images = new HashMap<>();
+        fonts = new HashMap<>();
+
         loadImage("TestMap.png");
+        loadFont("small", FONT_NAME, 12);
+        loadFont("large", FONT_NAME, 70);
     }
 
     private void loadImage(String path) {
@@ -27,7 +35,21 @@ public class Assets {
         images.put(name, applet.loadImage(IMAGE_DIR + path));
     }
 
+    private void loadFont(String name, String font, int size) {
+        fonts.put(name, applet.createFont(font, size));
+    }
+
     public PImage getImage(String name) {
         return images.getOrDefault(name, null);
+    }
+
+    public PFont getFont(String name) {
+        return fonts.getOrDefault(name, null);
+    }
+
+    public int getFontSize(String name) {
+        PFont font = fonts.getOrDefault(name, null);
+        if(font != null) return font.getSize();
+        else return 1;
     }
 }
