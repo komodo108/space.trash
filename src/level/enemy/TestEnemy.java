@@ -2,7 +2,7 @@ package level.enemy;
 
 import ai.AStarSearch;
 import ai.Path;
-import bots.Basebot;
+import bots.RealBasebot;
 import level.map.Map;
 
 import static main.Constants.TILE_SIZE;
@@ -12,7 +12,7 @@ public class TestEnemy extends Enemy {
     private AStarSearch search;
     private Path path;
 
-    public TestEnemy(Map map, Basebot bot, int x, int y) {
+    public TestEnemy(Map map, RealBasebot bot, int x, int y) {
         super(map, bot, CIRCLE, x, y);
         width = TILE_SIZE;
         height = TILE_SIZE;

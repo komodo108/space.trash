@@ -1,6 +1,6 @@
 package level.win;
 
-import bots.Basebot;
+import bots.RealBasebot;
 import level.map.Map;
 import processing.PObject;
 
@@ -9,9 +9,9 @@ import java.util.List;
 public abstract class Win {
     protected Map map;
     protected List<PObject> objects;
-    protected Basebot bot;
+    protected RealBasebot bot;
 
-    public Win(Map map, Basebot bot) {
+    public Win(Map map, RealBasebot bot) {
         this.map = map;
         this.bot = bot;
     }

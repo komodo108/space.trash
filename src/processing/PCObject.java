@@ -35,6 +35,15 @@ public abstract class PCObject extends PObject {
         steer.smoothFace(this);
     }
 
+    public boolean canMove(List<Cell> cells, PVector pos) {
+        if(pos.x < 0 || pos.x > WIDTH || pos.y < 0 || pos.y > HEIGHT) return false;
+        if(cells.get(0) != null && cells.get(0).getType() == WALL) return false;
+        if(cells.get(1) != null && cells.get(1).getType() == WALL) return false;
+        if(cells.get(2) != null && cells.get(2).getType() == WALL) return false;
+        if(cells.get(3) != null && cells.get(3).getType() == WALL) return false;
+        return true;
+    }
+
     private void interactMap() {
         List<Cell> cells = map.getCells(this);
 

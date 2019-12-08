@@ -1,7 +1,7 @@
 package level.enemy;
 
 import ai.Delegate;
-import bots.Basebot;
+import bots.RealBasebot;
 import level.map.Map;
 import processing.CollisionDetect;
 import processing.PCObject;
@@ -15,10 +15,10 @@ import static main.Constants.MAX_SPEED;
 
 public abstract class Enemy extends PCObject {
     protected Delegate delegate;
-    protected Basebot bot;
+    protected RealBasebot bot;
     boolean target = false;
 
-    public Enemy(Map map, Basebot bot, Shape shape, int x, int y) {
+    public Enemy(Map map, RealBasebot bot, Shape shape, int x, int y) {
         super(map, shape);
         pos = new PVector(x, y);
         delegate = new Delegate();
@@ -50,8 +50,8 @@ public abstract class Enemy extends PCObject {
     @Override
     public void interactOthers(List<PObject> others) {
         for(PObject object : others) {
-            if(object instanceof Basebot) {
-                Basebot bot = (Basebot) object;
+            if(object instanceof RealBasebot) {
+                RealBasebot bot = (RealBasebot) object;
                 if(CollisionDetect.isInside(this, bot)) {
                     // hurt the bot
                     System.out.println("hurt mr. bot ;-;");

@@ -1,5 +1,6 @@
 package python.middleware;
 
+import bots.Basebot;
 import main.Constants;
 import python.main.PythonAbortSingleton;
 import python.main.PythonStopException;
@@ -11,7 +12,7 @@ import static main.Constants.SHORT_SLEEP_TIME;
  * <b>NOTE: EVERY METHOD HERE IS CALLABLE BY PYTHON!</b>
  * Use the <code>key</code> variable and polymorphism to mask methods which the user cannot use
  * @see PythonInteractable
- * @see bots.IBasebot
+ * @see Basebot
  * @see Constants
  */
 public interface PythonImplementation {

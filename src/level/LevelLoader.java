@@ -1,9 +1,13 @@
-package level.map;
+package level;
 
-import bots.Basebot;
+import bots.RealBasebot;
+import gui.DefaultCode;
+import gui.Tutorial;
 import level.container.Container;
 import level.enemy.Enemy;
 import level.item.Item;
+import level.map.Map;
+import level.map.Settings;
 import level.win.Win;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,9 +27,11 @@ import static main.Constants.TILE_SIZE;
 public class LevelLoader {
     private static final String LEVEL_DIR = "data/level/";
     private Map map;
-    private Basebot bot;
+    private RealBasebot bot;
     private Win win;
     private List<Enemy> enemies;
+    private Tutorial tutorial;
+    private DefaultCode code;
 
     public LevelLoader(String pathname) {
         InputStream is = null;
@@ -101,7 +107,7 @@ public class LevelLoader {
         JSONObject botobject = object.getJSONObject("bot");
         int x = botobject.getInt("x");
         int y = botobject.getInt("y");
-        bot = new Basebot(map, x * TILE_SIZE, y * TILE_SIZE);
+        bot = new RealBasebot(map, x * TILE_SIZE, y * TILE_SIZE);
 
         // Load enemies using reflection
         try {
@@ -113,7 +119,7 @@ public class LevelLoader {
                 y = enemy.getInt("y");
 
                 Class<?> emenyc = Class.forName("level.enemy." + toProper(type.toLowerCase()) + "Enemy");
-                Constructor<?> cons = emenyc.getConstructor(Map.class, Basebot.class, int.class, int.class);
+                Constructor<?> cons = emenyc.getConstructor(Map.class, RealBasebot.class, int.class, int.class);
                 enemies.add((Enemy) cons.newInstance(map, bot, x * TILE_SIZE, y * TILE_SIZE));
             }
         } catch (Exception e) {
@@ -125,11 +131,39 @@ public class LevelLoader {
             String type = object.getString("win");
 
             Class<?> winc = Class.forName("level.win." + toProper(type.toLowerCase()) + "Win");
-            Constructor<?> cons = winc.getConstructor(Map.class, Basebot.class);
+            Constructor<?> cons = winc.getConstructor(Map.class, RealBasebot.class);
             win = (Win) cons.newInstance(map, bot);
         } catch (Exception e) {
             if(!(e instanceof JSONException)) e.printStackTrace();
         }
+
+        // Load the tutorial messages
+        tutorial = new Tutorial();
+        JSONArray messages = object.getJSONArray("messages");
+        for (int i = 0; i < messages.length(); i++) {
+            JSONArray message = messages.getJSONObject(i).getJSONArray("message");
+            StringBuilder sb = new StringBuilder();
+            for(int j = 0; j < message.length(); j++) {
+                String content = message.getString(j);
+                sb.append(content).append("\n");
+            } tutorial.addText(sb.toString());
+        }
+
+        // Load the default code
+        StringBuilder sb = null;
+        try {
+            JSONObject defaultCode = object.getJSONObject("default");
+            JSONArray stringsjson = defaultCode.getJSONArray("code");
+            sb = new StringBuilder();
+            sb.append("# Code here is not editable\n");
+            for (int i = 0; i < stringsjson.length(); i++) {
+                String codestring = stringsjson.getString(i);
+                sb.append(codestring).append("\n");
+            }
+        } catch (JSONException e) {
+            sb = new StringBuilder();
+            sb.append("# No default code");
+        } code = new DefaultCode(sb.toString());
 
         // Close the file
         try {
@@ -147,7 +181,7 @@ public class LevelLoader {
         return map;
     }
 
-    public Basebot getBot() {
+    public RealBasebot getBot() {
         return bot;
     }
 
@@ -157,5 +191,13 @@ public class LevelLoader {
 
     public List<Enemy> getEnemies() {
         return enemies;
+    }
+
+    public Tutorial getTutorial() {
+        return tutorial;
+    }
+
+    public DefaultCode getCode() {
+        return code;
     }
 }

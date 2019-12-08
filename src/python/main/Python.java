@@ -1,6 +1,6 @@
 package python.main;
 
-import bots.Basebot;
+import bots.RealBasebot;
 import gui.ConsolePanel;
 import python.parsers.IParser;
 
@@ -9,7 +9,7 @@ import python.parsers.IParser;
  */
 public class Python {
     ConsolePanel panel;
-    Basebot bot;
+    RealBasebot bot;
     private PythonThread thread;
     private PythonAbortSingleton abort = PythonAbortSingleton.getInstance();
     boolean running;
@@ -17,7 +17,7 @@ public class Python {
     /**
      * Multi-threaded python
      */
-    public Python(Basebot bot, ConsolePanel panel) {
+    public Python(RealBasebot bot, ConsolePanel panel) {
         this.bot = bot;
         this.panel = panel;
         //this.thread = new PythonThread(this, ""); // Remove to load thread upon Go clicked
@@ -34,13 +34,17 @@ public class Python {
     /**
      * Setup a new thread to run user-code
      * @param code user generated code
+     * @param defaultCode the level generated code
      * @param parser a parser, which we will parse the user code with
+     * @param defaultParser the parser which the default code will be parsed with
      */
-    public void setup(String code, IParser parser) {
+    public void setup(String code, String defaultCode, IParser parser, IParser defaultParser) {
         String run = parser.change(code);
+        String rundefault = defaultParser.change(defaultCode);
         String error = parser.parse(run);
-        if(error == null) {
-            thread = new PythonThread(this, run);
+        String errorDefault = defaultParser.parse(rundefault);
+        if(error == null && errorDefault == null) {
+            thread = new PythonThread(this, rundefault + run);
         } else {
             error(error);
         }

@@ -14,6 +14,7 @@ import static main.Constants.*;
 public class GUI {
     private EditorPanel editorPanel;
     private ConsolePanel consolePanel;
+    private DefaultCodePanel defaultCodePanel;
     private GButton go;
     private PApplet applet = AppletSingleton.getInstance().getApplet();
 
@@ -27,6 +28,7 @@ public class GUI {
 
         // Setup panel
         editorPanel = new EditorPanel(applet, WIDTH - EDITOR_WIDTH - 10, 10, EDITOR_WIDTH, EDITOR_HEIGHT);
+        defaultCodePanel = new DefaultCodePanel(applet, editorPanel);
         consolePanel = new ConsolePanel(applet, editorPanel);
 
         // Setup buttons
@@ -39,6 +41,18 @@ public class GUI {
 
     public String getText() {
         return editorPanel.getEditor().getText();
+    }
+
+    public void setTutorial(Tutorial tutorial) {
+        editorPanel.setTutorial(tutorial);
+    }
+
+    public String getDefaultCode() {
+        return defaultCodePanel.getCode();
+    }
+
+    public void setCode(DefaultCode code) {
+        this.defaultCodePanel.setCode(code);
     }
 
     public boolean isOn() {

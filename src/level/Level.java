@@ -1,8 +1,9 @@
 package level;
 
-import bots.Basebot;
+import bots.RealBasebot;
+import gui.DefaultCode;
+import gui.Tutorial;
 import level.enemy.Enemy;
-import level.map.LevelLoader;
 import level.map.Map;
 import level.win.Win;
 import processing.PCObject;
@@ -16,9 +17,11 @@ public class Level {
         The player must meet this win condition for the next level to load.
     */
     private List<PObject> objects;
-    private Basebot bot;
+    private RealBasebot bot;
     private Map map;
     private Win win;
+    private Tutorial tutorial;
+    private DefaultCode code;
 
     public Level(String pathname) {
         objects = new ArrayList<>();
@@ -31,8 +34,10 @@ public class Level {
         List<Enemy> enemies = loader.getEnemies();
         objects.addAll(enemies);
 
-        // TODO: Load the default code, tutorial message, etc.
+        // Load the default code, tutorial message, etc.
         win = loader.getWin();
+        tutorial = loader.getTutorial();
+        code = loader.getCode();
 
         // Load the bot
         bot = loader.getBot();
@@ -40,12 +45,20 @@ public class Level {
         win.setObjects(objects);
     }
 
-    public Basebot getBot() {
+    public RealBasebot getBot() {
         return bot;
     }
 
     public Map getMap() {
         return map;
+    }
+
+    public Tutorial getTutorial() {
+        return tutorial;
+    }
+
+    public DefaultCode getCode() {
+        return code;
     }
 
     /**

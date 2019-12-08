@@ -1,6 +1,6 @@
 package python.parsers;
 
-public class StandardParser extends AParser implements IParser {
+public class LevelParser extends AParser implements IParser {
     @Override
     public String parse(String code) {
         String[] lines = code.split("\n");
@@ -10,7 +10,6 @@ public class StandardParser extends AParser implements IParser {
             line = line.toLowerCase();
 
             // Disable things from builtins (KEY should be one of these)
-            if(line.contains("import")) return "Import on line " + lineno + " is not allowed.";
             if(line.contains("file")) return "Cannot use 'file' on line " + lineno + ".";
             if(line.contains("open")) return "Cannot use 'open' on line " + lineno + ".";
             if(line.contains("input")) return "Input is not allowed on line " + lineno + ".";
@@ -22,8 +21,6 @@ public class StandardParser extends AParser implements IParser {
             if(line.contains("py.") || line.contains("py ")) return "Cannot refer to 'Py' on line " + lineno + ".";
             if(line.contains("python.main.PythonTraceFunction")) return "Use of 'python.main.PythonTraceFunction' is not allowed on line " + lineno + ".";
             if(line.contains("ptf")) return "Illegal use of 'ptf' on line " + lineno + ".";
-            if(line.contains("__bot")) return "The use of '__bot' is forbidden on line " + lineno + ".";
-            if(line.contains("__impl")) return "Cannot refer to '__impl' on line " + lineno + ".";
             lineno++;
         } return null;
     }

@@ -91,7 +91,25 @@ An example level JSON file is given below, for it to be valid comments will need
   "bot": {
     "x": 1,
     "y": 1
-  }
+  },
+
+  // [OPTIONAL] An array of code which will be ran at the beginning of the level
+  "default": {
+    "code": [
+      "print('0')",
+      "print('1')"
+    ]
+  },
+
+  // An array of messages to introduce the player to new mechanics
+  "messages": [
+    {
+      // A message is an array of lines
+      "message": [
+        "hello"
+      ]
+    }
+  ]
 }
 ```
 

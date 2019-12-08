@@ -28,7 +28,8 @@ public class PythonThread extends Thread {
         py.set("ptf", ptf);
         py.exec("Py.getThreadState().tracefunc = ptf");
         py.set("console", python.panel.getImplementation());
-        py.set("bot", python.bot.getImplementation());
+        py.set("__impl", python.bot.getImplementation());
+        py.set("__bot", python.bot);
     }
 
     /**

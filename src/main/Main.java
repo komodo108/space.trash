@@ -1,11 +1,9 @@
 package main;
 
-import bots.Basebot;
-import g4p_controls.GButton;
-import g4p_controls.GEditableTextControl;
-import g4p_controls.GEvent;
-import g4p_controls.GPanel;
+import bots.RealBasebot;
+import g4p_controls.*;
 import gui.ConsolePanel;
+import gui.EditorPanel;
 import gui.GUI;
 import level.Level;
 import level.map.Map;
@@ -78,8 +76,10 @@ public class Main extends PApplet {
     private void load(int id) {
         System.out.println("Loading level " + id + "...");
         level = new Level("level.json");
+        gui.setTutorial(level.getTutorial());
+        gui.setCode(level.getCode());
         map = level.getMap();
-        Basebot bot = level.getBot();
+        RealBasebot bot = level.getBot();
         py = new Python(bot, gui.getConsolePanel());
         timer = 0;
     }
@@ -109,7 +109,7 @@ public class Main extends PApplet {
 
                 // Then start Python execution
                 gui.setOn();
-                py.setup(gui.getText(), parsers.get("standard"));
+                py.setup(gui.getText(), gui.getDefaultCode(), parsers.get("standard"), parsers.get("level"));
                 py.start();
                 break;
             case "Stop":
@@ -125,6 +125,14 @@ public class Main extends PApplet {
         if(panel.getText().equals("Console") && event == GEvent.EXPANDED) {
             ConsolePanel console = (ConsolePanel) panel;
             console.updated();
+        }
+    }
+
+    @SuppressWarnings("unused")
+    public void handleButtonEvents(GImageButton button, GEvent event) {
+        if(button.tag.equals("TUT-0")) {
+            EditorPanel panel = (EditorPanel) button.getParent();
+            panel.buttonClick();
         }
     }
 

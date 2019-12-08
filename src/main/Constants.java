@@ -21,6 +21,7 @@ public final class Constants {
     // GUI constants
     public static final int EDITOR_WIDTH = WIDTH / 4;
     public static final int EDITOR_HEIGHT = HEIGHT - 100;
+    public static final int UNEDIT_HEIGHT = (EDITOR_HEIGHT - 80) / 2;
     public static final int CONSOLE_TIME = 100;
     public static final int MAX_LENGTH = 100;
     public static final int NEW_LENGTH = 10;
@@ -29,8 +30,8 @@ public final class Constants {
     public static final float TARGET_RADIUS = 3f;
     public static final float SLOW_RADIUS = 1f;
     public static final float MAX_ACCELERATION = 0.1f;
-    public static final float MAX_SPEED = 0.72f;
-    public static final float PLAYER_MAX_SPEED = 0.22f;
+    public static final float MAX_SPEED = 0.69f;
+    public static final float PLAYER_MAX_SPEED = 0.27f;
     public static final double ORIENTATION_BASE = Math.PI / 32;
     public static final float DAMPING = 0.92f;
     public static final float PUSHING_AMOUNT = 0.8f;

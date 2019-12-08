@@ -5,7 +5,9 @@ import level.item.Item;
 import main.AppletSingleton;
 import processing.Assets;
 import processing.PCObject;
+import processing.Shape;
 import processing.core.PApplet;
+import processing.core.PVector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +65,11 @@ public class Map {
         return containers;
     }
 
-    public List<Cell> getCells(PCObject body) {
+    public List<Cell> getCells(PCObject object) {
+        return getCells(object.shape, object.pos, object.width, object.height);
+    }
+
+    public List<Cell> getCells(Shape shape, PVector pos, float width, float height) {
         /* Return back the list of cells this body is within, use the vertexes of the rectangle to determine this
             0         1
              |------|
@@ -73,16 +79,16 @@ public class Map {
          */
 
         List<Cell> cells = new ArrayList<>();
-        if(body.shape == RECTANGLE) {
-            cells.add(getCell(body.pos.x, body.pos.y));
-            cells.add(getCell(body.pos.x + body.width, body.pos.y));
-            cells.add(getCell(body.pos.x, body.pos.y + body.height));
-            cells.add(getCell(body.pos.x + body.width, body.pos.y + body.height));
+        if(shape == RECTANGLE) {
+            cells.add(getCell(pos.x, pos.y));
+            cells.add(getCell(pos.x + width, pos.y));
+            cells.add(getCell(pos.x, pos.y + height));
+            cells.add(getCell(pos.x + width, pos.y + height));
         } else {
-            cells.add(getCell(body.pos.x - body.width / 2f, body.pos.y - body.width / 2f));
-            cells.add(getCell(body.pos.x + body.width / 2f, body.pos.y - body.width / 2f));
-            cells.add(getCell(body.pos.x - body.width / 2f, body.pos.y + body.height / 2f));
-            cells.add(getCell(body.pos.x + body.width / 2f, body.pos.y + body.height / 2f));
+            cells.add(getCell(pos.x - width / 2f, pos.y - width / 2f));
+            cells.add(getCell(pos.x + width / 2f, pos.y - width / 2f));
+            cells.add(getCell(pos.x - width / 2f, pos.y + height / 2f));
+            cells.add(getCell(pos.x + width / 2f, pos.y + height / 2f));
         } return cells;
     }
 

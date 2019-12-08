@@ -1,6 +1,6 @@
 package ai;
 
-import bots.Basebot;
+import bots.RealBasebot;
 import processing.PCObject;
 import processing.core.PVector;
 
@@ -53,7 +53,7 @@ public class Steer {
     }
 
     public float getSpeed(PCObject object) {
-        if(object instanceof Basebot) return PLAYER_MAX_SPEED;
+        if(object instanceof RealBasebot) return PLAYER_MAX_SPEED;
         else return MAX_SPEED;
     }
 }

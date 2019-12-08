@@ -1,6 +1,6 @@
 package level.win;
 
-import bots.Basebot;
+import bots.RealBasebot;
 import level.container.Container;
 import level.item.Item;
 import level.map.Map;
@@ -8,7 +8,7 @@ import level.map.Map;
 import java.util.List;
 
 public class TestWin extends Win {
-    public TestWin(Map map, Basebot bot) {
+    public TestWin(Map map, RealBasebot bot) {
         super(map, bot);
     }
 
