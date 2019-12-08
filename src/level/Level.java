@@ -13,9 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
-    /* TODO: A Level is a map & enemies with a win condition which uses a specific bot.
-        The player must meet this win condition for the next level to load.
-    */
     private List<PObject> objects;
     private RealBasebot bot;
     private Map map;

@@ -67,7 +67,6 @@ public class Python {
         try {
             abort.setAbort(true);
             running = false;
-            // TODO: May want to reset things here?
         } catch (Exception e) { /* No content */ }
     }
 
