@@ -150,19 +150,13 @@ public class LevelLoader {
         }
 
         // Load the default code
-        StringBuilder sb = null;
-        try {
-            JSONObject defaultCode = object.getJSONObject("default");
-            JSONArray stringsjson = defaultCode.getJSONArray("code");
-            sb = new StringBuilder();
-            sb.append("# Code here is not editable\n");
-            for (int i = 0; i < stringsjson.length(); i++) {
-                String codestring = stringsjson.getString(i);
-                sb.append(codestring).append("\n");
-            }
-        } catch (JSONException e) {
-            sb = new StringBuilder();
-            sb.append("# No default code");
+        JSONObject defaultCode = object.getJSONObject("default");
+        JSONArray stringsjson = defaultCode.getJSONArray("code");
+        StringBuilder sb = new StringBuilder();
+        sb.append("# Code here is not editable\n");
+        for (int i = 0; i < stringsjson.length(); i++) {
+            String codestring = stringsjson.getString(i);
+            sb.append(codestring).append("\n");
         } code = new DefaultCode(sb.toString());
 
         // Close the file

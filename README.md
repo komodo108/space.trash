@@ -89,7 +89,7 @@ An example level JSON file is given below, for it to be valid comments will need
     "y": 1
   },
 
-  // [OPTIONAL] An array of code which will be ran at the beginning of the level
+  // An array of code which will be ran at the beginning of the level
   "default": {
     "code": [
       "print('0')",
