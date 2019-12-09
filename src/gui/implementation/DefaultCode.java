@@ -1,4 +1,4 @@
-package gui;
+package gui.implementation;
 
 public class DefaultCode {
     private String code;

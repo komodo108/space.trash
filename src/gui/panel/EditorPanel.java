@@ -1,6 +1,7 @@
-package gui;
+package gui.panel;
 
 import g4p_controls.*;
+import gui.implementation.Tutorial;
 import processing.core.PApplet;
 
 import java.awt.*;

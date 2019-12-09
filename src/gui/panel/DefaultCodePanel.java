@@ -1,8 +1,9 @@
-package gui;
+package gui.panel;
 
 import g4p_controls.G4P;
 import g4p_controls.GPanel;
 import g4p_controls.GTextArea;
+import gui.implementation.DefaultCode;
 import processing.core.PApplet;
 
 import static main.Constants.EDITOR_WIDTH;

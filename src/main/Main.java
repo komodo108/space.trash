@@ -2,9 +2,12 @@ package main;
 
 import bots.RealBasebot;
 import g4p_controls.*;
-import gui.ConsolePanel;
-import gui.EditorPanel;
 import gui.GUI;
+import gui.cutscene.Cutscene;
+import gui.cutscene.End;
+import gui.cutscene.Start;
+import gui.panel.ConsolePanel;
+import gui.panel.EditorPanel;
 import level.Level;
 import level.map.Map;
 import processing.Assets;
@@ -20,6 +23,7 @@ public class Main extends PApplet {
     private Parsers parsers;
     private Python py;
     private GUI gui;
+    private Cutscene start, end;
     private Map map;
     private Level level;
     private int id = 0;
@@ -39,34 +43,53 @@ public class Main extends PApplet {
         // Setup the applet, asset manager, GUI & parsers
         AppletSingleton.getInstance().setApplet(this);
         assets = Assets.getInstance();
-        gui = new GUI();
         parsers = new Parsers();
 
-        // Load the initial level
-        load(id);
+        // Make the cut-scenes which we set on at different points
+        start = new Start();
     }
 
     @Override
     public void draw() {
-        // Draw the map
+        // Clear the frame
         background(0);
-        map.render();
 
-        // Update GUI & Python
-        gui.getConsolePanel().update();
-        if (!py.isRunning() && !gui.isOn()) gui.setOff();
-        // TODO: Maybe when the player fails to beat a level, show a message to try again
+        // Render cut-scenes
+        if(start != null && start.isRender()) start.render();
+        else if(start != null && !start.isRender()) {
+            // Once we are done, make the GUI and load levels
+            gui = new GUI();
+            load(id);
 
-        // Update the level - this is true if the player has won
-        if (level.update(py.isRunning())) timer++;
+            // Don't allow this to be called again
+            start = null;
+        } else if(end != null && end.isRender()) end.render();
 
-        // Once we have shown the win screen for a while, load the next level
-        if(timer > 0) {
-            // Display some cool text saying the player has beaten the level
-            renderText("large", "Well Done!", CENTER, 0, 0, 255);
-            renderText("small", "Loading next level...", CENTER, 0, (assets.getFontSize("large") / 8), 255);
-            timer++;
-        } if(timer > frameRate * 4) load(++id);
+        // Render the level
+        else {
+            // Render the map
+            map.render();
+
+            // Update GUI & Python
+            gui.getConsolePanel().update();
+            if (!py.isRunning() && !gui.isOn()) gui.setOff();
+            // TODO: Maybe when the player fails to beat a level, show a message to try again
+
+            // Update the level - this is true if the player has won
+            if (level.update(py.isRunning())) timer++;
+
+            // Once we have shown the win screen for a while, load the next level
+            // If we have won, load the cut-scene
+            if(timer > 0 && id == LEVELS - 1) {
+                gui.stop();
+                end = new End();
+            } else if (timer > 0) {
+                // Display some cool text saying the player has beaten the level
+                renderText("large", "Well Done!", CENTER, 0, 0, 255);
+                renderText("small", "Loading next level...", CENTER, 0, (assets.getFontSize("large") / 8), 255);
+                timer++;
+            } if (timer > frameRate * 4) load(++id);
+        }
     }
 
     /**
@@ -75,7 +98,7 @@ public class Main extends PApplet {
      */
     private void load(int id) {
         System.out.println("Loading level " + id + "...");
-        level = new Level("level.json");
+        level = new Level("level" + id + ".json");
         gui.setTutorial(level.getTutorial());
         gui.setCode(level.getCode());
         map = level.getMap();
@@ -98,6 +121,12 @@ public class Main extends PApplet {
         fill(colour);
         textAlign(mode);
         text(text, offsetX + width / 2f, offsetY + (height / 2f - font.getSize() / 2f));
+    }
+
+    @Override
+    public void mouseClicked() {
+        if(start != null) start.advance();
+        else if(end != null) end.advance();
     }
 
     @SuppressWarnings("unused")

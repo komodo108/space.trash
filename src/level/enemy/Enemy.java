@@ -53,8 +53,8 @@ public abstract class Enemy extends PCObject {
             if(object instanceof RealBasebot) {
                 RealBasebot bot = (RealBasebot) object;
                 if(CollisionDetect.isInside(this, bot)) {
-                    // hurt the bot
-                    System.out.println("hurt mr. bot ;-;");
+                    bot.setDead();
+                    bot.setDead();
                 }
             }
         }

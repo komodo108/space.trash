@@ -1,7 +1,7 @@
 package python.main;
 
 import bots.RealBasebot;
-import gui.ConsolePanel;
+import gui.panel.ConsolePanel;
 import python.parsers.IParser;
 
 /**

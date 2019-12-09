@@ -1,8 +1,8 @@
 package level;
 
 import bots.RealBasebot;
-import gui.DefaultCode;
-import gui.Tutorial;
+import gui.implementation.DefaultCode;
+import gui.implementation.Tutorial;
 import level.container.Container;
 import level.enemy.Enemy;
 import level.item.Item;

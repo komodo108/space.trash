@@ -1,13 +1,14 @@
 package level;
 
 import bots.RealBasebot;
-import gui.DefaultCode;
-import gui.Tutorial;
+import gui.implementation.DefaultCode;
+import gui.implementation.Tutorial;
 import level.enemy.Enemy;
 import level.map.Map;
 import level.win.Win;
 import processing.PCObject;
 import processing.PObject;
+import python.main.PythonAbortSingleton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,9 +69,10 @@ public class Level {
         for(PObject object : objects) {
             if(update && object.update()) removed.add(object);
             if(!object.isDead()) {
-                if(update && object instanceof PCObject) ((PCObject) object).interactOthers(objects);
                 object.render();
-            }
+                if(update && object instanceof PCObject) ((PCObject) object).interactOthers(objects);
+            } else if(object instanceof RealBasebot) PythonAbortSingleton.getInstance().setAbort(true);
+            else removed.add(object);
         } objects.removeAll(removed);
         return win.isWin();
     }

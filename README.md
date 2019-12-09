@@ -1,10 +1,6 @@
 # Space.Trash
 A Programming Puzzle Game· Final Project for CS4303.
 
-### Work In Progress
-Python is now fully working in its own decoupled thread, interaction happens over queues.
-Now to work on the main game, bots need to be able to move and interact with other objects.
-
 ### Story
 You are working in a bot factory & you come across an unusual bot which you can't work on.
 You are fired from your job. Later, you find some trashed bots including the unusual bot in the trash.
@@ -113,6 +109,26 @@ An example level JSON file is given below, for it to be valid comments will need
 }
 ```
 
+#### Default Code
+For the player to be able to refer to the bot, the level must include **default code**. As a level maker you are given access to the `import` statement alongside the `__bot` and `__impl` variables.
+The `__bot` variable refers to the default bot *class* while the `__impl` variable is the default bot implementation.
+If you wish not to edit the bot, simply set the default code as `bot = __impl`. 
+
+If instead you want to make a subclass for the player, follow the structure shown:
+```python
+import bots.Basebot as ibot
+
+class coolbot(ibot):
+    def move(self, x):
+        ibot.move(self, x * 2)
+
+bot = coolbot(__bot)
+```
+
+#### Images
+Images and other data must be placed into the correct subfolder of `data`. 
+The normal screen size is 1504 x 912 pixels, and the tile size is 16 x 16 pixels.
+
 #### Player interaction
 The player needs to have functions which they can call to interact with the level.
 There are 2 types of these, functions where the player directly interacts, such as moving & functions where the player queries something from the level. Both of
@@ -120,7 +136,8 @@ Both of these are allowed under the python system
 
 #### List of bot functions
 * `move(x)` - moves the player to the `x` blocks in the direction they're facing
-* `face(direction)` - rotates the player to face a given direction
+* `left(degrees)` - rotates the player to left `degrees` degrees
+* `right(degrees)` - rotates the player to right `degrees` degrees
 * `hold()` - picks up and attempts to use the item the player is on top of
 * [?] `attack(direction)` - face direction & attack 
 * `interact()` - interact with whatever the player is on top of

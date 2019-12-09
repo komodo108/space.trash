@@ -3,7 +3,7 @@ package level.map;
 public enum Settings {
     FACTORY("Factory"),
     GRASS("Grass"),
-    MARS("TestMap"), // Mars
+    MARS("TestMap"), // TODO: Mars
     SPOOPY("SpoopyScary"),
     FUTURE("SciFi");
 

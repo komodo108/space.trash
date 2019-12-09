@@ -5,6 +5,10 @@ package main;
  */
 public final class Constants {
 
+    // Number of levels
+    public static final int LEVELS = 1;
+    // TODO: Mid-roll cutscene
+
     // Python constants
     /**
      * This string should be one which a user isn't allowed to type in with ANY of the parsers
@@ -28,9 +32,11 @@ public final class Constants {
 
     // Physics parameters
     public static final float TARGET_RADIUS = 3f;
+    public static final float ATTACK_RADIUS = 2f;
     public static final float SLOW_RADIUS = 1f;
     public static final float MAX_ACCELERATION = 0.1f;
     public static final float MAX_SPEED = 0.69f;
+    public static final float ATTACK_TIME = 0.17f;
     public static final float PLAYER_MAX_SPEED = 0.27f;
     public static final double ORIENTATION_BASE = Math.PI / 32;
     public static final float DAMPING = 0.92f;

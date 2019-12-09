@@ -3,6 +3,11 @@ package gui;
 import g4p_controls.GButton;
 import g4p_controls.GCScheme;
 import g4p_controls.GConstants;
+import gui.implementation.DefaultCode;
+import gui.implementation.Tutorial;
+import gui.panel.ConsolePanel;
+import gui.panel.DefaultCodePanel;
+import gui.panel.EditorPanel;
 import main.AppletSingleton;
 import processing.core.PApplet;
 
@@ -37,6 +42,10 @@ public class GUI {
         go.setLocalColorScheme(GConstants.GREEN_SCHEME);
         go.setOpaque(true);
         editorPanel.addControl(go);
+    }
+
+    public void stop() {
+        editorPanel.setVisible(false);
     }
 
     public String getText() {

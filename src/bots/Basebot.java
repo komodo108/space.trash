@@ -6,6 +6,7 @@ import level.map.Cell;
 import processing.CollisionDetect;
 import processing.core.PVector;
 import python.middleware.ActionQueue;
+import python.middleware.ActionString;
 import python.middleware.PythonImplementation;
 import python.middleware.Pythond;
 
@@ -13,14 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static main.Constants.*;
+import static python.middleware.Actions.ATTACK;
 
 public class Basebot implements PythonImplementation {
     private RealBasebot parent;
     private ActionQueue queue;
+    private int timer;
 
     public Basebot(RealBasebot parent) {
         this.parent = parent;
         this.queue = new ActionQueue();
+        timer = 0;
     }
 
     /**
@@ -90,6 +94,18 @@ public class Basebot implements PythonImplementation {
                 if(container.interact(parent.getHeld())) parent.setHeld(container.getItem());
                 else parent.setHeld(null);
             }
+        }
+    }
+
+    /**
+     * Attempts to attack enemies around itself
+     */
+    @Pythond
+    public void attack() {
+        queue.add(new ActionString("", ATTACK));
+        while(timer < ATTACK_TIME * 100) {
+            threading();
+            timer++;
         }
     }
 
