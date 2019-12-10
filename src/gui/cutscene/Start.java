@@ -7,6 +7,6 @@ public class Start extends Cutscene {
 
     @Override
     public void render() {
-        applet.image(assets.getImage("TestMap"), 0, 0);
+        applet.image(assets.getImage("Title"), 0, 0);
     }
 }

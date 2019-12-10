@@ -25,7 +25,7 @@ public class Assets {
         images = new HashMap<>();
         fonts = new HashMap<>();
 
-        loadImage("TestMap.png");
+        loadImage("Title.png");
         loadImage("Factory.png");
         loadImage("Grass.png");
         loadFont("small", FONT_NAME, 12);
