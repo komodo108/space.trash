@@ -27,6 +27,7 @@ public class Assets {
 
         loadImage("TestMap.png");
         loadImage("Factory.png");
+        loadImage("Grass.png");
         loadFont("small", FONT_NAME, 12);
         loadFont("large", FONT_NAME, 70);
     }
