@@ -75,11 +75,11 @@ public class LevelLoader {
             for (int i = 0; i < items.length(); i++) {
                 JSONObject item = items.getJSONObject(i).getJSONObject("item");
                 String type = item.getString("type");
-                int x = item.getInt("x");
-                int y = item.getInt("y");
+                float x = item.getFloat("x");
+                float y = item.getFloat("y");
 
                 Class<?> itemc = Class.forName("level.item." + toProper(type.toLowerCase()) + "Item");
-                Constructor<?> cons = itemc.getConstructor(int.class, int.class);
+                Constructor<?> cons = itemc.getConstructor(float.class, float.class);
                 map.add((Item) cons.newInstance(x * TILE_SIZE, y * TILE_SIZE));
             }
         } catch (Exception e) {
@@ -92,11 +92,11 @@ public class LevelLoader {
             for (int i = 0; i < containers.length(); i++) {
                 JSONObject container = containers.getJSONObject(i).getJSONObject("container");
                 String type = container.getString("type");
-                int x = container.getInt("x");
-                int y = container.getInt("y");
+                float x = container.getFloat("x");
+                float y = container.getFloat("y");
 
                 Class<?> containerc = Class.forName("level.container." + toProper(type.toLowerCase()) + "Container");
-                Constructor<?> cons = containerc.getConstructor(int.class, int.class);
+                Constructor<?> cons = containerc.getConstructor(float.class, float.class);
                 map.add((Container) cons.newInstance(x * TILE_SIZE, y * TILE_SIZE));
             }
         } catch (Exception e) {
@@ -115,12 +115,12 @@ public class LevelLoader {
             for (int i = 0; i < enemiesJson.length(); i++) {
                 JSONObject enemy = enemiesJson.getJSONObject(i).getJSONObject("enemy");
                 String type = enemy.getString("type");
-                x = enemy.getInt("x");
-                y = enemy.getInt("y");
+                float xf = enemy.getFloat("x");
+                float yf = enemy.getFloat("y");
 
                 Class<?> emenyc = Class.forName("level.enemy." + toProper(type.toLowerCase()) + "Enemy");
-                Constructor<?> cons = emenyc.getConstructor(Map.class, RealBasebot.class, int.class, int.class);
-                enemies.add((Enemy) cons.newInstance(map, bot, x * TILE_SIZE, y * TILE_SIZE));
+                Constructor<?> cons = emenyc.getConstructor(Map.class, RealBasebot.class, float.class, float.class);
+                enemies.add((Enemy) cons.newInstance(map, bot, xf * TILE_SIZE, yf * TILE_SIZE));
             }
         } catch (Exception e) {
             if(!(e instanceof JSONException)) e.printStackTrace();

@@ -51,6 +51,8 @@ public class Main extends PApplet {
         start = new Start();
     }
 
+    // TODO: Fix level 4
+
     @Override
     public void draw() {
         // Clear the frame

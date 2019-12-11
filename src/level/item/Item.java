@@ -7,7 +7,7 @@ import processing.core.PVector;
 public abstract class Item extends PObject {
     private Tags tag;
 
-    public Item(Shape shape, int x, int y, Tags tag) {
+    public Item(Shape shape, float x, float y, Tags tag) {
         super(shape);
         pos = new PVector(x, y);
         tag = this.tag;

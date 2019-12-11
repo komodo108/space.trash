@@ -21,6 +21,7 @@ public class Basebot implements PythonImplementation {
     private ActionQueue queue;
     private int timer;
 
+    // TODO: See if we can remove this parent at all safely?
     public Basebot(RealBasebot parent) {
         this.parent = parent;
         this.queue = new ActionQueue();

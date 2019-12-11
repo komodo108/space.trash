@@ -13,7 +13,7 @@ public class PigEnemy extends Enemy {
      * A simple wandering passive enemy
      */
     @Reflective
-    public PigEnemy(Map map, RealBasebot bot, int x, int y) {
+    public PigEnemy(Map map, RealBasebot bot, float x, float y) {
         super(map, bot, CIRCLE, x, y, false);
         width = TILE_SIZE;
         height = TILE_SIZE;

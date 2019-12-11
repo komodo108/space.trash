@@ -12,7 +12,7 @@ public class StrangeEnemy extends Enemy {
      * A creepy enemy that is invisible
      */
     @Reflective
-    public StrangeEnemy(Map map, RealBasebot bot, int x, int y) {
+    public StrangeEnemy(Map map, RealBasebot bot, float x, float y) {
         super(map, bot, CIRCLE, x, y, true);
         width = TILE_SIZE;
         height = TILE_SIZE;

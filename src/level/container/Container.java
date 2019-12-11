@@ -11,7 +11,7 @@ import java.util.List;
 public abstract class Container extends PObject {
     protected List<Item> held;
 
-    public Container(Shape shape, int x, int y) {
+    public Container(Shape shape, float x, float y) {
         super(shape);
         held = new ArrayList<>();
         pos = new PVector(x, y);

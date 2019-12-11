@@ -11,7 +11,7 @@ public class CrateItem extends Item {
      * A simple crate
      */
     @Reflective
-    public CrateItem(int x, int y) {
+    public CrateItem(float x, float y) {
         super(RECTANGLE, x, y, SIMPLE);
         width = 1.3f * TILE_SIZE;
         height = 1.3f * TILE_SIZE;

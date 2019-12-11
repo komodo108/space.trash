@@ -34,13 +34,13 @@ public final class Constants {
     public static final float TARGET_RADIUS = 3f;
     public static final float ATTACK_RADIUS = 2f;
     public static final float SLOW_RADIUS = 1f;
-    public static final float MAX_ACCELERATION = 0.1f;
-    public static final float MAX_SPEED = 0.69f;
+    public static final float MAX_ACCELERATION = 0.2f;
+    public static final float MAX_SPEED = 1.35f;
     public static final float ATTACK_TIME = 0.17f;
-    public static final float PLAYER_MAX_SPEED = 0.27f;
+    public static final float PLAYER_MAX_SPEED = 0.69f;
     public static final double ORIENTATION_BASE = Math.PI / 32;
-    public static final float DAMPING = 0.92f;
-    public static final float PUSHING_AMOUNT = 0.8f;
+    public static final float DAMPING = 1f;
+    public static final float PUSHING_AMOUNT = 1.5f;
 
     // Rendering parameters
     public static final float EYE_FACTOR = 3f;

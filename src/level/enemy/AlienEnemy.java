@@ -17,7 +17,7 @@ public class AlienEnemy extends Enemy {
      * A powerful enemy that uses A* to attack the player
      */
     @Reflective
-    public AlienEnemy(Map map, RealBasebot bot, int x, int y) {
+    public AlienEnemy(Map map, RealBasebot bot, float x, float y) {
         super(map, bot, CIRCLE, x, y, true);
         width = TILE_SIZE;
         height = TILE_SIZE;
@@ -50,7 +50,7 @@ public class AlienEnemy extends Enemy {
     @Override
     public void updateEnemy() {
         // If we have no path, then load one in a new thread for performance
-        if((int) applet.random(50) == 0 && pos.dist(bot.pos) < 35 * TILE_SIZE) {
+        if((int) applet.random(20) == 0 && pos.dist(bot.pos) < 35 * TILE_SIZE) {
             new Thread(() -> {
                 try {
                     // Make a path & follow it

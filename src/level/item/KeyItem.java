@@ -1,6 +1,7 @@
 package level.item;
 
 import level.Reflective;
+import processing.Assets;
 
 import static level.item.Tags.SIMPLE;
 import static main.Constants.TILE_SIZE;
@@ -11,7 +12,7 @@ public class KeyItem extends Item {
      * A simple box
      */
     @Reflective
-    public KeyItem(int x, int y) {
+    public KeyItem(float x, float y) {
         super(RECTANGLE, x, y, SIMPLE);
         width = TILE_SIZE;
         height = TILE_SIZE;
@@ -19,8 +20,6 @@ public class KeyItem extends Item {
 
     @Override
     public void render() {
-        // TODO: Replace this with a key
-        applet.fill(156, 103, 39);
-        applet.rect(pos.x, pos.y, width, height);
+        applet.image(Assets.getInstance().getImage("Key"), pos.x, pos.y);
     }
 }

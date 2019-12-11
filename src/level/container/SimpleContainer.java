@@ -13,7 +13,7 @@ public class SimpleContainer extends Container {
      * Simple container, can hold boxes & crates
      */
     @Reflective
-    public SimpleContainer(int x, int y) {
+    public SimpleContainer(float x, float y) {
         super(RECTANGLE, x, y);
         width = 2 * TILE_SIZE;
         height = 2 * TILE_SIZE;

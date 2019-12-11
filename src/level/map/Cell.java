@@ -26,6 +26,7 @@ public class Cell extends PObject {
 
     @Override
     public void render() {
+        applet.stroke(0, 50);
         switch (type) {
             case WALL:
                 applet.fill(0);
@@ -42,5 +43,6 @@ public class Cell extends PObject {
                 break;
         } applet.rect(pos.x, pos.y, width, height);
         applet.fill(0);
+        applet.stroke(0, 100);
     }
 }

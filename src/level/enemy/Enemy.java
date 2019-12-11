@@ -18,7 +18,7 @@ public abstract class Enemy extends PCObject {
     protected RealBasebot bot;
     protected boolean hostile;
 
-    public Enemy(Map map, RealBasebot bot, Shape shape, int x, int y, boolean hostile) {
+    public Enemy(Map map, RealBasebot bot, Shape shape, float x, float y, boolean hostile) {
         super(map, shape);
         pos = new PVector(x, y);
         delegate = new Delegate();

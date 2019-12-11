@@ -2,9 +2,7 @@ package python.main;
 
 public class PythonAbortSingleton {
     private static PythonAbortSingleton ourInstance = new PythonAbortSingleton();
-    public static PythonAbortSingleton getInstance() {
-        return ourInstance;
-    }
+    public static PythonAbortSingleton getInstance() { return ourInstance; }
 
     private boolean abort;
 

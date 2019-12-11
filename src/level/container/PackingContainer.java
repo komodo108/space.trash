@@ -16,7 +16,7 @@ public class PackingContainer extends Container {
      * Takes in 3 boxes / creates and packs them into a packed item
      */
     @Reflective
-    public PackingContainer(int x, int y) {
+    public PackingContainer(float x, float y) {
         super(RECTANGLE, x, y);
         width = 2 * TILE_SIZE;
         height = 2 * TILE_SIZE;

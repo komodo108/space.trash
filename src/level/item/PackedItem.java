@@ -12,7 +12,7 @@ public class PackedItem extends Item {
      * A packed box
      */
     @Reflective
-    public PackedItem(int x, int y) {
+    public PackedItem(float x, float y) {
         super(RECTANGLE, x, y, FINAL);
         width = TILE_SIZE;
         height = TILE_SIZE;

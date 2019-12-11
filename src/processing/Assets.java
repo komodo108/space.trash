@@ -28,6 +28,9 @@ public class Assets {
         loadImage("Title.png");
         loadImage("Factory.png");
         loadImage("Grass.png");
+        loadImage("Mars.png");
+
+        loadImage("Key.png");
         loadImage("TestMap.png");
         loadFont("small", FONT_NAME, 12);
         loadFont("large", FONT_NAME, 70);
