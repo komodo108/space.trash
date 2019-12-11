@@ -1,0 +1,66 @@
+{
+  "map": {
+    "setting": "factory",
+
+    "walls": [
+      {
+        "wall": {
+          "x": 14,
+          "y": 14,
+          "height": 12,
+          "width": 3
+        }
+      }
+    ],
+
+    "goal": {
+      "x": 25,
+      "y": 20
+    }
+  },
+
+  "win": "goal",
+
+  "bot": {
+    "x": 5,
+    "y": 20
+  },
+
+  "default": {
+    "code": [
+      "# Use the standard bot",
+      "bot = __impl"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "We had to move some items for a while",
+        "Get the bot to the loading area"
+      ]
+    },
+
+    {
+      "message": [
+        "The bot will turn around when it",
+        "collides with a wall"
+      ]
+    },
+
+    {
+      "message": [
+        "Try to stay away from the wall",
+        "9 tiles away from the bot"
+      ]
+    },
+
+    {
+      "message": [
+        "Remember, you can move the bot with",
+        "bot.move(x) and turn the bot with",
+        "bot.left(degrees) & bot.right(degrees)"
+      ]
+    }
+  ]
+}

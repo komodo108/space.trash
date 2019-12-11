@@ -39,10 +39,10 @@ public class RealBasebot extends PCObject implements PythonInteractable {
         applet.fill(255, 0, 0);
         applet.ellipse(pos.x, pos.y, width, height);
 
-        int newx = (int) (pos.x + 2 * Math.cos(ori));
-        int newy = (int) (pos.y + 2 * Math.sin(ori));
+        int newx = (int) (pos.x + EYE_OFFSET * Math.cos(ori));
+        int newy = (int) (pos.y + EYE_OFFSET * Math.sin(ori));
         applet.fill(0);
-        applet.ellipse(newx, newy, height / 2f, width / 2f);
+        applet.ellipse(newx, newy, height / EYE_FACTOR, width / EYE_FACTOR);
     }
 
     public void setHeld(Item held) {

@@ -22,6 +22,7 @@ public class StandardParser extends AParser implements IParser {
             if(line.contains("py.") || line.contains("py ")) return "Cannot refer to 'Py' on line " + lineno + ".";
             if(line.contains("python.main.PythonTraceFunction")) return "Use of 'python.main.PythonTraceFunction' is not allowed on line " + lineno + ".";
             if(line.contains("ptf")) return "Illegal use of 'ptf' on line " + lineno + ".";
+            if(line.contains("__ibot")) return "Illegal use of '__ibot' on line " + lineno + ".";
             if(line.contains("__bot")) return "The use of '__bot' is forbidden on line " + lineno + ".";
             if(line.contains("__impl")) return "Cannot refer to '__impl' on line " + lineno + ".";
             lineno++;

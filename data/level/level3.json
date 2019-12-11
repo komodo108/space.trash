@@ -1,0 +1,89 @@
+{
+  "map": {
+    "setting": "factory",
+
+    "walls": [
+      {
+        "wall": {
+          "x": 14,
+          "y": 14,
+          "height": 12,
+          "width": 3
+        }
+      }
+    ],
+
+    "items": [
+      {
+        "item" : {
+          "type": "crate",
+          "x": 15,
+          "y": 27
+        }
+      }
+    ],
+
+    "containers": [
+      {
+        "container": {
+          "type": "simple",
+          "x": 24,
+          "y": 19
+        }
+      }
+    ]
+  },
+
+  "win": "clear",
+
+  "bot": {
+    "x": 5,
+    "y": 20
+  },
+
+  "default": {
+    "code": [
+      "# Use the standard bot",
+      "bot = __impl"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "Some crates have been left around",
+        "Move the creates to the large container"
+      ]
+    },
+
+    {
+      "message": [
+        "Once you are on top of an item",
+        "do bot.hold() to pick it up"
+      ]
+    },
+
+    {
+      "message": [
+        "Once you are on top of a container",
+        "do bot.interact() to interact with it"
+      ]
+    },
+
+    {
+      "message": [
+        "You can use 'print(x)' to print out",
+        "anything you find useful to the console",
+        "such as bot.getX() or bot.getY()"
+      ]
+    },
+
+    {
+      "message": [
+        "You do not need to be totally on top",
+        "of them to hold or interact, just be",
+        "touching them"
+      ]
+    }
+  ]
+}

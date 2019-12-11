@@ -1,0 +1,98 @@
+{
+  "map": {
+    "setting": "factory",
+
+    "items": [
+      {
+        "item" : {
+          "type": "crate",
+          "x": 17,
+          "y": 20
+        }
+      },
+
+      {
+        "item" : {
+          "type": "crate",
+          "x": 12,
+          "y": 24
+        }
+      },
+
+      {
+        "item" : {
+          "type": "crate",
+          "x": 12,
+          "y": 15
+        }
+      }
+    ],
+
+    "containers": [
+      {
+        "container": {
+          "type": "simple",
+          "x": 12,
+          "y": 19
+        }
+      }
+    ]
+  },
+
+  "win": "clear",
+
+  "bot": {
+    "x": 5,
+    "y": 20
+  },
+
+  "default": {
+    "code": [
+      "# Use the standard bot",
+      "bot = __impl"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "More crates have been left",
+        "Clean them up"
+      ]
+    },
+
+    {
+      "message": [
+        "You can only hold one crate at a time."
+      ]
+    },
+
+    {
+      "message": [
+        "You can use a function to",
+        "replace repeated commands"
+      ]
+    },
+
+    {
+      "message": [
+        "'def func(param):' declares a function",
+        "'func' that 'param' as a parameter"
+      ]
+    },
+
+    {
+      "message": [
+        "On the section of lines after a function",
+        "definition you need to type two spaces before your code"
+      ]
+    },
+
+    {
+      "message": [
+        "You call the function with its name & parameters",
+        "e.g. 'func(3)'"
+      ]
+    }
+  ]
+}

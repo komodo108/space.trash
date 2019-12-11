@@ -4,7 +4,7 @@
 
     "goal": {
       "x": 25,
-      "y": 20
+      "y": 25
     }
   },
 
@@ -32,19 +32,21 @@
 
     {
       "message": [
-        "You can move the bot with bot.move(x)"
+        "Bots can change direction with",
+        "bot.left(degrees) or bot.right(degrees)"
       ]
     },
 
     {
       "message": [
-        "The bot moves in the direction it is facing"
+        "The bot will turn left or right",
+        "from its facing direction by that many degrees"
       ]
     },
 
     {
       "message": [
-        "The bot is 20 tiles away..."
+        "After turing the bot can move again"
       ]
     }
   ]

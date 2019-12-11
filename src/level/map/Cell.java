@@ -8,6 +8,8 @@ import static processing.Shape.RECTANGLE;
 
 public class Cell extends PObject {
     private CellTypes type;
+    private int timer;
+    private boolean top;
 
     public Cell(int x, int y, CellTypes type) {
         super(RECTANGLE);
@@ -29,7 +31,11 @@ public class Cell extends PObject {
                 applet.fill(0);
                 break;
             case GOAL:
-                applet.fill(255, 255, 0);
+                timer += top ? -5 : 5;
+                if(timer >= 255) top = true;
+                if(timer <= 0) top = false;
+
+                applet.fill(timer);
                 break;
             default:
                 applet.noFill();

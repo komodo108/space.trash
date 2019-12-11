@@ -3,17 +3,22 @@ package level.enemy;
 import ai.AStarSearch;
 import ai.Path;
 import bots.RealBasebot;
+import level.Reflective;
 import level.map.Map;
 
-import static main.Constants.TILE_SIZE;
+import static main.Constants.*;
 import static processing.Shape.CIRCLE;
 
-public class TestEnemy extends Enemy {
+public class AlienEnemy extends Enemy {
     private AStarSearch search;
     private Path path;
 
-    public TestEnemy(Map map, RealBasebot bot, int x, int y) {
-        super(map, bot, CIRCLE, x, y);
+    /**
+     * A powerful enemy that uses A* to attack the player
+     */
+    @Reflective
+    public AlienEnemy(Map map, RealBasebot bot, int x, int y) {
+        super(map, bot, CIRCLE, x, y, true);
         width = TILE_SIZE;
         height = TILE_SIZE;
 
@@ -25,10 +30,10 @@ public class TestEnemy extends Enemy {
         applet.fill(0, 255, 0);
         applet.ellipse(pos.x, pos.y, width, height);
 
-        int newx = (int) (pos.x + 2 * Math.cos(ori));
-        int newy = (int) (pos.y + 2 * Math.sin(ori));
+        int newx = (int) (pos.x + EYE_OFFSET * Math.cos(ori));
+        int newy = (int) (pos.y + EYE_OFFSET * Math.sin(ori));
         applet.fill(0);
-        applet.ellipse(newx, newy, height / 2f, width / 2f);
+        applet.ellipse(newx, newy, height / EYE_FACTOR, width / EYE_FACTOR);
 
         // Uncomment the following lines to show A* path
         applet.stroke(255, 0, 0);
@@ -40,9 +45,12 @@ public class TestEnemy extends Enemy {
     }
 
     @Override
+    void interactPlayer(RealBasebot bot) { /* Is not called */ }
+
+    @Override
     public void updateEnemy() {
         // If we have no path, then load one in a new thread for performance
-        if((int) applet.random(50) == 0) {
+        if((int) applet.random(50) == 0 && pos.dist(bot.pos) < 35 * TILE_SIZE) {
             new Thread(() -> {
                 try {
                     // Make a path & follow it
@@ -54,23 +62,22 @@ public class TestEnemy extends Enemy {
             }).start();
         }
 
-        // If the player is within a certain distance, pursue them
+        // If the player is close, pursue them
         if(pos.dist(bot.pos) < 5 * TILE_SIZE) {
             nullPath();
             delegate.pursue(this, bot);
         }
 
         // Otherwise, follow the A* path if one exists
-        else if(path != null) {
-            delegate.followPath(path, this);
-        }
+        else if(path != null) delegate.followPath(path, this);
 
-        // If no path exists then wander
-        else if(path == null) {
-            wander();
-        }
+        // Otherwise, no path exists so wander
+        else wander();
     }
 
+    /**
+     * Make the path null
+     */
     private void nullPath() {
         path = null;
         delegate.setPathDis(0f);

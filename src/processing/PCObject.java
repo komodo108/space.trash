@@ -44,7 +44,7 @@ public abstract class PCObject extends PObject {
         return true;
     }
 
-    private void interactMap() {
+    protected void interactMap() {
         List<Cell> cells = map.getCells(this);
 
         // Collision with the walls

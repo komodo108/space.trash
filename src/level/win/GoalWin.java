@@ -1,6 +1,7 @@
 package level.win;
 
 import bots.RealBasebot;
+import level.Reflective;
 import level.map.Cell;
 import level.map.Map;
 
@@ -11,6 +12,11 @@ import static level.map.CellTypes.GOAL;
 import static main.Constants.*;
 
 public class GoalWin extends Win {
+
+    /**
+     * The player wins if they get to the goal
+     */
+    @Reflective
     public GoalWin(Map map, RealBasebot bot) {
         super(map, bot);
     }

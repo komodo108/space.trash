@@ -16,6 +16,8 @@ import processing.core.PFont;
 import python.main.Python;
 import python.parsers.Parsers;
 
+import java.awt.event.KeyEvent;
+
 import static main.Constants.*;
 
 public class Main extends PApplet {
@@ -59,7 +61,7 @@ public class Main extends PApplet {
         else if(start != null && !start.isRender()) {
             // Once we are done, make the GUI and load levels
             gui = new GUI();
-            load(id);
+            load(id, true);
 
             // Don't allow this to be called again
             start = null;
@@ -88,19 +90,22 @@ public class Main extends PApplet {
                 renderText("large", "Well Done!", CENTER, 0, 0, 255);
                 renderText("small", "Loading next level...", CENTER, 0, (assets.getFontSize("large") / 8), 255);
                 timer++;
-            } if (timer > frameRate * 4) load(++id);
+            } if (timer > frameRate * 4) load(++id, true);
         }
     }
 
     /**
      * Setup a new level for the player
      * @param id the id of the level to load
+     * @param newlevel if we are to reset the code
      */
-    private void load(int id) {
+    private void load(int id, boolean newlevel) {
         System.out.println("Loading level " + id + "...");
         level = new Level("level" + id + ".json");
         gui.setTutorial(level.getTutorial());
         gui.setCode(level.getCode());
+        if(newlevel) gui.setText("# Enter code here");
+
         map = level.getMap();
         RealBasebot bot = level.getBot();
         py = new Python(bot, gui.getConsolePanel());
@@ -129,12 +134,18 @@ public class Main extends PApplet {
         else if(end != null) end.advance();
     }
 
+    @Override
+    public void keyPressed() {
+        if(key == CODED && keyCode == KeyEvent.VK_HOME) load(++id, true);
+        if(key == CODED && keyCode == KeyEvent.VK_END) load(--id, true);
+    }
+
     @SuppressWarnings("unused")
     public void handleButtonEvents(GButton button, GEvent event) {
         switch (button.getText()) {
             case "Go":
                 // Upon pressing Go, restart the level to normal
-                load(id);
+                load(id, false);
 
                 // Then start Python execution
                 gui.setOn();

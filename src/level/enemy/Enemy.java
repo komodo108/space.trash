@@ -16,13 +16,14 @@ import static main.Constants.MAX_SPEED;
 public abstract class Enemy extends PCObject {
     protected Delegate delegate;
     protected RealBasebot bot;
-    boolean target = false;
+    protected boolean hostile;
 
-    public Enemy(Map map, RealBasebot bot, Shape shape, int x, int y) {
+    public Enemy(Map map, RealBasebot bot, Shape shape, int x, int y, boolean hostile) {
         super(map, shape);
         pos = new PVector(x, y);
         delegate = new Delegate();
         this.bot = bot;
+        this.hostile = hostile;
         vel = new PVector(MAX_SPEED, MAX_SPEED);
     }
 
@@ -37,10 +38,15 @@ public abstract class Enemy extends PCObject {
      * Standard wandering AI
      */
     void wander() {
-        target = false;
         delegate.fleeWall(this, map);
         delegate.wander(this);
     }
+
+    /**
+     * Apply effects to the player if you interact with them
+     * @param bot the bot
+     */
+    abstract void interactPlayer(RealBasebot bot);
 
     /**
      * Update the enemy
@@ -53,8 +59,8 @@ public abstract class Enemy extends PCObject {
             if(object instanceof RealBasebot) {
                 RealBasebot bot = (RealBasebot) object;
                 if(CollisionDetect.isInside(this, bot)) {
-                    bot.setDead();
-                    bot.setDead();
+                    if(hostile) bot.setDead();
+                    else interactPlayer(bot);
                 }
             }
         }

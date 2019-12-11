@@ -52,6 +52,8 @@ public class GUI {
         return editorPanel.getEditor().getText();
     }
 
+    public void setText(String text) { editorPanel.getEditor().setText(text); }
+
     public void setTutorial(Tutorial tutorial) {
         editorPanel.setTutorial(tutorial);
     }

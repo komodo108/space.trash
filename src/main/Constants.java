@@ -6,7 +6,7 @@ package main;
 public final class Constants {
 
     // Number of levels
-    public static final int LEVELS = 1;
+    public static final int LEVELS = 100;
     // TODO: Mid-roll cutscene
 
     // Python constants
@@ -41,6 +41,11 @@ public final class Constants {
     public static final double ORIENTATION_BASE = Math.PI / 32;
     public static final float DAMPING = 0.92f;
     public static final float PUSHING_AMOUNT = 0.8f;
+
+    // Rendering parameters
+    public static final float EYE_FACTOR = 3f;
+    public static final int EYE_OFFSET = 4;
+    public static final int SMALL_EYE_OFFSET = 3;
 
     // Map parameters
     public static final int TILE_SIZE = 16;
