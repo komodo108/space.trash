@@ -7,7 +7,9 @@ public final class Constants {
 
     // Number of levels
     public static final int LEVELS = 100;
-    // TODO: Mid-roll cutscene
+    public static final int SPECIAL_LEVEL = 3;
+    public static final int MID_LEVEL = 4;
+    public static final float SLEEP_FACTOR = 1.35f;
 
     // Python constants
     /**
@@ -29,6 +31,7 @@ public final class Constants {
     public static final int CONSOLE_TIME = 100;
     public static final int MAX_LENGTH = 100;
     public static final int NEW_LENGTH = 10;
+    public static final String IMAGE_DIR = "images/";
 
     // Physics parameters
     public static final float TARGET_RADIUS = 3f;

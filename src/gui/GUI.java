@@ -44,6 +44,10 @@ public class GUI {
         editorPanel.addControl(go);
     }
 
+    public void go() {
+        editorPanel.setVisible(true);
+    }
+
     public void stop() {
         editorPanel.setVisible(false);
     }
@@ -64,6 +68,10 @@ public class GUI {
 
     public void setCode(DefaultCode code) {
         this.defaultCodePanel.setCode(code);
+    }
+
+    public void setPictures(String name) {
+        editorPanel.setPictures(IMAGE_DIR + name + ".png");
     }
 
     public boolean isOn() {

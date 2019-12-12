@@ -107,7 +107,12 @@ public class LevelLoader {
         JSONObject botobject = object.getJSONObject("bot");
         int x = botobject.getInt("x");
         int y = botobject.getInt("y");
-        bot = new RealBasebot(map, x * TILE_SIZE, y * TILE_SIZE);
+        boolean special;
+        try {
+            special = botobject.getBoolean("special");
+        } catch (JSONException e) {
+            special = false;
+        } bot = new RealBasebot(map, x * TILE_SIZE, y * TILE_SIZE, special);
 
         // Load enemies using reflection
         try {

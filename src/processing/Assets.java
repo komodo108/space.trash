@@ -8,6 +8,8 @@ import processing.core.PImage;
 import java.util.HashMap;
 import java.util.Map;
 
+import static main.Constants.IMAGE_DIR;
+
 public class Assets {
     private static Assets ourInstance = new Assets();
     public static Assets getInstance() {
@@ -18,7 +20,6 @@ public class Assets {
     private Map<String, PImage> images;
     private Map<String, PFont> fonts;
 
-    private static final String IMAGE_DIR = "images/";
     private static final String FONT_NAME = "Arial";
 
     private Assets() {

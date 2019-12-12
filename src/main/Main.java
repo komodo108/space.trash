@@ -5,6 +5,7 @@ import g4p_controls.*;
 import gui.GUI;
 import gui.cutscene.Cutscene;
 import gui.cutscene.End;
+import gui.cutscene.Mid;
 import gui.cutscene.Start;
 import gui.panel.ConsolePanel;
 import gui.panel.EditorPanel;
@@ -25,7 +26,7 @@ public class Main extends PApplet {
     private Parsers parsers;
     private Python py;
     private GUI gui;
-    private Cutscene start, end;
+    private Cutscene start, mid, end;
     private Map map;
     private Level level;
     private int id = 0;
@@ -58,16 +59,30 @@ public class Main extends PApplet {
         // Clear the frame
         background(0);
 
-        // Render cut-scenes
-        if(start != null && start.isRender()) start.render();
-        else if(start != null && !start.isRender()) {
-            // Once we are done, make the GUI and load levels
+        //Start cut-scene logic
+        if (start != null && start.isRender()) start.render();
+        else if (start != null && !start.isRender()) {
+            // Once we are done, make a GUI and load levels
             gui = new GUI();
             load(id, true);
 
             // Don't allow this to be called again
             start = null;
-        } else if(end != null && end.isRender()) end.render();
+        }
+
+        // Mid cut-scene logic
+        else if (mid != null && mid.isRender()) mid.render();
+        else if (mid != null && !mid.isRender()) {
+            // Once we are done, make a GUI and load levels
+            gui = new GUI();
+            load(++id, true);
+
+            // Don't allow this to be called again
+            mid = null;
+        }
+
+        // End cut-scene logic
+        else if(end != null && end.isRender()) end.render();
 
         // Render the level
         else {
@@ -77,36 +92,44 @@ public class Main extends PApplet {
             // Update GUI & Python
             gui.getConsolePanel().update();
             if (!py.isRunning() && !gui.isOn()) gui.setOff();
-            // TODO: Maybe when the player fails to beat a level, show a message to try again
 
             // Update the level - this is true if the player has won
             if (level.update(py.isRunning())) timer++;
+            if (id == SPECIAL_LEVEL) { /* TODO: Any special mechanics for the mid level */ System.out.println("mid level"); }
 
             // Once we have shown the win screen for a while, load the next level
             // If we have won, load the cut-scene
             if(timer > 0 && id == LEVELS - 1) {
                 gui.stop();
                 end = new End();
-            } else if (timer > 0) {
+            } if (timer > 0) {
                 // Display some cool text saying the player has beaten the level
-                renderText("large", "Well Done!", CENTER, 0, 0, 255);
-                renderText("small", "Loading next level...", CENTER, 0, (assets.getFontSize("large") / 8), 255);
-                timer++;
-            } if (timer > frameRate * 4) load(++id, true);
+                if(id != MID_LEVEL) {
+                    renderText("large", "Well Done!", CENTER, 0, 0, 255);
+                    renderText("small", "Loading next level...", CENTER, 0, (assets.getFontSize("large") / 8), 255);
+                } else {
+                    renderText("large", "We know what you did", CENTER, 0, 0, 255);
+                    renderText("small", "You're fired!", CENTER, 0, (assets.getFontSize("large") / 8), 255);
+                } timer++;
+            } if(timer > frameRate * SLEEP_FACTOR && id == MID_LEVEL) {
+                gui.stop();
+                mid = new Mid();
+            } if (timer > frameRate * SLEEP_FACTOR && id != MID_LEVEL) load(++id, true);
         }
     }
 
     /**
      * Setup a new level for the player
      * @param id the id of the level to load
-     * @param newlevel if we are to reset the code
+     * @param reset if we are to reset the code
      */
-    private void load(int id, boolean newlevel) {
+    private void load(int id, boolean reset) {
         System.out.println("Loading level " + id + "...");
         level = new Level("level" + id + ".json");
         gui.setTutorial(level.getTutorial());
         gui.setCode(level.getCode());
-        if(newlevel) gui.setText("# Enter code here");
+        if(id <= MID_LEVEL) gui.setPictures("man");
+        if(reset) gui.setText("# Enter code here");
 
         map = level.getMap();
         RealBasebot bot = level.getBot();
@@ -133,12 +156,13 @@ public class Main extends PApplet {
     @Override
     public void mouseClicked() {
         if(start != null) start.advance();
+        else if(mid != null) mid.advance();
         else if(end != null) end.advance();
     }
 
     @Override
     public void keyPressed() {
-        if(key == CODED && keyCode == KeyEvent.VK_HOME) load(++id, true);
+        if(key == CODED && keyCode == KeyEvent.VK_HOME) timer++;
         if(key == CODED && keyCode == KeyEvent.VK_END) load(--id, true);
     }
 

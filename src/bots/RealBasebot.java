@@ -17,14 +17,16 @@ public class RealBasebot extends PCObject implements PythonInteractable {
     private Basebot implementation;
     private Item held;
     private int attack;
+    private boolean special;
 
-    public RealBasebot(Map map, int x, int y) {
+    public RealBasebot(Map map, int x, int y, boolean special) {
         super(map, CIRCLE);
         width = TILE_SIZE;
         height = TILE_SIZE;
         pos = new PVector(x, y);
         implementation = new Basebot(this);
         attack = 0;
+        this.special = special;
     }
 
     @Override
@@ -37,12 +39,21 @@ public class RealBasebot extends PCObject implements PythonInteractable {
         }
 
         applet.fill(255, 0, 0);
-        applet.ellipse(pos.x, pos.y, width, height);
+        if(special) {
+            applet.rect(pos.x, pos.y, width, height);
 
-        int newx = (int) (pos.x + EYE_OFFSET * Math.cos(ori));
-        int newy = (int) (pos.y + EYE_OFFSET * Math.sin(ori));
-        applet.fill(0);
-        applet.ellipse(newx, newy, height / EYE_FACTOR, width / EYE_FACTOR);
+            int newx = (int) (pos.x + (width / 2) + EYE_OFFSET * Math.cos(ori));
+            int newy = (int) (pos.y + (height / 2) + EYE_OFFSET * Math.sin(ori));
+            applet.fill(0);
+            applet.ellipse(newx, newy, height / EYE_FACTOR, width / EYE_FACTOR);
+        } else {
+            applet.ellipse(pos.x, pos.y, width, height);
+
+            int newx = (int) (pos.x + EYE_OFFSET * Math.cos(ori));
+            int newy = (int) (pos.y + EYE_OFFSET * Math.sin(ori));
+            applet.fill(0);
+            applet.ellipse(newx, newy, height / EYE_FACTOR, width / EYE_FACTOR);
+        }
     }
 
     public void setHeld(Item held) {

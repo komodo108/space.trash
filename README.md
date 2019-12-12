@@ -8,7 +8,7 @@ You are fired from your job. Later, you find some trashed bots including the unu
 They want you to help them return to their home. You go from planet to planet, programming the
 the trashed bots to help you acquire the resources needed to progress.
 
-### Features (ALL WIP)
+### Features
 * Integration with Python to program with
 * Built-in code editor with special features (e.g. non-editable sections)
 * Initial tutorial levels + tutorials throughout
@@ -17,7 +17,7 @@ the trashed bots to help you acquire the resources needed to progress.
 
 ### Levels
 A level itself should be a winnable puzzle with its own environment made from the components implemented in the game.
-The player should be able to fully explore the level & interact with stuff inside the level.
+The player should be able to fully explore the level & interact with stuff inside the level. The game starts off by loading `level0.json`, and continues until we have reached `LEVELS` defined in `Constants.java`.
 
 #### Making levels
 A level is defined by a level JSON file, which is then loaded in by the game. This level file ***must*** be in correct format for the loader to function.
@@ -86,7 +86,8 @@ An example level JSON file is given below, for it to be valid comments will need
   // The position which the bot will spawn at
   "bot": {
     "x": 1,
-    "y": 1
+    "y": 1,
+    "special": true
   },
 
   // An array of code which will be ran at the beginning of the level
@@ -138,10 +139,9 @@ Both of these are allowed under the python system
 * `move(x)` - moves the player to the `x` blocks in the direction they're facing
 * `left(degrees)` - rotates the player to left `degrees` degrees
 * `right(degrees)` - rotates the player to right `degrees` degrees
+* `attack()` - attacks a radius 1.5 tiles around itself 
 * `hold()` - picks up and attempts to use the item the player is on top of
-* [?] `attack(direction)` - face direction & attack 
-* `interact()` - interact with whatever the player is on top of
-    * [list of interactable things]
+* `interact()` - interact with a container the player is on top of
 * `canMove(x)` - returns if the player can move `x` blocks in that direction
 * [more functions]
 

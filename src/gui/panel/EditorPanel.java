@@ -14,9 +14,11 @@ public class EditorPanel extends GPanel {
     private GImageButton button;
     private GLabel message;
     private Tutorial tutorial;
+    private PApplet applet;
 
     public EditorPanel(PApplet applet, int x, int y, int width, int height) {
         super(applet, x, y, width, height);
+        this.applet = applet;
 
         // Setup editor
         this.setText("Code Window");
@@ -51,6 +53,13 @@ public class EditorPanel extends GPanel {
 
     public GTextArea getEditor() {
         return editor;
+    }
+
+    public void setPictures(String file_loc) {
+        String[] files = { file_loc, file_loc, file_loc };
+        button = new GImageButton(applet, 10, 25, files);
+        button.tag = "TUT-0";
+        this.addControl(button);
     }
 
     public void buttonClick() {
