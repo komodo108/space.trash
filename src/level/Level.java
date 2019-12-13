@@ -74,6 +74,6 @@ public class Level {
             } else if(object instanceof RealBasebot) PythonAbortSingleton.getInstance().setAbort(true);
             else removed.add(object);
         } objects.removeAll(removed);
-        return win.isWin();
+        return update && win.isWin();
     }
 }

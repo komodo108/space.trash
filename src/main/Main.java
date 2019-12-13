@@ -104,14 +104,15 @@ public class Main extends PApplet {
                 end = new End();
             } if (timer > 0) {
                 // Display some cool text saying the player has beaten the level
+                gui.stop();
                 if(id != MID_LEVEL) {
                     renderText("large", "Well Done!", CENTER, 0, 0, Color.WHITE);
                     renderText("small", "Loading next level...", CENTER, 0, (assets.getFontSize("large") / 8), Color.WHITE);
                 } else {
-                    renderText("large", "We know what you did", CENTER, 0, 0, Color.WHITE);
+                    renderText("large", "We know what you did!", CENTER, 0, 0, Color.WHITE);
                     renderText("small", "You're fired!", CENTER, 0, (assets.getFontSize("large") / 8), Color.WHITE);
                 } timer++;
-            } if(timer > frameRate * SLEEP_FACTOR && id == MID_LEVEL) {
+            } if(timer > frameRate * 2 * SLEEP_FACTOR && id == MID_LEVEL) {
                 gui.stop();
                 mid = new Mid();
             } if (timer > frameRate * SLEEP_FACTOR && id != MID_LEVEL) load(++id, true);
@@ -208,10 +209,12 @@ public class Main extends PApplet {
     private void load(int id, boolean reset) {
         System.out.println("Loading level " + id + "...");
         level = new Level("level" + id + ".json");
+        gui.go();
         gui.setTutorial(level.getTutorial());
         gui.setCode(level.getCode());
         if(id <= MID_LEVEL && id != SPECIAL_LEVEL) gui.setPictures("help");
-        if(id == SPECIAL_LEVEL) gui.setPictures("black");
+        else if(id == SPECIAL_LEVEL) gui.setPictures("black");
+        else gui.setPictures("tut-0");
         if(reset) gui.setText("# Enter code here");
 
         map = level.getMap();

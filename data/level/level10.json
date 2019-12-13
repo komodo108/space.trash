@@ -1,0 +1,91 @@
+{
+  "map": {
+    "setting": "grass",
+
+    "walls": [
+      {
+        "wall": {
+          "x": 22,
+          "y": 14,
+          "height": 30,
+          "width": 3
+        }
+      },
+
+      {
+        "wall": {
+          "x": 22,
+          "y": 14,
+          "height": 3,
+          "width": 20
+        }
+      }
+    ],
+
+    "items": [
+      {
+        "item" : {
+          "type": "crate",
+          "x": 27,
+          "y": 34
+        }
+      }
+    ],
+
+    "containers": [
+      {
+        "container": {
+          "type": "simple",
+          "x": 34,
+          "y": 24
+        }
+      }
+    ]
+  },
+
+  "enemies": [
+    {
+      "enemy": {
+        "type": "pig",
+        "x": 37,
+        "y": 37
+      }
+    }
+  ],
+
+  "win": "clear",
+
+  "bot": {
+    "x": 1,
+    "y": 1
+  },
+
+  "default": {
+    "code": [
+      "# Use the standard bot",
+      "bot = __impl"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "Hi!",
+        "Seems we have ran out of food"
+      ]
+    },
+
+    {
+      "message": [
+        "We'll need to explore around this",
+        "planet for a while to get some"
+      ]
+    },
+
+    {
+      "message": [
+        "First task is to ..."
+      ]
+    }
+  ]
+}
