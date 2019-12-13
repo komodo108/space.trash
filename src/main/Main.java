@@ -52,8 +52,6 @@ public class Main extends PApplet {
         start = new Start();
     }
 
-    // TODO: Fix level 4
-
     @Override
     public void draw() {
         // Clear the frame
@@ -95,7 +93,7 @@ public class Main extends PApplet {
 
             // Update the level - this is true if the player has won
             if (level.update(py.isRunning())) timer++;
-            if (id == SPECIAL_LEVEL) { /* TODO: Any special mechanics for the mid level */ System.out.println("mid level"); }
+            if (id == SPECIAL_LEVEL) { /* TODO: Any special mechanics for the mid level */ }
 
             // Once we have shown the win screen for a while, load the next level
             // If we have won, load the cut-scene
@@ -128,7 +126,7 @@ public class Main extends PApplet {
         level = new Level("level" + id + ".json");
         gui.setTutorial(level.getTutorial());
         gui.setCode(level.getCode());
-        if(id <= MID_LEVEL) gui.setPictures("man");
+        if(id <= MID_LEVEL) gui.setPictures("help");
         if(reset) gui.setText("# Enter code here");
 
         map = level.getMap();

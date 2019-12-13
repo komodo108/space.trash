@@ -36,7 +36,7 @@
   "messages": [
     {
       "message": [
-        "We had to move some items for a while",
+        "There is now a will in the way",
         "Get the bot to the loading area"
       ]
     },
@@ -45,13 +45,6 @@
       "message": [
         "The bot will turn around when it",
         "collides with a wall"
-      ]
-    },
-
-    {
-      "message": [
-        "Try to stay away from the wall",
-        "9 tiles away from the bot"
       ]
     },
 

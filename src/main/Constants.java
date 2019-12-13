@@ -20,7 +20,7 @@ public final class Constants {
     public static final int LONG_SLEEP_TIME = 50;
 
     // Window constants
-    public static final String NAME = "./Space.trash";
+    public static final String NAME = "Space.trash";
     public static final int WIDTH = 1504;
     public static final int HEIGHT = 912;
 

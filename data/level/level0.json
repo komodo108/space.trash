@@ -40,12 +40,6 @@
       "message": [
         "The bot moves in the direction it is facing"
       ]
-    },
-
-    {
-      "message": [
-        "The bot is 20 tiles away..."
-      ]
     }
   ]
 }

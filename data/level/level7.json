@@ -1,0 +1,100 @@
+{
+  "map": {
+    "setting": "factory",
+
+    "walls": [
+      {
+        "wall": {
+          "x": 14,
+          "y": 14,
+          "height": 12,
+          "width": 3
+        }
+      },
+
+      {
+        "wall": {
+          "x": 9,
+          "y": 7,
+          "height": 3,
+          "width": 21
+        }
+      },
+
+      {
+        "wall": {
+          "x": 27,
+          "y": 10,
+          "height": 22,
+          "width": 3
+        }
+      }
+    ],
+
+    "goal": {
+      "x": 25,
+      "y": 20
+    }
+  },
+
+  "win": "goal",
+
+  "bot": {
+    "x": 5,
+    "y": 20
+  },
+
+  "default": {
+    "code": [
+      "# Use a custom bot",
+      "import bots.Basebot as __ibot",
+      "class coolbot(__ibot):",
+      "  def __init__(self, steps):",
+      "    __ibot.__init__(self)",
+      "    self.steps = steps",
+      "  def go(self):",
+      "    while self.canMove(self.steps):",
+      "      __ibot.move(self, self.steps)",
+      "  def move(self, x):",
+      "    pass"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "Get the bot to the loading area"
+      ]
+    },
+
+    {
+      "message": [
+        "The bot's move function has been changed!",
+        "It can now only move with the go function",
+        "which moves the bot until it can't anymore"
+      ]
+    },
+
+    {
+      "message": [
+        "The constructor takes an argument",
+        "'angle' that will need to be",
+        "provided e.g. 'coolbot(3)'"
+      ]
+    },
+
+    {
+      "message": [
+        "The bot doesn't check if there is",
+        "a wall in the way, just that there is",
+        "not a wall there"
+      ]
+    },
+
+    {
+      "message": [
+        "left() & right() remain unchanged"
+      ]
+    }
+  ]
+}

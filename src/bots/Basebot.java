@@ -21,7 +21,6 @@ public class Basebot implements PythonImplementation {
     private ActionQueue queue;
     private int timer;
 
-    // TODO: See if we can remove this parent at all safely?
     public Basebot() {
         this.parent = BasebotSingleton.getInstance().getBot();
         this.queue = new ActionQueue();
@@ -108,6 +107,18 @@ public class Basebot implements PythonImplementation {
             threading();
             timer++;
         }
+    }
+
+    /**
+     * Attempts to align the bot to a direction
+     */
+    @Pythond
+    public void align() {
+        if(parent.ori >= -Math.PI-(Math.PI/4) && parent.ori < -(Math.PI/2)-(Math.PI/4)) parent.ori = (float) -Math.PI;
+        else if(parent.ori >= -(Math.PI/2)-(Math.PI/4) && parent.ori < -(Math.PI/4)) parent.ori = (float) -Math.PI / 2;
+        else if(parent.ori >= -(Math.PI/4) && parent.ori < (Math.PI/2)-(Math.PI/4)) parent.ori = 0;
+        else if(parent.ori >= (Math.PI/2)-(Math.PI/4) && parent.ori < Math.PI-(Math.PI/4)) parent.ori = (float) Math.PI / 2;
+        else parent.ori = (float) Math.PI;
     }
 
     /**

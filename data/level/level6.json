@@ -1,0 +1,82 @@
+{
+  "map": {
+    "setting": "factory",
+
+    "walls": [
+      {
+        "wall": {
+          "x": 14,
+          "y": 14,
+          "height": 12,
+          "width": 3
+        }
+      }
+    ],
+
+    "goal": {
+      "x": 25,
+      "y": 20
+    }
+  },
+
+  "win": "goal",
+
+  "bot": {
+    "x": 5,
+    "y": 20
+  },
+
+  "default": {
+    "code": [
+      "# Use a custom bot",
+      "import bots.Basebot as __ibot",
+      "class coolbot(__ibot):",
+      "  def __init__(self, angle):",
+      "    __ibot.__init__(self)",
+      "    self.angle = angle",
+      "  def left(self):",
+      "    __ibot.left(self, self.angle)",
+      "  def right(self):",
+      "    __ibot.right(self, self.angle)"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "Get the bot to the loading area"
+      ]
+    },
+
+    {
+      "message": [
+        "There is no bot object made for you",
+        "You'll need to make one yourself"
+      ]
+    },
+
+    {
+      "message": [
+        "The constructor takes an argument",
+        "'angle' that will need to be",
+        "provided e.g. 'coolbot(3)'"
+      ]
+    },
+
+    {
+      "message": [
+        "You are making an instance of a class",
+        "so you need to store it in a variable",
+        "e.g. 'mybot = coolbot(3)'"
+      ]
+    },
+
+    {
+      "message": [
+        "left() & right() now don't take any",
+        "parameters. They turn based upon the",
+        "'angle' in the constructor"
+      ]
+    }
+  ]
+}

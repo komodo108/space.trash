@@ -57,7 +57,7 @@
     {
       "message": [
         "More crates have been left",
-        "Clean them up"
+        "Can you clean them up?"
       ]
     },
 
@@ -76,8 +76,7 @@
 
     {
       "message": [
-        "'def func(param):' declares a function",
-        "'func' that 'param' as a parameter"
+        "'def func():' declares a function 'func'"
       ]
     },
 
@@ -90,8 +89,8 @@
 
     {
       "message": [
-        "You call the function with its name & parameters",
-        "e.g. 'func(3)'"
+        "You call the function with its name",
+        "e.g. 'func()'"
       ]
     }
   ]

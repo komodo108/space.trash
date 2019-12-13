@@ -26,13 +26,20 @@ public class Assets {
         images = new HashMap<>();
         fonts = new HashMap<>();
 
+        // Cut-scenes
         loadImage("Title.png");
+        loadImage("Fired.png");
+        loadImage("Idea.png");
+
+        // Maps
         loadImage("Factory.png");
         loadImage("Grass.png");
         loadImage("Mars.png");
 
+        // Items
         loadImage("Key.png");
-        loadImage("TestMap.png");
+
+        // Fonts
         loadFont("small", FONT_NAME, 12);
         loadFont("large", FONT_NAME, 70);
     }

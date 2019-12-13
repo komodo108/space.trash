@@ -139,14 +139,20 @@ There are 2 types of these, functions where the player directly interacts, such 
 Both of these are allowed under the python system
 
 #### List of bot functions
+The following functions affect the bot itself:
 * `move(x)` - moves the player to the `x` blocks in the direction they're facing
 * `left(degrees)` - rotates the player to left `degrees` degrees
 * `right(degrees)` - rotates the player to right `degrees` degrees
 * `attack()` - attacks a radius 1.5 tiles around itself 
 * `hold()` - picks up and attempts to use the item the player is on top of
 * `interact()` - interact with a container the player is on top of
+* `align()` - aligns the bot to move in a cardinal direction
+
+The following functions only return information:
 * `canMove(x)` - returns if the player can move `x` blocks in that direction
-* [more functions]
+* `getX()` - gets the x position
+* `getY()` - gets the Y position
+* `getDirection()` - gets the direction, in degrees
 
 #### Moving
 The bot and all enemies in the game have collision, and will bounce off of the side of the window & walls in the level.
