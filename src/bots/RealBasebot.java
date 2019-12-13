@@ -24,9 +24,11 @@ public class RealBasebot extends PCObject implements PythonInteractable {
         width = TILE_SIZE;
         height = TILE_SIZE;
         pos = new PVector(x, y);
-        implementation = new Basebot(this);
         attack = 0;
         this.special = special;
+
+        BasebotSingleton.getInstance().setBot(this, KEY);
+        implementation = new Basebot();
     }
 
     @Override

@@ -120,10 +120,13 @@ If instead you want to make a subclass for the player, follow the structure show
 import bots.Basebot as ibot
 
 class coolbot(ibot):
+    def __init__(self, myvar):
+        ibot.__init__(self)
+        self.myvar = myvar
     def move(self, x):
-        ibot.move(self, x * 2)
+        ibot.move(self, x * self.myvar)
 
-bot = coolbot(__bot)
+bot = coolbot()
 ```
 
 #### Images

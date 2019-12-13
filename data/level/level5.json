@@ -33,7 +33,7 @@
       "class coolbot(__ibot):",
       "  def move(self, x):",
       "    __ibot.move(self, x + 2)",
-      "bot = coolbot(__bot)"
+      "bot = coolbot()"
     ]
   },
 
