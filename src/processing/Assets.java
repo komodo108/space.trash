@@ -35,12 +35,15 @@ public class Assets {
         loadImage("Factory.png");
         loadImage("Grass.png");
         loadImage("Mars.png");
+        // TODO: Other images
+        // TODO: Creepy background?
 
         // Items
         loadImage("Key.png");
 
         // Fonts
-        loadFont("small", FONT_NAME, 12);
+        loadFont("small", FONT_NAME, 20);
+        loadFont("medium", FONT_NAME, 48);
         loadFont("large", FONT_NAME, 70);
     }
 

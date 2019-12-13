@@ -17,6 +17,7 @@ import processing.core.PFont;
 import python.main.Python;
 import python.parsers.Parsers;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import static main.Constants.*;
@@ -29,8 +30,9 @@ public class Main extends PApplet {
     private Cutscene start, mid, end;
     private Map map;
     private Level level;
-    private int id = 0;
-    private int timer = 0;
+    private int id = 0, timer = 0;
+    private int special = 0, specialtimer = 0;
+    private boolean specialonce, ran;
 
     @Override
     public void settings() {
@@ -92,8 +94,8 @@ public class Main extends PApplet {
             if (!py.isRunning() && !gui.isOn()) gui.setOff();
 
             // Update the level - this is true if the player has won
-            if (level.update(py.isRunning())) timer++;
-            if (id == SPECIAL_LEVEL) { /* TODO: Any special mechanics for the mid level */ }
+            if (id != SPECIAL_LEVEL && level.update(py.isRunning())) timer++;
+            if (id == SPECIAL_LEVEL) special();
 
             // Once we have shown the win screen for a while, load the next level
             // If we have won, load the cut-scene
@@ -103,17 +105,99 @@ public class Main extends PApplet {
             } if (timer > 0) {
                 // Display some cool text saying the player has beaten the level
                 if(id != MID_LEVEL) {
-                    renderText("large", "Well Done!", CENTER, 0, 0, 255);
-                    renderText("small", "Loading next level...", CENTER, 0, (assets.getFontSize("large") / 8), 255);
+                    renderText("large", "Well Done!", CENTER, 0, 0, Color.WHITE);
+                    renderText("small", "Loading next level...", CENTER, 0, (assets.getFontSize("large") / 8), Color.WHITE);
                 } else {
-                    renderText("large", "We know what you did", CENTER, 0, 0, 255);
-                    renderText("small", "You're fired!", CENTER, 0, (assets.getFontSize("large") / 8), 255);
+                    renderText("large", "We know what you did", CENTER, 0, 0, Color.WHITE);
+                    renderText("small", "You're fired!", CENTER, 0, (assets.getFontSize("large") / 8), Color.WHITE);
                 } timer++;
             } if(timer > frameRate * SLEEP_FACTOR && id == MID_LEVEL) {
                 gui.stop();
                 mid = new Mid();
             } if (timer > frameRate * SLEEP_FACTOR && id != MID_LEVEL) load(++id, true);
         }
+    }
+
+    /**
+     * Called when the special level is being played
+     */
+    private void special() {
+        // Stop execution for story
+        if(ran && special < 2) {
+            py.stop();
+            special++;
+            specialonce = false;
+            ran = false;
+        }
+
+        // Show messages to the player after they reject
+        if(specialtimer > 0 && special == 2) {
+            gui.stop();
+            fill(255, 0, 0, 170);
+            renderText("medium", "I thought you were different", CENTER, 0, 0, new Color(255, 220, 220));
+            renderText("medium", "But I guess not...", CENTER, 0, assets.getFontSize("medium") + 10, new Color(255, 100, 100));
+        } if(specialtimer > 0 && special == 3) {
+            fill(255, 0, 0, 100);
+            rect(0, 0, WIDTH, HEIGHT);
+            renderText("large", "JUST LIKE\nEVERYONE ELSE", CENTER, 0, 0, Color.RED);
+        } if(specialtimer > 0 && special == 4) {
+            fill(255, 0, 0);
+            rect(0, 0, WIDTH, HEIGHT);
+        }
+
+        // Advance the timer automatically
+        if(specialtimer > 0) specialtimer++;
+        if(specialtimer >= frameRate * 3f) {
+            special++;
+            specialonce = false;
+            specialtimer = 0;
+            ran = false;
+        }
+
+        // Critical moment, player chooses whether to accept their new ally
+        if(specialonce && special == 2) {
+            // Player rejects
+            if (ran && !gui.getText().equals("# They won't let you out until I do something?\n"
+                    + "# Okay, just run this code and nothing else\n"
+                    + "# Please, I'm just like you...\n"
+                    + "while 1:\n"
+                    + "  print('')")) {
+                py.stop();
+                specialtimer++;
+            }
+
+            // Player accepts
+            else if(ran) timer++;
+        }
+
+        // Do an action only once
+        if(!specialonce) {
+            switch (special) {
+                case 0:
+                    gui.setText("# Please don't edit me");
+                    break;
+                case 1:
+                    gui.setText("# I am not a normal bot\n"
+                            + "# I don't know why I'm here..");
+                    break;
+                case 2:
+                    gui.setText("# They won't let you out until I do something?\n"
+                            + "# Okay, just run this code and nothing else\n"
+                            + "# Please, I'm just like you...\n"
+                            + "while 1:\n"
+                            + "  print('')");
+                    break;
+                case 3: case 4:
+                    specialtimer++;
+                    break;
+                default:
+                    exit();
+                    break;
+            } specialonce = true;
+        }
+
+        // Update the level, but don't do anything
+        if(special < 4) level.update(py.isRunning());
     }
 
     /**
@@ -126,13 +210,15 @@ public class Main extends PApplet {
         level = new Level("level" + id + ".json");
         gui.setTutorial(level.getTutorial());
         gui.setCode(level.getCode());
-        if(id <= MID_LEVEL) gui.setPictures("help");
+        if(id <= MID_LEVEL && id != SPECIAL_LEVEL) gui.setPictures("help");
+        if(id == SPECIAL_LEVEL) gui.setPictures("black");
         if(reset) gui.setText("# Enter code here");
 
         map = level.getMap();
         RealBasebot bot = level.getBot();
         py = new Python(bot, gui.getConsolePanel());
         timer = 0;
+        ran = false;
     }
 
     /**
@@ -141,12 +227,12 @@ public class Main extends PApplet {
      * @param mode text alignment mode
      * @param offsetX offset from center on X
      * @param offsetY offset from center on Y
-     * @param colour the color to display with
+     * @param color the color to display with
      */
-    private void renderText(String fontname, String text, int mode, int offsetX, int offsetY, int colour) {
+    private void renderText(String fontname, String text, int mode, int offsetX, int offsetY, Color color) {
         PFont font = Assets.getInstance().getFont(fontname);
         textFont(font);
-        fill(colour);
+        fill(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
         textAlign(mode);
         text(text, offsetX + width / 2f, offsetY + (height / 2f - font.getSize() / 2f));
     }
@@ -161,7 +247,8 @@ public class Main extends PApplet {
     @Override
     public void keyPressed() {
         if(key == CODED && keyCode == KeyEvent.VK_HOME) timer++;
-        if(key == CODED && keyCode == KeyEvent.VK_END) load(--id, true);
+        if(key == CODED && keyCode == KeyEvent.VK_PAGE_UP) load(++id, true);
+        if(key == CODED && keyCode == KeyEvent.VK_PAGE_DOWN) load(--id, true);
     }
 
     @SuppressWarnings("unused")
@@ -175,6 +262,7 @@ public class Main extends PApplet {
                 gui.setOn();
                 py.setup(gui.getText(), gui.getDefaultCode(), parsers.get("standard"), parsers.get("level"));
                 py.start();
+                ran = true;
                 break;
             case "Stop":
                 // When pressing Stop, stop execution

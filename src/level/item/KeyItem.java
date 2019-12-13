@@ -9,7 +9,7 @@ import static processing.Shape.RECTANGLE;
 
 public class KeyItem extends Item {
     /**
-     * A simple box
+     * A simple key
      */
     @Reflective
     public KeyItem(float x, float y) {

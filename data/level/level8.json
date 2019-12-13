@@ -1,0 +1,84 @@
+{
+  "map": {
+    "setting": "factory",
+
+    "walls": [
+      {
+        "wall": {
+          "x": 14,
+          "y": 14,
+          "height": 12,
+          "width": 3
+        }
+      },
+
+      {
+        "wall": {
+          "x": 9,
+          "y": 7,
+          "height": 3,
+          "width": 21
+        }
+      },
+
+      {
+        "wall": {
+          "x": 27,
+          "y": 10,
+          "height": 22,
+          "width": 3
+        }
+      }
+    ],
+
+    "goal": {
+      "x": 25,
+      "y": 20
+    }
+  },
+
+  "win": "time",
+
+  "bot": {
+    "x": 5,
+    "y": 20,
+    "special": true
+  },
+
+  "default": {
+    "code": [
+      "# TUT-0 Source Code",
+      "# Copyright (c) tut-0.bot",
+      "import bots.Basebot as __ibot",
+      "class tut0(__ibot):",
+      "  def __init__(self):",
+      "    __ibot.__init__(self)",
+      "    self.motive = 'goal'",
+      "  def move(self, x):",
+      "    while self.canMove(x):",
+      "      __ibot.move(self, x)",
+      "      dir = self.getBestDirection()",
+      "      if dir == 'left':",
+      "        __ibot.left(90)",
+      "      else:",
+      "        __ibot.right(90)",
+      "  def getBestDirection(self):",
+      "    if bot.getX() < 20:",
+      "      if bot.getY() >= 15:",
+      "        return 'left'",
+      "    return 'right'",
+      "  def left(self, degrees):",
+      "    print('USE MOVE()')",
+      "  def right(self, degrees):",
+      "    print('USE MOVE()')"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "..."
+      ]
+    }
+  ]
+}
