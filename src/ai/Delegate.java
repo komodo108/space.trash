@@ -6,8 +6,6 @@ import level.map.Map;
 import processing.PCObject;
 import processing.core.PVector;
 
-import static level.map.CellTypes.WALL;
-
 /**
  * Some content taken from lectures
  */
@@ -43,7 +41,7 @@ public class Delegate {
         for(int i = 0; i < 7; i++) {
             PVector vec = object.pos.copy().add(object.vel.rotate((float) (-3 * Math.PI / 6)).rotate((float) (i * Math.PI / 6)).copy().normalize().mult(1.3f));
             Cell cell = map.getCell(vec.x, vec.y);
-            if(cell != null && cell.getType() == WALL) target = object.pos.copy().sub(vec);
+            if(cell != null && cell.isCollidable()) target = object.pos.copy().sub(vec);
         } if(target != null) steer.seekFast(object, target);
     }
 

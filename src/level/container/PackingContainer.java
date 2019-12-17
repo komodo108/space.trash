@@ -3,8 +3,8 @@ package level.container;
 import level.Reflective;
 import level.item.CrateItem;
 import level.item.Item;
-import level.item.KeyItem;
 import level.item.PackedItem;
+import level.map.Map;
 
 import java.util.ArrayList;
 
@@ -16,17 +16,16 @@ public class PackingContainer extends Container {
      * Takes in 3 boxes / creates and packs them into a packed item
      */
     @Reflective
-    public PackingContainer(float x, float y) {
-        super(RECTANGLE, x, y);
+    public PackingContainer(Map map, float x, float y) {
+        super(map, RECTANGLE, x, y);
         width = 2 * TILE_SIZE;
         height = 2 * TILE_SIZE;
     }
 
     @Override
     public boolean interact(Item item) {
-        if(held.size() < 3 && (item instanceof KeyItem || item instanceof CrateItem)) {
-            held.add(item);
-        } else return held.size() == 3;
+        if(held.size() < 3 && (item instanceof CrateItem)) held.add(item);
+        else return held.size() == 3;
         return false;
     }
 

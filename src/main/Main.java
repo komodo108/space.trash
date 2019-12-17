@@ -207,8 +207,11 @@ public class Main extends PApplet {
      * @param reset if we are to reset the code
      */
     private void load(int id, boolean reset) {
+        // Load the next level
         System.out.println("Loading level " + id + "...");
         level = new Level("level" + id + ".json");
+
+        // Turn back on the GUI & set options
         gui.go();
         gui.setTutorial(level.getTutorial());
         gui.setCode(level.getCode());
@@ -217,9 +220,15 @@ public class Main extends PApplet {
         else gui.setPictures("tut-0");
         if(reset) gui.setText("# Enter code here");
 
+        // Load the new map & bot
         map = level.getMap();
         RealBasebot bot = level.getBot();
+
+        // Load the new Python interpreter
+        if(py != null && py.isRunning()) py.stop();
         py = new Python(bot, gui.getConsolePanel());
+
+        // Reset variables
         timer = 0;
         ran = false;
     }

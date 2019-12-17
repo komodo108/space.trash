@@ -3,7 +3,7 @@ package level.container;
 import level.Reflective;
 import level.item.CrateItem;
 import level.item.Item;
-import level.item.KeyItem;
+import level.map.Map;
 
 import static main.Constants.TILE_SIZE;
 import static processing.Shape.RECTANGLE;
@@ -13,17 +13,16 @@ public class SimpleContainer extends Container {
      * Simple container, can hold boxes & crates
      */
     @Reflective
-    public SimpleContainer(float x, float y) {
-        super(RECTANGLE, x, y);
+    public SimpleContainer(Map map, float x, float y) {
+        super(map, RECTANGLE, x, y);
         width = 2 * TILE_SIZE;
         height = 2 * TILE_SIZE;
     }
 
     @Override
     public boolean interact(Item item) {
-        if(item instanceof KeyItem || item instanceof CrateItem) {
-            held.add(item);
-        } return false;
+        if(item instanceof CrateItem) held.add(item);
+        return false;
     }
 
     @Override

@@ -12,8 +12,7 @@ import processing.core.PVector;
 import java.util.ArrayList;
 import java.util.List;
 
-import static level.map.CellTypes.GRASS;
-import static level.map.CellTypes.WALL;
+import static level.map.CellTypes.*;
 import static main.Constants.*;
 import static processing.Shape.RECTANGLE;
 
@@ -45,10 +44,18 @@ public class Map {
         containers.add(container);
     }
 
-    public void addWall(int x, int y, int width, int height) {
+    public void setType(int x, int y, int width, int height, CellTypes type) {
         for(int i = x; i < x + width; i++) {
             for(int j = y; j < y + height; j++) {
-                setCell(i, j, WALL);
+                setCell(i, j, type);
+            }
+        }
+    }
+
+    public void openClosedWalls() {
+        for(int x = 0; x < MAP_WIDTH; x++) {
+            for(int y = 0; y < MAP_HEIGHT; y++) {
+                if(map[x][y].getType() == CCWALL) map[x][y].setType(COWALL);
             }
         }
     }

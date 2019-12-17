@@ -40,6 +40,18 @@ An example level JSON file is given below, for it to be valid comments will need
       }
     ],
 
+    // [OPTIONAL] An array of all conditional walls in the level, position and sizes must be given
+    "conditionals": [
+      {
+        "wall": {
+          "x": 1,
+          "y": 1,
+          "height": 1,
+          "width": 1
+        }
+      }
+    ],
+
     // [OPTIONAL] Location of the goal cell
     "goal": {
       "x": 2,

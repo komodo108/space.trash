@@ -21,7 +21,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
-import static level.map.CellTypes.GOAL;
+import static level.map.CellTypes.*;
 import static main.Constants.TILE_SIZE;
 
 public class LevelLoader {
@@ -57,11 +57,24 @@ public class LevelLoader {
                 int y = wall.getInt("y");
                 int width = wall.getInt("width");
                 int height = wall.getInt("height");
-                map.addWall(x, y, width, height);
+                map.setType(x, y, width, height, WALL);
             }
         } catch (JSONException e) { /* no content */ }
 
-        // Load goals
+        // Load conditional walls
+        try {
+            JSONArray cwalls = jsonMap.getJSONArray("conditionals");
+            for (int i = 0; i < cwalls.length(); i++) {
+                JSONObject wall = cwalls.getJSONObject(i).getJSONObject("wall");
+                int x = wall.getInt("x");
+                int y = wall.getInt("y");
+                int width = wall.getInt("width");
+                int height = wall.getInt("height");
+                map.setType(x, y, width, height, CCWALL);
+            }
+        } catch (JSONException e) { /* no content */ }
+
+        // Load goal
         try {
             JSONObject goal = jsonMap.getJSONObject("goal");
             int x = goal.getInt("x");
@@ -96,8 +109,8 @@ public class LevelLoader {
                 float y = container.getFloat("y");
 
                 Class<?> containerc = Class.forName("level.container." + toProper(type.toLowerCase()) + "Container");
-                Constructor<?> cons = containerc.getConstructor(float.class, float.class);
-                map.add((Container) cons.newInstance(x * TILE_SIZE, y * TILE_SIZE));
+                Constructor<?> cons = containerc.getConstructor(Map.class, float.class, float.class);
+                map.add((Container) cons.newInstance(map, x * TILE_SIZE, y * TILE_SIZE));
             }
         } catch (Exception e) {
             if(!(e instanceof JSONException)) e.printStackTrace();

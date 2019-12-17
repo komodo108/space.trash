@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static level.map.CellTypes.WALL;
 import static main.Constants.TILE_SIZE;
 
 /**
@@ -88,11 +87,11 @@ public class AStarSearch {
     private boolean isOkay(float x, float y) {
         if(isWall(x + 1, y) || isWall(x, y + 1) || isWall(x - 1, y) || isWall(x, y - 1)) return false;
         if(isWall(x + 1, y + 1) || isWall(x - 1, y + 1) || isWall(x - 1, y - 1) || isWall(x + 1, y - 1)) return false;
-        return map.getMapCell(x, y) != null && map.getMapCell(x, y).getType() != WALL;
+        return map.getMapCell(x, y) != null && !map.getMapCell(x, y).isCollidable();
     }
 
     private boolean isWall(float x, float y) {
-        return (map.getMapCell(x, y) != null && map.getMapCell(x, y).getType() == WALL);
+        return (map.getMapCell(x, y) != null && map.getMapCell(x, y).isCollidable());
     }
 
     public List<PVector> getPath() {

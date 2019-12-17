@@ -3,6 +3,8 @@ package level.map;
 import processing.PObject;
 import processing.core.PVector;
 
+import static level.map.CellTypes.CCWALL;
+import static level.map.CellTypes.WALL;
 import static main.Constants.TILE_SIZE;
 import static processing.Shape.RECTANGLE;
 
@@ -24,12 +26,21 @@ public class Cell extends PObject {
         return type;
     }
 
+    public void setType(CellTypes type) {
+        this.type = type;
+    }
+
+    public boolean isCollidable() { return type == WALL || type == CCWALL; }
+
     @Override
     public void render() {
         applet.stroke(0, 50);
         switch (type) {
             case WALL:
                 applet.fill(0);
+                break;
+            case CCWALL:
+                applet.fill(255, 255, 0);
                 break;
             case GOAL:
                 timer += top ? -5 : 5;
