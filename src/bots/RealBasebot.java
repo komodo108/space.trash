@@ -33,6 +33,10 @@ public class RealBasebot extends PCObject implements PythonInteractable {
 
     @Override
     public void render() {
+        if(map.getSetting().isDark()) {
+            // TODO: This - https://processing.org/reference/PImage_mask_.html or otherwise
+        }
+
         if(attack > 0) {
             applet.noStroke();
             applet.fill(173, 216, 230, 120);

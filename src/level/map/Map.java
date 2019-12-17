@@ -109,6 +109,10 @@ public class Map {
         else return null;
     }
 
+    public Settings getSetting() {
+        return setting;
+    }
+
     /**
      * Render the map and elements in it
      */
