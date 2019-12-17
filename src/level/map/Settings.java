@@ -4,7 +4,7 @@ public enum Settings {
     FACTORY("Factory"),
     GRASS("Grass"),
     MARS("Mars"),
-    SPOOPY("SpoopyScary"),
+    CREEPY("Creepy"),
     FUTURE("SciFi");
 
     private String mapName;

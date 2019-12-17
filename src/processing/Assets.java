@@ -30,13 +30,14 @@ public class Assets {
         loadImage("Title.png");
         loadImage("Fired.png");
         loadImage("Idea.png");
+        loadImage("ThankYou.png");
 
         // Maps
         loadImage("Factory.png");
         loadImage("Grass.png");
         loadImage("Mars.png");
-        // TODO: Other images
-        // TODO: Creepy background?
+        loadImage("Creepy.png");
+        loadImage("SciFi.png");
 
         // Items
         loadImage("Key.png");
