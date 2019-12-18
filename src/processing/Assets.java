@@ -9,8 +9,7 @@ import processing.sound.SoundFile;
 import java.util.HashMap;
 import java.util.Map;
 
-import static main.Constants.AUDIO_DIR;
-import static main.Constants.IMAGE_DIR;
+import static main.Constants.*;
 
 public class Assets {
     private static Assets ourInstance = new Assets();
@@ -84,16 +83,16 @@ public class Assets {
     public void play(String name) {
         if(sounds.containsKey(name)) {
             SoundFile file = sounds.get(name);
-            file.amp(0.5f);
-            file.play();
+            file.amp(VOLUME);
+            new Thread(file::play).start();
         }
     }
 
     public void loop(String name) {
         if(sounds.containsKey(name)) {
             SoundFile file = sounds.get(name);
-            file.amp(0.5f);
-            file.loop();
+            file.amp(VOLUME);
+            new Thread(file::loop).start();
         }
     }
 

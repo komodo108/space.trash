@@ -23,6 +23,7 @@ public final class Constants {
     public static final String NAME = "Space.trash";
     public static final int WIDTH = 1504;   // Note: Images are made for 1504
     public static final int HEIGHT = 912;   // Note: Images are made for 912
+    public static final float VOLUME = 0.25f;
 
     // GUI constants
     public static final int EDITOR_WIDTH = WIDTH / 4;

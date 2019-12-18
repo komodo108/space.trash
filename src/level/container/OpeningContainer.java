@@ -32,8 +32,10 @@ public class OpeningContainer extends Container {
 
     @Override
     public void render() {
-        // TODO: Better rendering
-        applet.fill(168, 101, 20);
+        float radius = 0.5f * TILE_SIZE;
+        applet.fill(170);
         applet.rect(pos.x, pos.y, width, height);
+        applet.fill(0);
+        applet.ellipse(pos.x + (width / 2), pos.y + (height / 2), radius, radius);
     }
 }

@@ -47,6 +47,37 @@
           "height": 2
         }
       }
+    ],
+
+    "conditionals": [
+      {
+        "wall": {
+          "x": 15,
+          "y": 20,
+          "width": 2,
+          "height": 2
+        }
+      }
+    ],
+
+    "items": [
+      {
+        "item": {
+          "x": 15,
+          "y": 8,
+          "type": "key"
+        }
+      }
+    ],
+
+    "containers": [
+      {
+        "container": {
+          "x": 14,
+          "y": 22,
+          "type": "opening"
+        }
+      }
     ]
   },
 
@@ -77,37 +108,29 @@
   "messages": [
     {
       "message": [
-        "Welp... :(",
-        "This is unfortunate"
+        "One days food may not be enough",
+        "Good there are more pigs here"
       ]
     },
 
     {
       "message": [
-        "Seems we didn't prepare for",
-        "the adventure as well as I thought"
+        "This one is fenced in",
+        "You'll need to unlock the fence"
       ]
     },
 
     {
       "message": [
-        "We're out of food...",
-        "...and you can't breath here"
+        "I'm not like that other bot",
+        "I can think for myself"
       ]
     },
 
     {
       "message": [
-        "Good we took some trashed bots!",
-        "And landed on this lush planet!"
-      ]
-    },
-
-    {
-      "message": [
-        "There is a pig there",
-        "You can attack() it",
-        "It should do you for about a day"
+        "I don't know the solutions",
+        "This is my first time here too"
       ]
     }
   ]

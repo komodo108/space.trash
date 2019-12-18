@@ -195,7 +195,7 @@
                   },
                   "x": {
                     "$id": "#/properties/map/properties/items/items/properties/item/properties/x",
-                    "type": "integer",
+                    "type": "number",
                     "title": "The X Schema",
                     "default": 0,
                     "examples": [
@@ -204,7 +204,7 @@
                   },
                   "y": {
                     "$id": "#/properties/map/properties/items/items/properties/item/properties/y",
-                    "type": "integer",
+                    "type": "number",
                     "title": "The Y Schema",
                     "default": 0,
                     "examples": [
@@ -251,7 +251,7 @@
                   },
                   "x": {
                     "$id": "#/properties/map/properties/containers/items/properties/container/properties/x",
-                    "type": "integer",
+                    "type": "number",
                     "title": "The X Schema",
                     "default": 0,
                     "examples": [
@@ -260,7 +260,7 @@
                   },
                   "y": {
                     "$id": "#/properties/map/properties/containers/items/properties/container/properties/y",
-                    "type": "integer",
+                    "type": "number",
                     "title": "The Y Schema",
                     "default": 0,
                     "examples": [
@@ -309,7 +309,7 @@
               },
               "x": {
                 "$id": "#/properties/enemies/items/properties/enemy/properties/x",
-                "type": "integer",
+                "type": "number",
                 "title": "The X Schema",
                 "default": 0,
                 "examples": [
@@ -318,7 +318,7 @@
               },
               "y": {
                 "$id": "#/properties/enemies/items/properties/enemy/properties/y",
-                "type": "integer",
+                "type": "number",
                 "title": "The Y Schema",
                 "default": 0,
                 "examples": [
