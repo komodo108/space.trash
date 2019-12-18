@@ -32,8 +32,12 @@ public class Assets {
 
         // Cut-scenes
         loadImage("Title.png");
-        loadImage("Fired.png");
-        loadImage("Idea.png");
+        loadImage("Fired1.png");
+        loadImage("Fired2.png");
+        loadImage("Fired3.png");
+        loadImage("Fired4.png");
+        loadImage("Fired5.png");
+        loadImage("Fired6.png");
         loadImage("ThankYou.png");
 
         // Maps

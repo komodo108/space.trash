@@ -20,7 +20,6 @@ public class Python {
     public Python(RealBasebot bot, ConsolePanel panel) {
         this.bot = bot;
         this.panel = panel;
-        this.thread = new PythonThread(this, ""); // Remove to load thread upon Go clicked
     }
 
     /**

@@ -11,7 +11,6 @@ import gui.panel.ConsolePanel;
 import gui.panel.EditorPanel;
 import level.Level;
 import level.map.Map;
-import org.python.util.PythonInterpreter;
 import processing.Assets;
 import processing.core.PApplet;
 import processing.core.PFont;
@@ -60,7 +59,7 @@ public class Main extends PApplet {
         AppletSingleton.getInstance().setApplet(this);
         assets = Assets.getInstance();
         parsers = new Parsers();
-        new PythonInterpreter();
+        //new PythonInterpreter();
 
         // Make the cut-scenes which we set on at different points
         start = new Start();
@@ -126,8 +125,8 @@ public class Main extends PApplet {
                     renderText("large", "Well Done!", CENTER, 0, 0, Color.WHITE);
                     renderText("small", "Loading next level...", CENTER, 0, (assets.getFontSize("large") / 8), Color.WHITE);
                 } else {
-                    renderText("large", "We know what you did!", CENTER, 0, 0, Color.WHITE);
-                    renderText("small", "You're fired!", CENTER, 0, (assets.getFontSize("large") / 8), Color.WHITE);
+                    renderText("large", ":)", CENTER, 0, 0, Color.WHITE);
+                    renderText("small", "Thank You!", CENTER, 0, (assets.getFontSize("large") / 8), Color.WHITE);
                 } timer++;
             } if(timer > frameRate * 2 * SLEEP_FACTOR && id == MID_LEVEL) {
                 gui.stop();
