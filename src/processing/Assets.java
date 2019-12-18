@@ -4,10 +4,12 @@ import main.AppletSingleton;
 import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PImage;
+import processing.sound.SoundFile;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static main.Constants.AUDIO_DIR;
 import static main.Constants.IMAGE_DIR;
 
 public class Assets {
@@ -19,12 +21,14 @@ public class Assets {
     private PApplet applet = AppletSingleton.getInstance().getApplet();
     private Map<String, PImage> images;
     private Map<String, PFont> fonts;
+    private Map<String, SoundFile> sounds;
 
     private static final String FONT_NAME = "Arial";
 
     private Assets() {
         images = new HashMap<>();
         fonts = new HashMap<>();
+        sounds = new HashMap<>();
 
         // Cut-scenes
         loadImage("Title.png");
@@ -38,6 +42,9 @@ public class Assets {
         loadImage("Mars.png");
         loadImage("Creepy.png");
         loadImage("SciFi.png");
+
+        // Audio
+        loadSound("music.mp3");
 
         // Items
         loadImage("Key.png");
@@ -57,12 +64,39 @@ public class Assets {
         fonts.put(name, applet.createFont(font, size));
     }
 
+    private void loadSound(String path) {
+        String name = path.split("[.]")[0];
+        sounds.put(name, new SoundFile(applet, AUDIO_DIR + path));
+    }
+
     public PImage getImage(String name) {
         return images.getOrDefault(name, null);
     }
 
     public PFont getFont(String name) {
         return fonts.getOrDefault(name, null);
+    }
+
+    public void play(String name) {
+        if(sounds.containsKey(name)) {
+            SoundFile file = sounds.get(name);
+            file.amp(0.5f);
+            file.play();
+        }
+    }
+
+    public void loop(String name) {
+        if(sounds.containsKey(name)) {
+            SoundFile file = sounds.get(name);
+            file.amp(0.5f);
+            file.loop();
+        }
+    }
+
+    public void stop() {
+        for(SoundFile file : sounds.values()) {
+            if(file.isPlaying()) file.stop();
+        }
     }
 
     public int getFontSize(String name) {

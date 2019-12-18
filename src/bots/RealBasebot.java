@@ -95,10 +95,6 @@ public class RealBasebot extends PCObject implements PythonInteractable {
         return image;
     }
 
-    private int getRGBA(Color c) {
-        return (c.getAlpha() & 0xff) << 24 | (c.getRed() & 0xff) << 16 | (c.getGreen() & 0xff) << 8 | (c.getBlue() & 0xff);
-    }
-
     public void setHeld(Item held) {
         this.held = held;
     }

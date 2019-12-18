@@ -6,6 +6,7 @@ import gui.implementation.Tutorial;
 import level.enemy.Enemy;
 import level.map.Map;
 import level.win.Win;
+import processing.Assets;
 import processing.PCObject;
 import processing.PObject;
 import python.main.PythonAbortSingleton;
@@ -41,6 +42,7 @@ public class Level {
         bot = loader.getBot();
         objects.add(bot);
         win.setObjects(objects);
+        Assets.getInstance().loop("music");
     }
 
     public RealBasebot getBot() {

@@ -11,9 +11,11 @@ import gui.panel.ConsolePanel;
 import gui.panel.EditorPanel;
 import level.Level;
 import level.map.Map;
+import org.python.util.PythonInterpreter;
 import processing.Assets;
 import processing.core.PApplet;
 import processing.core.PFont;
+import processing.core.PImage;
 import python.main.Python;
 import python.parsers.Parsers;
 
@@ -30,9 +32,11 @@ public class Main extends PApplet {
     private Cutscene start, mid, end;
     private Map map;
     private Level level;
+
+    private PImage loading;
     private int id = 0, timer = 0;
     private int special = 0, specialtimer = 0;
-    private boolean specialonce, ran;
+    private boolean specialonce, ran, loaded;
 
     @Override
     public void settings() {
@@ -45,19 +49,32 @@ public class Main extends PApplet {
         surface.setTitle(NAME);
         surface.setCursor(CROSS);
 
-        // Setup the applet, asset manager, GUI & parsers
+        // Start loading the game
+        loading = loadImage(IMAGE_DIR + "Loading.png");
+        thread("load");
+    }
+
+    @SuppressWarnings("unused")
+    public void load() {
+        // Setup the applet, asset manager, GUI, parsers & python interpreter
         AppletSingleton.getInstance().setApplet(this);
         assets = Assets.getInstance();
         parsers = new Parsers();
+        new PythonInterpreter();
 
         // Make the cut-scenes which we set on at different points
         start = new Start();
+        loaded = true;
     }
 
     @Override
     public void draw() {
         // Clear the frame
         background(0);
+        if(!loaded) {
+            image(loading, 0, 0);
+            return;
+        }
 
         //Start cut-scene logic
         if (start != null && start.isRender()) start.render();

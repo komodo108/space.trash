@@ -32,6 +32,7 @@ public final class Constants {
     public static final int MAX_LENGTH = 100;
     public static final int NEW_LENGTH = 10;
     public static final String IMAGE_DIR = "images/";
+    public static final String AUDIO_DIR = "audio/";
 
     // Physics parameters
     public static final float TARGET_RADIUS = 3f;
