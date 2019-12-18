@@ -5,9 +5,13 @@ import level.item.Item;
 import level.map.Map;
 import processing.PCObject;
 import processing.PObject;
+import processing.core.PConstants;
+import processing.core.PGraphics;
+import processing.core.PImage;
 import processing.core.PVector;
 import python.middleware.*;
 
+import java.awt.*;
 import java.util.List;
 
 import static main.Constants.*;
@@ -18,6 +22,7 @@ public class RealBasebot extends PCObject implements PythonInteractable {
     private Item held;
     private int attack;
     private boolean special;
+    private final Color BLACK = Color.BLACK, HOLE = Color.WHITE;
 
     public RealBasebot(Map map, int x, int y, boolean special) {
         super(map, CIRCLE);
@@ -33,10 +38,6 @@ public class RealBasebot extends PCObject implements PythonInteractable {
 
     @Override
     public void render() {
-        if(map.getSetting().isDark()) {
-            // TODO: This - https://processing.org/reference/PImage_mask_.html or otherwise
-        }
-
         if(attack > 0) {
             applet.noStroke();
             applet.fill(173, 216, 230, 120);
@@ -60,6 +61,42 @@ public class RealBasebot extends PCObject implements PythonInteractable {
             applet.fill(0);
             applet.ellipse(newx, newy, height / EYE_FACTOR, width / EYE_FACTOR);
         }
+
+        // forum.processing.org/two/discussion/11066/cookie-cut-shape-from-other-shape
+        if(map.getSetting().isDark()) {
+            PImage image = masked();
+            applet.image(setAllColorAlpha(image, HOLE), 0, 0);
+        }
+    }
+
+    private PImage masked() {
+        PGraphics pg = applet.createGraphics(WIDTH, HEIGHT, PConstants.JAVA2D);
+        pg.beginDraw();
+
+        pg.smooth(4);
+        pg.noStroke();
+        pg.fill(BLACK.getRed(), BLACK.getGreen(), BLACK.getBlue(), BLACK.getAlpha());
+        pg.rect(0, 0, WIDTH, HEIGHT);
+        pg.fill(HOLE.getRed(), HOLE.getGreen(), HOLE.getBlue(), HOLE.getAlpha());
+        pg.ellipse(pos.x, pos.y, TILE_SIZE * 20, TILE_SIZE * 20);
+
+        pg.endDraw();
+        return pg.get();
+    }
+
+    private PImage setAllColorAlpha(PImage image, Color color) {
+        image.loadPixels();
+        int icolor = color.getRGB() & 0x00FFFFFF;
+        int p[] = image.pixels, i = p.length, q;
+        while(i-- != 0) {
+            if((q = p[i] & 0x00FFFFFF) == icolor)
+                p[i] = q;
+        } image.updatePixels();
+        return image;
+    }
+
+    private int getRGBA(Color c) {
+        return (c.getAlpha() & 0xff) << 24 | (c.getRed() & 0xff) << 16 | (c.getGreen() & 0xff) << 8 | (c.getBlue() & 0xff);
     }
 
     public void setHeld(Item held) {

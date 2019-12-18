@@ -1,7 +1,7 @@
 package level.map;
 
 public enum Settings {
-    FACTORY("Factory", true),
+    FACTORY("Factory", false),
     GRASS("Grass", false),
     MARS("Mars", false),
     CREEPY("Creepy", true),
