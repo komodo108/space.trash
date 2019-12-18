@@ -1,0 +1,439 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "map",
+    "win",
+    "bot",
+    "default",
+    "messages"
+  ],
+  "properties": {
+    "map": {
+      "$id": "#/properties/map",
+      "type": "object",
+      "title": "The Map Schema",
+      "required": [
+        "setting"
+      ],
+      "properties": {
+        "setting": {
+          "$id": "#/properties/map/properties/setting",
+          "type": "string",
+          "title": "The Setting Schema",
+          "default": "",
+          "examples": [
+            "grass"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "walls": {
+          "$id": "#/properties/map/properties/walls",
+          "type": "array",
+          "title": "The Walls Schema",
+          "default": null,
+          "items": {
+            "$id": "#/properties/map/properties/walls/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "wall"
+            ],
+            "properties": {
+              "wall": {
+                "$id": "#/properties/map/properties/walls/items/properties/wall",
+                "type": "object",
+                "title": "The Wall Schema",
+                "required": [
+                  "x",
+                  "y",
+                  "height",
+                  "width"
+                ],
+                "properties": {
+                  "x": {
+                    "$id": "#/properties/map/properties/walls/items/properties/wall/properties/x",
+                    "type": "integer",
+                    "title": "The X Schema",
+                    "default": 0,
+                    "examples": [
+                      22
+                    ]
+                  },
+                  "y": {
+                    "$id": "#/properties/map/properties/walls/items/properties/wall/properties/y",
+                    "type": "integer",
+                    "title": "The Y Schema",
+                    "default": 0,
+                    "examples": [
+                      14
+                    ]
+                  },
+                  "height": {
+                    "$id": "#/properties/map/properties/walls/items/properties/wall/properties/height",
+                    "type": "integer",
+                    "title": "The Height Schema",
+                    "default": 0,
+                    "examples": [
+                      30
+                    ]
+                  },
+                  "width": {
+                    "$id": "#/properties/map/properties/walls/items/properties/wall/properties/width",
+                    "type": "integer",
+                    "title": "The Width Schema",
+                    "default": 0,
+                    "examples": [
+                      3
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "conditionals": {
+          "$id": "#/properties/map/properties/conditionals",
+          "type": "array",
+          "title": "The Conditionals Schema",
+          "default": null,
+          "items": {
+            "$id": "#/properties/map/properties/conditionals/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "wall"
+            ],
+            "properties": {
+              "wall": {
+                "$id": "#/properties/map/properties/conditionals/items/properties/wall",
+                "type": "object",
+                "title": "The Wall Schema",
+                "required": [
+                  "x",
+                  "y",
+                  "height",
+                  "width"
+                ],
+                "properties": {
+                  "x": {
+                    "$id": "#/properties/map/properties/conditionals/items/properties/wall/properties/x",
+                    "type": "integer",
+                    "title": "The X Schema",
+                    "default": 0,
+                    "examples": [
+                      0
+                    ]
+                  },
+                  "y": {
+                    "$id": "#/properties/map/properties/conditionals/items/properties/wall/properties/y",
+                    "type": "integer",
+                    "title": "The Y Schema",
+                    "default": 0,
+                    "examples": [
+                      14
+                    ]
+                  },
+                  "height": {
+                    "$id": "#/properties/map/properties/conditionals/items/properties/wall/properties/height",
+                    "type": "integer",
+                    "title": "The Height Schema",
+                    "default": 0,
+                    "examples": [
+                      30
+                    ]
+                  },
+                  "width": {
+                    "$id": "#/properties/map/properties/conditionals/items/properties/wall/properties/width",
+                    "type": "integer",
+                    "title": "The Width Schema",
+                    "default": 0,
+                    "examples": [
+                      3
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "items": {
+          "$id": "#/properties/map/properties/items",
+          "type": "array",
+          "title": "The Items Schema",
+          "default": null,
+          "items": {
+            "$id": "#/properties/map/properties/items/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "item"
+            ],
+            "properties": {
+              "item": {
+                "$id": "#/properties/map/properties/items/items/properties/item",
+                "type": "object",
+                "title": "The Item Schema",
+                "required": [
+                  "type",
+                  "x",
+                  "y"
+                ],
+                "properties": {
+                  "type": {
+                    "$id": "#/properties/map/properties/items/items/properties/item/properties/type",
+                    "type": "string",
+                    "title": "The Type Schema",
+                    "default": "",
+                    "examples": [
+                      "test"
+                    ],
+                    "pattern": "^(.*)$"
+                  },
+                  "x": {
+                    "$id": "#/properties/map/properties/items/items/properties/item/properties/x",
+                    "type": "integer",
+                    "title": "The X Schema",
+                    "default": 0,
+                    "examples": [
+                      27
+                    ]
+                  },
+                  "y": {
+                    "$id": "#/properties/map/properties/items/items/properties/item/properties/y",
+                    "type": "integer",
+                    "title": "The Y Schema",
+                    "default": 0,
+                    "examples": [
+                      34
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "containers": {
+          "$id": "#/properties/map/properties/containers",
+          "type": "array",
+          "title": "The Containers Schema",
+          "default": null,
+          "items": {
+            "$id": "#/properties/map/properties/containers/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "container"
+            ],
+            "properties": {
+              "container": {
+                "$id": "#/properties/map/properties/containers/items/properties/container",
+                "type": "object",
+                "title": "The Container Schema",
+                "required": [
+                  "type",
+                  "x",
+                  "y"
+                ],
+                "properties": {
+                  "type": {
+                    "$id": "#/properties/map/properties/containers/items/properties/container/properties/type",
+                    "type": "string",
+                    "title": "The Type Schema",
+                    "default": "",
+                    "examples": [
+                      "test"
+                    ],
+                    "pattern": "^(.*)$"
+                  },
+                  "x": {
+                    "$id": "#/properties/map/properties/containers/items/properties/container/properties/x",
+                    "type": "integer",
+                    "title": "The X Schema",
+                    "default": 0,
+                    "examples": [
+                      34
+                    ]
+                  },
+                  "y": {
+                    "$id": "#/properties/map/properties/containers/items/properties/container/properties/y",
+                    "type": "integer",
+                    "title": "The Y Schema",
+                    "default": 0,
+                    "examples": [
+                      24
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "enemies": {
+      "$id": "#/properties/enemies",
+      "type": "array",
+      "title": "The Enemies Schema",
+      "default": null,
+      "items": {
+        "$id": "#/properties/enemies/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "enemy"
+        ],
+        "properties": {
+          "enemy": {
+            "$id": "#/properties/enemies/items/properties/enemy",
+            "type": "object",
+            "title": "The Enemy Schema",
+            "required": [
+              "type",
+              "x",
+              "y"
+            ],
+            "properties": {
+              "type": {
+                "$id": "#/properties/enemies/items/properties/enemy/properties/type",
+                "type": "string",
+                "title": "The Type Schema",
+                "default": "",
+                "examples": [
+                  "test"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "x": {
+                "$id": "#/properties/enemies/items/properties/enemy/properties/x",
+                "type": "integer",
+                "title": "The X Schema",
+                "default": 0,
+                "examples": [
+                  37
+                ]
+              },
+              "y": {
+                "$id": "#/properties/enemies/items/properties/enemy/properties/y",
+                "type": "integer",
+                "title": "The Y Schema",
+                "default": 0,
+                "examples": [
+                  37
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "win": {
+      "$id": "#/properties/win",
+      "type": "string",
+      "title": "The Win Schema",
+      "default": "",
+      "examples": [
+        "test"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "bot": {
+      "$id": "#/properties/bot",
+      "type": "object",
+      "title": "The Bot Schema",
+      "required": [
+        "x",
+        "y"
+      ],
+      "properties": {
+        "x": {
+          "$id": "#/properties/bot/properties/x",
+          "type": "integer",
+          "title": "The X Schema",
+          "default": 0,
+          "examples": [
+            1
+          ]
+        },
+        "y": {
+          "$id": "#/properties/bot/properties/y",
+          "type": "integer",
+          "title": "The Y Schema",
+          "default": 0,
+          "examples": [
+            1
+          ]
+        },
+        "special": {
+          "$id": "#/properties/bot/properties/special",
+          "type": "boolean",
+          "title": "The Special Schema",
+          "default": false,
+          "examples": [
+            true
+          ]
+        }
+      }
+    },
+    "default": {
+      "$id": "#/properties/default",
+      "type": "object",
+      "title": "The Default Schema",
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "code": {
+          "$id": "#/properties/default/properties/code",
+          "type": "array",
+          "title": "The Code Schema",
+          "items": {
+            "$id": "#/properties/default/properties/code/items",
+            "type": "string",
+            "title": "The Items Schema",
+            "default": "",
+            "examples": [
+              "# Use the standard bot",
+              "bot = __impl"
+            ],
+            "pattern": "^(.*)$"
+          }
+        }
+      }
+    },
+    "messages": {
+      "$id": "#/properties/messages",
+      "type": "array",
+      "title": "The Messages Schema",
+      "items": {
+        "$id": "#/properties/messages/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "$id": "#/properties/messages/items/properties/message",
+            "type": "array",
+            "title": "The Message Schema",
+            "items": {
+              "$id": "#/properties/messages/items/properties/message/items",
+              "type": "string",
+              "title": "The Items Schema",
+              "default": "",
+              "examples": [
+                "hi!",
+                "hello"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        }
+      }
+    }
+  }
+}
