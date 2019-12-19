@@ -96,7 +96,7 @@ hs_err_pid*
 libs/.DS_Store
 
 # Player data
-data/player/save.dat
+*.dat
 
 # Exclusions
 !/libs/*.jar
