@@ -4,6 +4,7 @@ import g4p_controls.G4P;
 import g4p_controls.GPanel;
 import g4p_controls.GTextArea;
 import gui.implementation.DefaultCode;
+import processing.Assets;
 import processing.core.PApplet;
 
 import static main.Constants.EDITOR_WIDTH;
@@ -24,6 +25,7 @@ public class DefaultCodePanel extends GPanel {
 
         // Setup console text area
         area = new GTextArea(applet, 10, 25, EDITOR_WIDTH - 20, UNEDIT_HEIGHT, G4P.SCROLLBARS_VERTICAL_ONLY | G4P.SCROLLBARS_AUTOHIDE);
+        area.setFont(Assets.getInstance().getCodeFont());
         area.setOpaque(true);
         area.setTextEditEnabled(false);
         area.setLocalColorScheme(RED_SCHEME);

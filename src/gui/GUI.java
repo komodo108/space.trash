@@ -20,7 +20,7 @@ public class GUI {
     private EditorPanel editorPanel;
     private ConsolePanel consolePanel;
     private DefaultCodePanel defaultCodePanel;
-    private GButton go;
+    private GButton go, save;
     private PApplet applet = AppletSingleton.getInstance().getApplet();
 
     public GUI() {
@@ -37,11 +37,17 @@ public class GUI {
         consolePanel = new ConsolePanel(applet, editorPanel);
 
         // Setup buttons
-        go = new GButton(applet, 10, EDITOR_HEIGHT - 45, EDITOR_WIDTH - 20, 40);
+        go = new GButton(applet, 10, EDITOR_HEIGHT - 45, EDITOR_WIDTH - 100, 40);
         go.setText("Go");
         go.setLocalColorScheme(GConstants.GREEN_SCHEME);
         go.setOpaque(true);
         editorPanel.addControl(go);
+
+        save = new GButton(applet, EDITOR_WIDTH - 80, EDITOR_HEIGHT - 45, 70, 40);
+        save.setText("Save");
+        save.setLocalColorScheme(GConstants.BLUE_SCHEME);
+        save.setOpaque(true);
+        editorPanel.addControl(save);
     }
 
     public void go() {

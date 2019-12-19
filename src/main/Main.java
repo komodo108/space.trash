@@ -10,6 +10,7 @@ import gui.cutscene.Start;
 import gui.panel.ConsolePanel;
 import gui.panel.EditorPanel;
 import level.Level;
+import level.Save;
 import level.map.Map;
 import processing.Assets;
 import processing.core.PApplet;
@@ -31,6 +32,7 @@ public class Main extends PApplet {
     private Cutscene start, mid, end;
     private Map map;
     private Level level;
+    private Save save;
 
     private PImage loading;
     private int id = 0, timer = 0;
@@ -58,6 +60,11 @@ public class Main extends PApplet {
         AppletSingleton.getInstance().setApplet(this);
         assets = Assets.getInstance();
         parsers = new Parsers();
+
+        // Load progress
+        save = new Save();
+        save.load();
+        id = save.getLevel();
         //new PythonInterpreter();
 
         // Make the cut-scenes which we set on at different points
@@ -79,6 +86,7 @@ public class Main extends PApplet {
         else if (start != null && !start.isRender()) {
             // Once we are done, make a GUI and load levels
             gui = new GUI();
+            gui.setText(save.getCode());
             load(id, true);
 
             // Don't allow this to be called again
@@ -226,6 +234,9 @@ public class Main extends PApplet {
         System.out.println("Loading level " + id + "...");
         level = new Level("level" + id + ".json");
 
+        // Save progress
+        save.save(id, gui.getText());
+
         // Turn back on the GUI & set options
         gui.go();
         gui.setTutorial(level.getTutorial());
@@ -295,6 +306,9 @@ public class Main extends PApplet {
                 // When pressing Stop, stop execution
                 gui.setOff();
                 py.stop();
+                break;
+            case "Save":
+                save.save(id, gui.getText());
                 break;
         }
     }

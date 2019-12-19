@@ -2,6 +2,7 @@ package gui.panel;
 
 import g4p_controls.*;
 import gui.implementation.Tutorial;
+import processing.Assets;
 import processing.core.PApplet;
 
 import java.awt.*;
@@ -41,6 +42,7 @@ public class EditorPanel extends GPanel {
         // Setup editor area
         editor = new GTextArea(applet, 10, 25 + 74, EDITOR_WIDTH - 20, EDITOR_HEIGHT - 154, G4P.SCROLLBARS_VERTICAL_ONLY | G4P.SCROLLBARS_AUTOHIDE);
         editor.setText("# Enter Code here");
+        editor.setFont(Assets.getInstance().getCodeFont());
         editor.setLocalColorScheme(8);
         editor.setOpaque(true);
         this.addControl(editor);

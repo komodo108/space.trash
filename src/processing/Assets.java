@@ -6,6 +6,9 @@ import processing.core.PFont;
 import processing.core.PImage;
 import processing.sound.SoundFile;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,8 +24,11 @@ public class Assets {
     private Map<String, PImage> images;
     private Map<String, PFont> fonts;
     private Map<String, SoundFile> sounds;
+    private Font code;
 
     private static final String FONT_NAME = "Arial";
+    private static final String CODE_FONT = Font.MONOSPACED;
+    private static final float CODE_SIZE = 12f;
 
     private Assets() {
         images = new HashMap<>();
@@ -57,6 +63,18 @@ public class Assets {
         loadFont("medium", FONT_NAME, 48);
         loadFont("large", FONT_NAME, 70);
         loadFont("slarge", "Chiller", 100);
+            try {
+            code = Font.createFont(Font.TRUETYPE_FONT, new File("data/fonts/font.ttf")).deriveFont(CODE_SIZE);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(code);
+        } catch (IOException | FontFormatException e) {
+            System.err.println("Unable to use custom font!");
+            code = new Font(CODE_FONT, Font.PLAIN, (int) CODE_SIZE);
+        }
+    }
+
+    public Font getCodeFont() {
+        return code;
     }
 
     private void loadImage(String path) {
