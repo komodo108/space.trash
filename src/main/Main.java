@@ -46,7 +46,6 @@ public class Main extends PApplet {
     public void setup() {
         // Setup window options
         surface.setTitle(NAME);
-        surface.setCursor(CROSS);
 
         // Start loading the game
         loading = loadImage(IMAGE_DIR + "Loading.png");
@@ -156,7 +155,7 @@ public class Main extends PApplet {
         } if(specialtimer > 0 && special == 3) {
             fill(255, 0, 0, 100);
             rect(0, 0, WIDTH, HEIGHT);
-            renderText("large", "JUST LIKE\nEVERYONE ELSE", CENTER, 0, 0, Color.RED);
+            renderText("slarge", "JUST LIKE\nEVERYONE ELSE", CENTER, 0, 0, Color.RED);
         } if(specialtimer > 0 && special == 4) {
             fill(255, 0, 0);
             rect(0, 0, WIDTH, HEIGHT);

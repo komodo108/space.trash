@@ -56,6 +56,7 @@ public class Assets {
         loadFont("small", FONT_NAME, 20);
         loadFont("medium", FONT_NAME, 48);
         loadFont("large", FONT_NAME, 70);
+        loadFont("slarge", "Chiller", 100);
     }
 
     private void loadImage(String path) {

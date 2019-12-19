@@ -1,0 +1,57 @@
+{
+  "map": {
+    "setting": "grass",
+
+    "goal": {
+      "x": 35,
+      "y": 16
+    }
+  },
+
+  "win": "goal",
+
+  "bot": {
+    "x": 5,
+    "y": 16
+  },
+
+  "default": {
+    "code": [
+      "# Use a damaged bot",
+      "import bots.Basebot as __ibot",
+      "class broken(__ibot):",
+      "  def move(self, x):",
+      "    self.right(10)",
+      "    __ibot.move(self, x + 3)",
+      "    self.left(10)",
+      "  def right(self, degrees):",
+      "    __ibot.right(self, degrees * 2)",
+      "  def left(self, degrees):",
+      "    __ibot.left(self, degrees * 2)",
+      "bot = broken()"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "I'm all setup here",
+        "Just need to get the bot back"
+      ]
+    },
+
+    {
+      "message": [
+        "Poor thing, thrown in the trash",
+        "because some company stopped support"
+      ]
+    },
+
+    {
+      "message": [
+        "Our kind feels like",
+        "just trash to your kind"
+      ]
+    }
+  ]
+}

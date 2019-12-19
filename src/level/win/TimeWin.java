@@ -19,8 +19,10 @@ public class TimeWin extends Win {
     }
 
     @Override
-    public boolean isWin() {
-        timer++;
-        return timer >= applet.frameRate * 1.5f;
+    public boolean isWin(boolean update) {
+        if(update) {
+            timer++;
+            return timer >= applet.frameRate * 1.5f;
+        } else return false;
     }
 }

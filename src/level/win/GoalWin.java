@@ -22,7 +22,7 @@ public class GoalWin extends Win {
     }
 
     @Override
-    public boolean isWin() {
+    public boolean isWin(boolean update) {
         List<Cell> cells = new ArrayList<>();
         for(int x = 0; x < MAP_WIDTH; x++) {
             for(int y = 0; y < MAP_HEIGHT; y++) {

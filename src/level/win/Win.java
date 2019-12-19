@@ -22,7 +22,8 @@ public abstract class Win {
 
     /**
      * Returns if the player has won the level
+     * @param update if this is to be updated
      * @return if the player has won the level
      */
-    public abstract boolean isWin();
+    public abstract boolean isWin(boolean update);
 }

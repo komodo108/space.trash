@@ -33,7 +33,7 @@ public class ConsolePanel extends GPanel implements PythonInteractable {
         // Setup console text area
         console = new GTextArea(applet, 10, 25, EDITOR_WIDTH - 20, EDITOR_HEIGHT - 80, G4P.SCROLLBARS_VERTICAL_ONLY | G4P.SCROLLBARS_AUTOHIDE);
         console.setOpaque(true);
-        console.setText("Python 2.7 for " + NAME + ".\n");
+        console.setText("PRPF v3 Console.\n");
         console.setTextEditEnabled(false);
         setColorScheme(PURPLE_SCHEME);
         this.addControl(console);

@@ -16,7 +16,7 @@ public class KillWin extends Win {
     }
 
     @Override
-    public boolean isWin() {
+    public boolean isWin(boolean update) {
         for(PObject object : objects) {
             if(object instanceof Enemy) return false;
         } return true;

@@ -32,8 +32,4 @@ public abstract class Container extends PObject {
      * @return an item
      */
     public abstract Item getItem();
-
-    public List<Item> getHeld() {
-        return held;
-    }
 }

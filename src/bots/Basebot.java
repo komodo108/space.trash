@@ -93,7 +93,7 @@ public class Basebot implements PythonImplementation {
             if(CollisionDetect.isInside(container, parent) && parent.getHeld() != null) {
                 if(container.interact(parent.getHeld())) parent.setHeld(container.getItem());
                 else parent.setHeld(null);
-            }
+            } threading();
         }
     }
 

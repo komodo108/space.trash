@@ -63,10 +63,8 @@ public class Python {
      * Stop running the code
      */
     public void stop() {
-        try {
-            abort.setAbort(true);
-            running = false;
-        } catch (Exception e) { /* No content */ }
+        abort.setAbort(true);
+        running = false;
     }
 
     /**

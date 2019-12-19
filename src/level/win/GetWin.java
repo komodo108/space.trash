@@ -17,7 +17,7 @@ public class GetWin extends Win {
     }
 
     @Override
-    public boolean isWin() {
+    public boolean isWin(boolean update) {
         Item item = bot.getHeld();
         if(item != null) {
             return item.getTag() == FINAL;

@@ -17,7 +17,7 @@ public class ClearWin extends Win {
     }
 
     @Override
-    public boolean isWin() {
+    public boolean isWin(boolean update) {
         List<Item> items = map.getItems();
         if(items.size() == 0) {
             return bot.getHeld() == null;
