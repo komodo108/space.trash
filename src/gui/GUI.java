@@ -58,6 +58,16 @@ public class GUI {
         editorPanel.setVisible(false);
     }
 
+    public void disableSave() {
+        save.setLocalColorScheme(GConstants.PURPLE_SCHEME);
+        save.setEnabled(false);
+    }
+
+    public void enableSave() {
+        save.setLocalColorScheme(GConstants.BLUE_SCHEME);
+        save.setEnabled(true);
+    }
+
     public String getText() {
         return editorPanel.getEditor().getText();
     }

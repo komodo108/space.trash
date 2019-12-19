@@ -87,7 +87,7 @@ public class Main extends PApplet {
             // Once we are done, make a GUI and load levels
             gui = new GUI();
             gui.setText(save.getCode());
-            load(id, true);
+            load(id, false);
 
             // Don't allow this to be called again
             start = null;
@@ -235,7 +235,12 @@ public class Main extends PApplet {
         level = new Level("level" + id + ".json");
 
         // Save progress
-        save.save(id, gui.getText());
+        gui.enableSave();
+        if(id != SPECIAL_LEVEL) save.save(id, gui.getText());
+        else {
+            save.save(id, "");
+            gui.disableSave();
+        }
 
         // Turn back on the GUI & set options
         gui.go();
@@ -256,6 +261,7 @@ public class Main extends PApplet {
 
         // Reset variables
         timer = 0;
+        special = 0;
         ran = false;
     }
 
