@@ -31,6 +31,9 @@ public class Save {
                     sb.append(line).append("\n");
                 } code = sb.toString();
                 br.close();
+            } else {
+                level = 0;
+                code = "# Enter code here";
             }
         } catch (IOException e) {
             System.err.println("Unable to load level!");
