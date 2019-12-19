@@ -1,0 +1,63 @@
+{
+  "map": {
+    "setting": "mars",
+
+    "goal": {
+      "x": 37,
+      "y": 28
+    }
+  },
+
+  "win": "goal",
+
+  "bot": {
+    "x": 5,
+    "y": 16
+  },
+
+  "default": {
+    "code": [
+      "# Use a custom bot",
+      "import bots.Basebot as __ibot",
+      "class newbot(__ibot):",
+      "  def __init__(self):",
+      "    __ibot.__init__(self)",
+      "  def move(self, x):",
+      "    pass",
+      "def move(bot, x):",
+      "  __ibot.move(bot, x)"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "I am the king of the Automatons"
+      ]
+    },
+
+    {
+      "message": [
+        "After humans figured out how to fly,",
+        "they found us and learned we can be",
+        "reprogrammed easily"
+      ]
+    },
+
+    {
+      "message": [
+        "They took us from our planet",
+        "took us from our home",
+        "They erased our memories"
+      ]
+    },
+
+    {
+      "message": [
+        "And for what?",
+        "Some automation they were",
+        "just about to discover?"
+      ]
+    }
+  ]
+}

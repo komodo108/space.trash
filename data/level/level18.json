@@ -2,16 +2,7 @@
   "map": {
     "setting": "mars",
 
-    "conditionals": [
-      {
-        "wall": {
-          "x": 37,
-          "y": 22,
-          "width": 8,
-          "height": 2
-        }
-      },
-
+    "walls": [
       {
         "wall": {
           "x": 37,
@@ -40,20 +31,31 @@
       }
     ],
 
+    "conditionals": [
+      {
+        "wall": {
+          "x": 39,
+          "y": 22,
+          "width": 4,
+          "height": 2
+        }
+      }
+    ],
+
     "items": [
       {
         "item" : {
           "type": "ore",
-          "x": 29,
-          "y": 18
+          "x": 9,
+          "y": 27
         }
       },
 
       {
         "item": {
           "type": "ore",
-          "x": 7,
-          "y": 38
+          "x": 31,
+          "y": 19
         }
       }
     ],
@@ -62,15 +64,15 @@
       {
         "container": {
           "type": "refining",
-          "x": 40,
-          "y": 25
+          "x": 30,
+          "y": 8
         }
       },
 
       {
         "container": {
-          "type": "opening",
-          "x": 20,
+          "type": "fuelled",
+          "x": 38,
           "y": 20
         }
       }
@@ -84,10 +86,58 @@
         "x": 17,
         "y": 20
       }
+    },
+
+    {
+      "enemy": {
+        "type": "martian",
+        "x": 19,
+        "y": 40
+      }
+    },
+
+    {
+      "enemy": {
+        "type": "martian",
+        "x": 5,
+        "y": 28
+      }
+    },
+
+    {
+      "enemy": {
+        "type": "martian",
+        "x": 47,
+        "y": 20
+      }
+    },
+
+    {
+      "enemy": {
+        "type": "martian",
+        "x": 37,
+        "y": 10
+      }
+    },
+
+    {
+      "enemy": {
+        "type": "pig",
+        "x": 40,
+        "y": 25
+      }
+    },
+
+    {
+      "enemy": {
+        "type": "pig",
+        "x": 41,
+        "y": 26
+      }
     }
   ],
 
-  "win": "get",
+  "win": "kill",
 
   "bot": {
     "x": 2,
@@ -111,31 +161,24 @@
   "messages": [
     {
       "message": [
-        "The working bot started to freeze",
-        "internally. You'll need to work",
-        "with this one for now"
+        "This mess looks like the work of your",
+        "kind. Always so eager to protect what",
+        "is theirs"
       ]
     },
 
     {
       "message": [
-        "I was in the process of reprogramming",
-        "them. I don't think I got that far with it"
+        "We need some more food for you",
+        "Kill all guards and pigs"
       ]
     },
 
     {
       "message": [
-        "A hint?",
-        "You can make subclasses of existing classes"
-      ]
-    },
-
-    {
-      "message": [
-        "For example, if I had a class 'animal',",
-        "I could make a subclass 'bunny' with",
-        "class bunny(animal):"
+        "We can probably leave after",
+        "I want to show you something",
+        "I want to explain who I am"
       ]
     }
   ]
