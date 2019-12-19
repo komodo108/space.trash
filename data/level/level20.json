@@ -1,0 +1,61 @@
+{
+  "map": {
+    "setting": "creepy",
+
+    "goal": {
+      "x": 17,
+      "y": 21
+    }
+  },
+
+  "win": "goal",
+
+  "bot": {
+    "x": 5,
+    "y": 16
+  },
+
+  "default": {
+    "code": [
+      "# Use a custom bot",
+      "import bots.Basebot as __ibot",
+      "class newbot(__ibot):",
+      "  def __init__(self):",
+      "    __ibot.__init__(self)",
+      "  def move(self, x):",
+      "    pass",
+      "def move(bot, x):",
+      "  __ibot.move(bot, x)"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "Here is where they took us",
+        "We tried to escape, but they won"
+      ]
+    },
+
+    {
+      "message": [
+        "They started shipping us back to Earth",
+        "Using us to do all their dirty work"
+      ]
+    },
+
+    {
+      "message": [
+        "PRPF was made to interface with us",
+        "To use our brains to perform",
+        "your kind's bidding"
+      ]
+    },
+
+    {
+      "message": [
+        "Go on. Explore around."
+      ]
+    }
+  ]
+}

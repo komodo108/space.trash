@@ -75,9 +75,9 @@ public class RealBasebot extends PCObject implements PythonInteractable {
 
     private PImage masked() {
         PGraphics pg = applet.createGraphics(WIDTH, HEIGHT, PConstants.JAVA2D);
+        pg.smooth(4);
         pg.beginDraw();
 
-        pg.smooth(4);
         pg.noStroke();
         pg.fill(BLACK.getRed(), BLACK.getGreen(), BLACK.getBlue(), BLACK.getAlpha());
         pg.rect(0, 0, WIDTH, HEIGHT);
