@@ -2,6 +2,7 @@ package level.enemy;
 
 import ai.Delegate;
 import bots.RealBasebot;
+import level.item.Item;
 import level.map.Map;
 import processing.CollisionDetect;
 import processing.PCObject;
@@ -11,7 +12,7 @@ import processing.core.PVector;
 
 import java.util.List;
 
-import static main.Constants.MAX_SPEED;
+import static main.Constants.*;
 
 public abstract class Enemy extends PCObject {
     protected Delegate delegate;
@@ -43,15 +44,15 @@ public abstract class Enemy extends PCObject {
     }
 
     /**
-     * Apply effects to the player if you interact with them
-     * @param bot the bot
-     */
-    abstract void interactPlayer(RealBasebot bot);
-
-    /**
      * Update the enemy
      */
     public abstract void updateEnemy();
+
+    /**
+     * Returns the item the enemy drops
+     * @return the item the enemy drops
+     */
+    public abstract Item getItem();
 
     @Override
     public void interactOthers(List<PObject> others) {
@@ -60,8 +61,8 @@ public abstract class Enemy extends PCObject {
                 RealBasebot bot = (RealBasebot) object;
                 if(CollisionDetect.isInside(this, bot)) {
                     if(hostile) bot.setDead();
-                    else interactPlayer(bot);
-                }
+                } else if(pos.dist(bot.pos) <= TILE_SIZE * TARGET_RADIUS) bot.addNear(this);
+                else bot.removeNear(this);
             }
         }
     }

@@ -161,6 +161,7 @@ The following functions affect the bot itself:
 * `align()` - aligns the bot to move in a cardinal direction
 
 The following functions only return information:
+* `isNear()` - returns if the player is near an enemy
 * `canMove(x)` - returns if the player can move `x` blocks in that direction
 * `getX()` - gets the x position
 * `getY()` - gets the Y position

@@ -13,6 +13,8 @@ import python.middleware.*;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static main.Constants.*;
 import static processing.Shape.CIRCLE;
@@ -22,6 +24,7 @@ public class RealBasebot extends PCObject implements PythonInteractable {
     private Item held;
     private int attack;
     private boolean special;
+    private Set<Enemy> near;
     private final Color BLACK = Color.BLACK, HOLE = Color.WHITE;
 
     public RealBasebot(Map map, int x, int y, boolean special) {
@@ -31,6 +34,7 @@ public class RealBasebot extends PCObject implements PythonInteractable {
         pos = new PVector(x, y);
         attack = 0;
         this.special = special;
+        near = ConcurrentHashMap.newKeySet();
 
         BasebotSingleton.getInstance().setBot(this, KEY);
         implementation = new Basebot();
@@ -105,7 +109,7 @@ public class RealBasebot extends PCObject implements PythonInteractable {
 
     @Override
     public boolean update() {
-        ActionQueue queue = implementation.getQueue(KEY);
+        ActionQueue queue = QueueSingleton.getInstance().getQueue();
         while(queue.peek() != null) {
             ActionString as = queue.remove();
             if (as.action == Actions.ATTACK) {
@@ -124,6 +128,7 @@ public class RealBasebot extends PCObject implements PythonInteractable {
 
                     // If we hit an enemy, stop attacking
                     if (enemy.pos.dist(pos) < TILE_SIZE * ATTACK_RADIUS) {
+                        if(held == null) map.getItems().add(enemy.getItem());
                         enemy.setDead();
                     }
                 }
@@ -134,5 +139,17 @@ public class RealBasebot extends PCObject implements PythonInteractable {
     @Override
     public PythonImplementation getImplementation() {
         return implementation;
+    }
+
+    public void addNear(Enemy enemy) {
+        near.add(enemy);
+    }
+
+    public void removeNear(Enemy enemy) {
+       near.remove(enemy);
+    }
+
+    public Set<Enemy> getNear() {
+        return near;
     }
 }

@@ -78,7 +78,7 @@
     {
       "message": [
         "The constructor takes an argument",
-        "'angle' that will need to be",
+        "'steps' that will need to be",
         "provided e.g. 'coolbot(3)'"
       ]
     },

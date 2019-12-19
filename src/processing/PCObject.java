@@ -35,10 +35,10 @@ public abstract class PCObject extends PObject {
 
     public boolean canMove(List<Cell> cells, PVector pos) {
         if(pos.x < 0 || pos.x > WIDTH || pos.y < 0 || pos.y > HEIGHT) return false;
-        if(cells.get(0) != null && cells.get(0).isCollidable()) return false;
-        if(cells.get(1) != null && cells.get(1).isCollidable()) return false;
-        if(cells.get(2) != null && cells.get(2).isCollidable()) return false;
-        if(cells.get(3) != null && cells.get(3).isCollidable()) return false;
+        if(cells.get(0) != null && cells.get(0).isCallable()) return false;
+        if(cells.get(1) != null && cells.get(1).isCallable()) return false;
+        if(cells.get(2) != null && cells.get(2).isCallable()) return false;
+        if(cells.get(3) != null && cells.get(3).isCallable()) return false;
         return true;
     }
 
@@ -74,7 +74,7 @@ public abstract class PCObject extends PObject {
     }
 
     private boolean cellIs(List<Cell> cells, int index) {
-        return cells.get(index) != null && cells.get(index).isCollidable();
+        return cells.get(index) != null && cells.get(index).isCallable();
     }
 
     /**

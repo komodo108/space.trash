@@ -41,7 +41,7 @@ public final class Constants {
     public static final float SLOW_RADIUS = 1f;
     public static final float MAX_ACCELERATION = 0.2f;
     public static final float MAX_SPEED = 1.35f;
-    public static final float ATTACK_TIME = 0.17f;
+    public static final float ATTACK_TIME = 0.37f;
     public static final float PLAYER_MAX_SPEED = 0.69f;
     public static final double ORIENTATION_BASE = Math.PI / 32;
     public static final float DAMPING = 1f;

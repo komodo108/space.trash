@@ -171,6 +171,7 @@ public class LevelLoader {
         JSONObject defaultCode = object.getJSONObject("default");
         JSONArray stringsjson = defaultCode.getJSONArray("code");
         StringBuilder sb = new StringBuilder();
+        sb.append("# Level " + (Integer.parseInt(pathname.split("level")[1].split("[.]json")[0]) + 1) + "\n");
         sb.append("# Code here is not editable\n");
         for (int i = 0; i < stringsjson.length(); i++) {
             String codestring = stringsjson.getString(i);

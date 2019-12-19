@@ -2,6 +2,7 @@ package level.enemy;
 
 import bots.RealBasebot;
 import level.Reflective;
+import level.item.Item;
 import level.map.Map;
 
 import static main.Constants.*;
@@ -31,7 +32,9 @@ public class PigEnemy extends Enemy {
     }
 
     @Override
-    void interactPlayer(RealBasebot bot) { /* No nothing */ }
+    public Item getItem() {
+        return null;
+    }
 
     @Override
     public void updateEnemy() {

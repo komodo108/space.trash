@@ -1,0 +1,142 @@
+{
+  "map": {
+    "setting": "mars",
+
+    "conditionals": [
+      {
+        "wall": {
+          "x": 37,
+          "y": 22,
+          "width": 8,
+          "height": 2
+        }
+      },
+
+      {
+        "wall": {
+          "x": 37,
+          "y": 22,
+          "width": 2,
+          "height": 8
+        }
+      },
+
+      {
+        "wall": {
+          "x": 37,
+          "y": 28,
+          "width": 8,
+          "height": 2
+        }
+      },
+
+      {
+        "wall": {
+          "x": 43,
+          "y": 22,
+          "width": 2,
+          "height": 8
+        }
+      }
+    ],
+
+    "items": [
+      {
+        "item" : {
+          "type": "ore",
+          "x": 29,
+          "y": 18
+        }
+      },
+
+      {
+        "item": {
+          "type": "ore",
+          "x": 7,
+          "y": 38
+        }
+      }
+    ],
+
+    "containers": [
+      {
+        "container": {
+          "type": "refining",
+          "x": 40,
+          "y": 25
+        }
+      },
+
+      {
+        "container": {
+          "type": "opening",
+          "x": 20,
+          "y": 20
+        }
+      }
+    ]
+  },
+
+  "enemies": [
+    {
+      "enemy": {
+        "type": "martian",
+        "x": 17,
+        "y": 20
+      }
+    }
+  ],
+
+  "win": "get",
+
+  "bot": {
+    "x": 2,
+    "y": 4
+  },
+
+  "default": {
+    "code": [
+      "# Use a custom bot",
+      "import bots.Basebot as __ibot",
+      "class coolbot(__ibot):",
+      "  def __init__(self):",
+      "    __ibot.__init__(self)",
+      "  def move(self, x):",
+      "    pass",
+      "def move(bot, x):",
+      "  __ibot.move(bot, x)"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "The working bot started to freeze",
+        "internally. You'll need to work",
+        "with this one for now"
+      ]
+    },
+
+    {
+      "message": [
+        "I was in the process of reprogramming",
+        "them. I don't think I got that far with it"
+      ]
+    },
+
+    {
+      "message": [
+        "A hint?",
+        "You can make subclasses of existing classes"
+      ]
+    },
+
+    {
+      "message": [
+        "For example, if I had a class 'animal',",
+        "I could make a subclass 'bunny' with",
+        "class bunny(animal):"
+      ]
+    }
+  ]
+}

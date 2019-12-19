@@ -2,6 +2,7 @@ package level.enemy;
 
 import bots.RealBasebot;
 import level.Reflective;
+import level.item.Item;
 import level.map.Map;
 
 import static main.Constants.*;
@@ -26,9 +27,6 @@ public class StrangeEnemy extends Enemy {
     }
 
     @Override
-    void interactPlayer(RealBasebot bot) { /* Is not called */ }
-
-    @Override
     public void updateEnemy() {
         // If we have no path, then load one in a new thread for performance
         if (pos.dist(bot.pos) < 40 * TILE_SIZE) delegate.pursue(this, bot);
@@ -36,6 +34,12 @@ public class StrangeEnemy extends Enemy {
         // Otherwise, no path exists so wander
         else wander();
     }
+
+    @Override
+    public Item getItem() {
+        return null;
+    }
+
 
     @Override
     protected void interactMap() {

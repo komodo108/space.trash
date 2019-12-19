@@ -261,7 +261,6 @@ public class Main extends PApplet {
 
         // Reset variables
         timer = 0;
-        special = 0;
         ran = false;
     }
 

@@ -23,7 +23,7 @@ public class Basebot implements PythonImplementation {
 
     public Basebot() {
         this.parent = BasebotSingleton.getInstance().getBot();
-        this.queue = new ActionQueue();
+        this.queue = QueueSingleton.getInstance().getQueue();
         timer = 0;
     }
 
@@ -162,9 +162,19 @@ public class Basebot implements PythonImplementation {
         return Math.toDegrees(parent.ori + Math.PI);
     }
 
+    /**
+     * Returns if the player is near an enemy
+     * @return if the player is near an enemy
+     */
+    @Pythond
+    public boolean isNear() {
+        return parent.getNear().size() > 0;
+    }
+
+    /**
+     * This is not used as we use the singleton queue to transfer messages
+     */
     public ActionQueue getQueue(String key) {
-        if(key.equals(KEY)) {
-            return queue;
-        } else return null;
+        return null;
     }
 }

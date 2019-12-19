@@ -2,12 +2,14 @@ package level.enemy;
 
 import bots.RealBasebot;
 import level.Reflective;
+import level.item.Item;
+import level.item.KeyItem;
 import level.map.Map;
 
 import static main.Constants.*;
 import static processing.Shape.CIRCLE;
 
-public class BorissaurEnemy extends Enemy {
+public class MartianEnemy extends Enemy {
     private int timer;
     private boolean top;
 
@@ -15,7 +17,7 @@ public class BorissaurEnemy extends Enemy {
      * A dumb hostile enemy native to Mars
      */
     @Reflective
-    public BorissaurEnemy(Map map, RealBasebot bot, float x, float y) {
+    public MartianEnemy(Map map, RealBasebot bot, float x, float y) {
         super(map, bot, CIRCLE, x, y, true);
         width = TILE_SIZE * 0.7f;
         height = TILE_SIZE * 0.7f;
@@ -41,7 +43,9 @@ public class BorissaurEnemy extends Enemy {
     }
 
     @Override
-    void interactPlayer(RealBasebot bot) { /* No nothing */ }
+    public Item getItem() {
+        return new KeyItem(pos.x, pos.y);
+    }
 
     @Override
     public void updateEnemy() {

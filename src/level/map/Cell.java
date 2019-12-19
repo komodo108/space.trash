@@ -30,11 +30,11 @@ public class Cell extends PObject {
         this.type = type;
     }
 
-    public boolean isCollidable() { return type == WALL || type == CCWALL; }
+    public boolean isCallable() { return type == WALL || type == CCWALL; }
 
     @Override
     public void render() {
-        applet.stroke(0, 50);
+        applet.noStroke();
         switch (type) {
             case WALL:
                 applet.fill(0);
@@ -46,14 +46,14 @@ public class Cell extends PObject {
                 timer += top ? -5 : 5;
                 if(timer >= 255) top = true;
                 if(timer <= 0) top = false;
-
                 applet.fill(timer);
                 break;
             default:
                 applet.noFill();
                 break;
-        } applet.rect(pos.x, pos.y, width, height);
+        } applet.stroke(0, 50);
+        applet.rect(pos.x, pos.y, width, height);
         applet.fill(0);
-        applet.stroke(0, 100);
+        applet.stroke(0);
     }
 }

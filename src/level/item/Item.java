@@ -10,7 +10,7 @@ public abstract class Item extends PObject {
     public Item(Shape shape, float x, float y, Tags tag) {
         super(shape);
         pos = new PVector(x, y);
-        tag = this.tag;
+        this.tag = tag;
     }
 
     public Tags getTag() {

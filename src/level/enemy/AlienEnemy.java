@@ -4,6 +4,7 @@ import ai.AStarSearch;
 import ai.Path;
 import bots.RealBasebot;
 import level.Reflective;
+import level.item.Item;
 import level.map.Map;
 
 import static main.Constants.*;
@@ -45,9 +46,6 @@ public class AlienEnemy extends Enemy {
     }
 
     @Override
-    void interactPlayer(RealBasebot bot) { /* Is not called */ }
-
-    @Override
     public void updateEnemy() {
         // If we have no path, then load one in a new thread for performance
         if((int) applet.random(20) == 0 && pos.dist(bot.pos) < 35 * TILE_SIZE) {
@@ -73,6 +71,12 @@ public class AlienEnemy extends Enemy {
 
         // Otherwise, no path exists so wander
         else wander();
+    }
+
+    @Override
+    public Item getItem() {
+        // TODO
+        return null;
     }
 
     /**

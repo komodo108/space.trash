@@ -1,0 +1,102 @@
+{
+  "map": {
+    "setting": "mars",
+
+    "items": [
+      {
+        "item" : {
+          "type": "ore",
+          "x": 29,
+          "y": 18
+        }
+      },
+
+      {
+        "item": {
+          "type": "ore",
+          "x": 7,
+          "y": 38
+        }
+      }
+    ],
+
+    "containers": [
+      {
+        "container": {
+          "type": "refining",
+          "x": 40,
+          "y": 25
+        }
+      }
+    ]
+  },
+
+  "enemies": [
+    {
+      "enemy": {
+        "type": "martian",
+        "x": 30,
+        "y": 15
+      }
+    },
+
+    {
+      "enemy": {
+        "type": "martian",
+        "x": 27,
+        "y": 10
+      }
+    },
+
+    {
+      "enemy": {
+        "type": "martian",
+        "x": 17,
+        "y": 20
+      }
+    }
+  ],
+
+  "win": "get",
+
+  "bot": {
+    "x": 2,
+    "y": 4
+  },
+
+  "default": {
+    "code": [
+      "# Use a custom bot",
+      "import bots.Basebot as __ibot",
+      "class coolbot(__ibot):",
+      "  def __init__(self):",
+      "    __ibot.__init__(self)",
+      "  def move(self, x):",
+      "    __ibot.move(self, x)",
+      "    if (self.isNear()):",
+      "      self.attack()"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "Okay, I installed a backup firmware",
+        "onto the bot, let's hope that's better"
+      ]
+    },
+
+    {
+      "message": [
+        "I hope you're having a fun time so far",
+        "Really didn't expect having so many problems"
+      ]
+    },
+
+    {
+      "message": [
+        "You aren't like the rest of your kind..."
+      ]
+    }
+  ]
+}

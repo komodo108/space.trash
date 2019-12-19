@@ -1,0 +1,90 @@
+{
+  "map": {
+    "setting": "mars",
+
+    "items": [
+      {
+        "item" : {
+          "type": "ore",
+          "x": 17,
+          "y": 34
+        }
+      },
+
+      {
+        "item": {
+          "type": "ore",
+          "x": 37,
+          "y": 19
+        }
+      }
+    ],
+
+    "containers": [
+      {
+        "container": {
+          "type": "refining",
+          "x": 30,
+          "y": 30
+        }
+      }
+    ]
+  },
+
+  "enemies": [
+    {
+      "enemy": {
+        "type": "martian",
+        "x": 7,
+        "y": 10
+      }
+    }
+  ],
+
+  "win": "get",
+
+  "bot": {
+    "x": 2,
+    "y": 4
+  },
+
+  "default": {
+    "code": [
+      "# Use a custom bot",
+      "import bots.Basebot as __ibot",
+      "class coolbot(__ibot):",
+      "  def __init__(self):",
+      "    __ibot.__init__(self)"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "Welp, another problem :(",
+        "Seems we are now out of fuel"
+      ]
+    },
+
+    {
+      "message": [
+        "I thought I packed 30k dV worth",
+        "Oh, that's a 3 not a 3-0"
+      ]
+    },
+
+    {
+      "message": [
+        "I have reset the bot fully",
+        "Little guy needs to be reprogrammed"
+      ]
+    },
+
+    {
+      "message": [
+        "Watch out for the enemies there",
+        "They seem less friendly than the pigs"
+      ]
+    }
+  ]
+}

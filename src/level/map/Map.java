@@ -127,6 +127,19 @@ public class Map {
             }
         }
 
+        // Render thicker lines
+        applet.stroke(0, 100);
+        for(int x = 0; x < WIDTH; x += 5 * TILE_SIZE) {
+            applet.line(x, 0, x, HEIGHT);
+        } for(int y = 0; y < HEIGHT; y += 5 * TILE_SIZE) {
+            applet.line(0, y, WIDTH, y);
+        } applet.stroke(0, 200);
+        for(int x = 0; x < WIDTH; x += 10 * TILE_SIZE) {
+            applet.line(x, 0, x, HEIGHT);
+        } for(int y = 0; y < HEIGHT; y += 10 * TILE_SIZE) {
+            applet.line(0, y, WIDTH, y);
+        } applet.stroke(0);
+
         // Render all items
         List<Item> removedItems = new ArrayList<>();
         for(Item item : items) {
