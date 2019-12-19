@@ -87,11 +87,11 @@ public class AStarSearch {
     private boolean isOkay(float x, float y) {
         if(isWall(x + 1, y) || isWall(x, y + 1) || isWall(x - 1, y) || isWall(x, y - 1)) return false;
         if(isWall(x + 1, y + 1) || isWall(x - 1, y + 1) || isWall(x - 1, y - 1) || isWall(x + 1, y - 1)) return false;
-        return map.getMapCell(x, y) != null && !map.getMapCell(x, y).isCallable();
+        return map.getMapCell(x, y) != null && !map.getMapCell(x, y).isCollide();
     }
 
     private boolean isWall(float x, float y) {
-        return (map.getMapCell(x, y) != null && map.getMapCell(x, y).isCallable());
+        return (map.getMapCell(x, y) != null && map.getMapCell(x, y).isCollide());
     }
 
     public List<PVector> getPath() {

@@ -30,7 +30,7 @@ public class Cell extends PObject {
         this.type = type;
     }
 
-    public boolean isCallable() { return type == WALL || type == CCWALL; }
+    public boolean isCollide() { return type == WALL || type == CCWALL; }
 
     @Override
     public void render() {
