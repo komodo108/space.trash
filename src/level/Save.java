@@ -42,6 +42,12 @@ public class Save {
         }
     }
 
+    public void delete() {
+        if (player.exists()) {
+            player.delete();
+        }
+    }
+
     public int getLevel() {
         return level;
     }

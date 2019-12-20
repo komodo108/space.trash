@@ -1,6 +1,7 @@
 package bots;
 
 import level.enemy.Enemy;
+import level.enemy.Tut0Enemy;
 import level.item.Item;
 import level.map.Map;
 import processing.PCObject;
@@ -49,21 +50,23 @@ public class RealBasebot extends PCObject implements PythonInteractable {
             applet.stroke(0);
         }
 
-        applet.fill(255, 0, 0);
-        if(special) {
-            applet.rect(pos.x, pos.y, width, height);
+        if(!dead) {
+            applet.fill(255, 0, 0);
+            if(special) {
+                applet.rect(pos.x, pos.y, width, height);
 
-            int newx = (int) (pos.x + (width / 2) + EYE_OFFSET * Math.cos(ori));
-            int newy = (int) (pos.y + (height / 2) + EYE_OFFSET * Math.sin(ori));
-            applet.fill(0);
-            applet.ellipse(newx, newy, height / EYE_FACTOR, width / EYE_FACTOR);
-        } else {
-            applet.ellipse(pos.x, pos.y, width, height);
+                int newx = (int) (pos.x + (width / 2) + EYE_OFFSET * Math.cos(ori));
+                int newy = (int) (pos.y + (height / 2) + EYE_OFFSET * Math.sin(ori));
+                applet.fill(0);
+                applet.ellipse(newx, newy, height / EYE_FACTOR, width / EYE_FACTOR);
+            } else {
+                applet.ellipse(pos.x, pos.y, width, height);
 
-            int newx = (int) (pos.x + EYE_OFFSET * Math.cos(ori));
-            int newy = (int) (pos.y + EYE_OFFSET * Math.sin(ori));
-            applet.fill(0);
-            applet.ellipse(newx, newy, height / EYE_FACTOR, width / EYE_FACTOR);
+                int newx = (int) (pos.x + EYE_OFFSET * Math.cos(ori));
+                int newy = (int) (pos.y + EYE_OFFSET * Math.sin(ori));
+                applet.fill(0);
+                applet.ellipse(newx, newy, height / EYE_FACTOR, width / EYE_FACTOR);
+            }
         }
 
         // forum.processing.org/two/discussion/11066/cookie-cut-shape-from-other-shape
@@ -91,7 +94,8 @@ public class RealBasebot extends PCObject implements PythonInteractable {
     private PImage setAllColorAlpha(PImage image, Color color) {
         image.loadPixels();
         int icolor = color.getRGB() & 0x00FFFFFF;
-        int p[] = image.pixels, i = p.length, q;
+        int[] p = image.pixels;
+        int i = p.length, q;
         while(i-- != 0) {
             if((q = p[i] & 0x00FFFFFF) == icolor)
                 p[i] = q;
@@ -127,12 +131,12 @@ public class RealBasebot extends PCObject implements PythonInteractable {
                     Enemy enemy = (Enemy) object;
 
                     // If we hit an enemy, stop attacking
-                    if (enemy.pos.dist(pos) < TILE_SIZE * ATTACK_RADIUS) {
+                    if (!(enemy instanceof Tut0Enemy) && enemy.pos.dist(pos) < TILE_SIZE * ATTACK_RADIUS) {
                         Item item = enemy.getItem();
                         if(held == null && item != null) map.getItems().add(item);
                         enemy.setDead();
                         near.remove(enemy);
-                    }
+                    } else if(enemy instanceof Tut0Enemy) attack = 0;
                 }
             } attack--;
         }

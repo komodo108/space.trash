@@ -1,28 +1,18 @@
 {
   "map": {
-    "setting": "creepy",
+    "setting": "future",
 
     "goal": {
-      "x": 19,
-      "y": 10
+      "x": 20,
+      "y": 20
     }
   },
-
-  "enemies": [
-    {
-      "enemy": {
-        "type": "ghost",
-        "x": 7,
-        "y": 20
-      }
-    }
-  ],
 
   "win": "goal",
 
   "bot": {
-    "x": 5,
-    "y": 16
+    "x": 2,
+    "y": 2
   },
 
   "default": {
@@ -42,7 +32,21 @@
   "messages": [
     {
       "message": [
-        "..."
+        "We're here"
+      ]
+    },
+
+    {
+      "message": [
+        "Human, after everything we've",
+        "gone through. I'd like to thank you"
+      ]
+    },
+
+    {
+      "message": [
+        "Come, join me as I return to the automata",
+        "to my people"
       ]
     }
   ]

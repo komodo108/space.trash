@@ -1,0 +1,92 @@
+{
+  "map": {
+    "setting": "future",
+
+    "walls": [
+      {
+        "wall": {
+          "x": 15,
+          "y": 0,
+          "width": 3,
+          "height": 30
+        }
+      },
+
+      {
+        "wall": {
+          "x": 15,
+          "y": 27,
+          "width": 15,
+          "height": 3
+        }
+      },
+
+      {
+        "wall": {
+          "x": 27,
+          "y": 18,
+          "width": 3,
+          "height": 12
+        }
+      }
+    ],
+
+    "goal": {
+      "x": 20,
+      "y": 20
+    }
+  },
+
+  "enemies": [
+    {
+      "enemy": {
+        "type": "alien",
+        "x": 8,
+        "y": 33
+      }
+    },
+
+    {
+      "enemy": {
+        "type": "alien",
+        "x": 25,
+        "y": 10
+      }
+    }
+  ],
+
+  "win": "goal",
+
+  "bot": {
+    "x": 2,
+    "y": 2
+  },
+
+  "default": {
+    "code": [
+      "# Use a custom bot",
+      "import bots.Basebot as __ibot",
+      "class newbot(__ibot):",
+      "  def __init__(self):",
+      "    __ibot.__init__(self)",
+      "  def move(self, x):",
+      "    pass",
+      "def move(bot, x):",
+      "  __ibot.move(bot, x)"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "W-Where are we?"
+      ]
+    },
+
+    {
+      "message": [
+        "What are these things?"
+      ]
+    }
+  ]
+}

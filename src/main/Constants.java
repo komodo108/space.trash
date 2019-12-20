@@ -6,11 +6,11 @@ package main;
 public final class Constants {
 
     // Number of levels
-    public static final int LEVELS = 100;
-    public static final int HELPER_GONE_START = 23;
-    public static final int HELPER_GONE_END = 24;
+    public static final int LEVELS = 30;
     public static final int SPECIAL_LEVEL = 8;
     public static final int MID_LEVEL = 9;      // Mid level > Special level
+    public static final int HELPER_GONE_START = 23;
+    public static final int HELPER_GONE_END = 24;
     public static final float SLEEP_FACTOR = 1.35f;
 
     // Python constants

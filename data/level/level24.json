@@ -1,18 +1,26 @@
 {
   "map": {
-    "setting": "creepy",
+    "setting": "future",
 
     "goal": {
-      "x": 19,
-      "y": 10
+      "x": 29,
+      "y": 20
     }
   },
 
   "enemies": [
     {
       "enemy": {
-        "type": "ghost",
+        "type": "alien",
         "x": 7,
+        "y": 31
+      }
+    },
+
+    {
+      "enemy": {
+        "type": "tut0",
+        "x": 29,
         "y": 20
       }
     }
@@ -21,8 +29,8 @@
   "win": "goal",
 
   "bot": {
-    "x": 5,
-    "y": 16
+    "x": 2,
+    "y": 2
   },
 
   "default": {

@@ -12,6 +12,7 @@ import gui.panel.EditorPanel;
 import level.Level;
 import level.Save;
 import level.map.Map;
+import org.python.util.PythonInterpreter;
 import processing.Assets;
 import processing.core.PApplet;
 import processing.core.PFont;
@@ -65,7 +66,7 @@ public class Main extends PApplet {
         save = new Save();
         save.load();
         id = save.getLevel();
-        //new PythonInterpreter();
+        new PythonInterpreter();
 
         // Make the cut-scenes which we set on at different points
         start = new Start();
@@ -122,23 +123,27 @@ public class Main extends PApplet {
 
             // Once we have shown the win screen for a while, load the next level
             // If we have won, load the cut-scene
-            if(timer > 0 && id == LEVELS - 1) {
-                gui.stop();
-                end = new End();
-            } if (timer > 0) {
+            if (timer > 0) {
                 // Display some cool text saying the player has beaten the level
                 gui.stop();
-                if(id != MID_LEVEL) {
+                if (id != LEVELS - 1 && id != MID_LEVEL) {
                     renderText("large", "Well Done!", CENTER, 0, 0, Color.WHITE);
                     renderText("small", "Loading next level...", CENTER, 0, (assets.getFontSize("large") / 8), Color.WHITE);
+                } else if (id == LEVELS - 1) {
+                    renderText("large", "Thank You!", CENTER, 0, 0, Color.WHITE);
+                    renderText("small", "Thank you for playing!", CENTER, 0, (assets.getFontSize("large") / 8), Color.WHITE);
                 } else {
                     renderText("large", ":)", CENTER, 0, 0, Color.WHITE);
                     renderText("small", "Thank You!", CENTER, 0, (assets.getFontSize("large") / 8), Color.WHITE);
                 } timer++;
-            } if(timer > frameRate * 2 * SLEEP_FACTOR && id == MID_LEVEL) {
+            } if (timer > frameRate * SLEEP_FACTOR && id != LEVELS - 1 && id != MID_LEVEL) load(++id, true);
+            if(timer > frameRate * 2 * SLEEP_FACTOR && id == MID_LEVEL) {
                 gui.stop();
                 mid = new Mid();
-            } if (timer > frameRate * SLEEP_FACTOR && id != MID_LEVEL) load(++id, true);
+            } if(timer > frameRate * 2f * SLEEP_FACTOR && id == LEVELS - 1) {
+                gui.stop();
+                end = new End(save);
+            }
         }
     }
 

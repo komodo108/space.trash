@@ -1,19 +1,30 @@
 {
   "map": {
-    "setting": "creepy",
+    "setting": "future",
+
+    "walls": [
+      {
+        "wall": {
+          "x": 15,
+          "y": 0,
+          "width": 3,
+          "height": 30
+        }
+      }
+    ],
 
     "goal": {
-      "x": 19,
-      "y": 10
+      "x": 20,
+      "y": 20
     }
   },
 
   "enemies": [
     {
       "enemy": {
-        "type": "ghost",
-        "x": 7,
-        "y": 20
+        "type": "alien",
+        "x": 8,
+        "y": 33
       }
     }
   ],
@@ -21,8 +32,8 @@
   "win": "goal",
 
   "bot": {
-    "x": 5,
-    "y": 16
+    "x": 2,
+    "y": 2
   },
 
   "default": {
@@ -42,7 +53,20 @@
   "messages": [
     {
       "message": [
-        "..."
+        "Thank you..."
+      ]
+    },
+
+    {
+      "message": [
+        "I don't know what happened there"
+      ]
+    },
+
+    {
+      "message": [
+        "The ghosts of my people...",
+        "...they haunt me"
       ]
     }
   ]

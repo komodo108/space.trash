@@ -3,10 +3,8 @@ A Programming Puzzle Game· Final Project for CS4303.
 
 ### Story
 You are working in a bot factory & you come across an unusual bot which you can't work on.
-You are fired from your job. Later, you find some trashed bots including the unusual bot in the trash.
-
-They want you to help them return to their home. You go from planet to planet, programming the
-the trashed bots to help you acquire the resources needed to progress.
+They take over the factory and lead you on a fantastical journey to return to their home. 
+You go from planet to planet, programming trashed bots to help you acquire the resources needed to progress.
 
 ### Features
 * Integration with Python to program with
@@ -197,5 +195,44 @@ If the object we are updating is *not* concurrent, then we will use a concurrent
 If not, then Python will directly execute Java code which will update the concurrent object (please ensure you still maintain the ability to abort & sleeping loops on the Python thread).
 Please see the implementation for more on how this is done.
 
-### Running the Game
-WIP
+### Compiling and Running the game
+#### Compiling
+To compile the game, run the following command from the `src` directory:
+
+Windows:
+```
+dir /s /B *.java > sources.txt
+javac -cp ../libs/core.jar;../libs/G4P.jar;../libs/sound.jar;../libs/javamp3.jar;../libs/json.jar;../libs/jsyn.jar;../libs/jython.jar @sources.txt
+```
+
+Linux:
+```
+find -name "*.java" > sources.txt
+javac -cp ../libs/core.jar:../libs/G4P.jar:../libs/sound.jar:../libs/javamp3.jar:../libs/json.jar:../libs/jsyn.jar:../libs/jython.jar @sources.txt
+```
+
+#### Running
+To run the game, run the following command from the `src` directory:
+
+Windows:
+```
+java -cp .;../libs/core.jar;../libs/G4P.jar;../libs/sound.jar;../libs/javamp3.jar;../libs/json.jar;../libs/jsyn.jar;../libs/jython.jar Start
+```
+
+Linux:
+```
+java -cp .:../libs/core.jar:../libs/G4P.jar:../libs/sound.jar:../libs/javamp3.jar:../libs/json.jar:../libs/jsyn.jar:../libs/jython.jar Start
+```
+
+#### Cleaning Up
+To clean up build products, run the following command from the `src` directory:
+
+Windows:
+```
+TODO
+```
+
+Linux:
+```
+TODO
+```
