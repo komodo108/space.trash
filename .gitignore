@@ -97,6 +97,8 @@ libs/.DS_Store
 
 # Player data
 *.dat
+src/sources.txt
+src/data/
 
 # Exclusions
 !/libs/*.jar

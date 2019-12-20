@@ -216,11 +216,13 @@ To run the game, run the following command from the `src` directory:
 
 Windows:
 ```
+robocopy ../data data /e
 java -cp .;../libs/core.jar;../libs/G4P.jar;../libs/sound.jar;../libs/javamp3.jar;../libs/json.jar;../libs/jsyn.jar;../libs/jython.jar Start
 ```
 
 Linux:
 ```
+cp -a ../data data
 java -cp .:../libs/core.jar:../libs/G4P.jar:../libs/sound.jar:../libs/javamp3.jar:../libs/json.jar:../libs/jsyn.jar:../libs/jython.jar Start
 ```
 
@@ -229,10 +231,14 @@ To clean up build products, run the following command from the `src` directory:
 
 Windows:
 ```
-TODO
+rd /s /q data
+del /s /q *.class
+del sources.txt
 ```
 
 Linux:
 ```
-TODO
+rm -rf data
+rm -rf *.class
+rm sources.txt
 ```
