@@ -7,6 +7,8 @@ public final class Constants {
 
     // Number of levels
     public static final int LEVELS = 100;
+    public static final int HELPER_GONE_START = 23;
+    public static final int HELPER_GONE_END = 24;
     public static final int SPECIAL_LEVEL = 8;
     public static final int MID_LEVEL = 9;      // Mid level > Special level
     public static final float SLEEP_FACTOR = 1.35f;
@@ -36,8 +38,9 @@ public final class Constants {
     public static final String AUDIO_DIR = "audio/";
 
     // Physics parameters
+    public static final float MOVE_RADIUS = 1.75f;
     public static final float TARGET_RADIUS = 3f;
-    public static final float ATTACK_RADIUS = 2f;
+    public static final float ATTACK_RADIUS = 2.5f;
     public static final float SLOW_RADIUS = 1f;
     public static final float MAX_ACCELERATION = 0.2f;
     public static final float MAX_SPEED = 1.35f;

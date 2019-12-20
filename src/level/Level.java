@@ -73,8 +73,10 @@ public class Level {
             if(!object.isDead()) {
                 object.render();
                 if(update && object instanceof PCObject) ((PCObject) object).interactOthers(objects);
-            } else if(object instanceof RealBasebot) PythonAbortSingleton.getInstance().setAbort(true);
-            else removed.add(object);
+            } else if(object instanceof RealBasebot) {
+                object.render();
+                PythonAbortSingleton.getInstance().setAbort(true);
+            } else removed.add(object);
         } objects.removeAll(removed);
         return win.isWin(update);
     }

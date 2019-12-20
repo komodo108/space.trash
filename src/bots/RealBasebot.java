@@ -115,7 +115,7 @@ public class RealBasebot extends PCObject implements PythonInteractable {
             if (as.action == Actions.ATTACK) {
                 attack = (int) (applet.frameRate * ATTACK_TIME);
             }
-        } return super.update();
+        } return false;
     }
 
     @Override
@@ -128,8 +128,10 @@ public class RealBasebot extends PCObject implements PythonInteractable {
 
                     // If we hit an enemy, stop attacking
                     if (enemy.pos.dist(pos) < TILE_SIZE * ATTACK_RADIUS) {
-                        if(held == null) map.getItems().add(enemy.getItem());
+                        Item item = enemy.getItem();
+                        if(held == null && item != null) map.getItems().add(item);
                         enemy.setDead();
+                        near.remove(enemy);
                     }
                 }
             } attack--;

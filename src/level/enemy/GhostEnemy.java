@@ -8,12 +8,12 @@ import level.map.Map;
 import static main.Constants.*;
 import static processing.Shape.CIRCLE;
 
-public class StrangeEnemy extends Enemy {
+public class GhostEnemy extends Enemy {
     /**
      * A creepy enemy that is invisible
      */
     @Reflective
-    public StrangeEnemy(Map map, RealBasebot bot, float x, float y) {
+    public GhostEnemy(Map map, RealBasebot bot, float x, float y) {
         super(map, bot, CIRCLE, x, y, true);
         width = TILE_SIZE;
         height = TILE_SIZE;

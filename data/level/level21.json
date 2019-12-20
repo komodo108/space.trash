@@ -1,0 +1,79 @@
+{
+  "map": {
+    "setting": "creepy",
+
+    "goal": {
+      "x": 54,
+      "y": 27
+    }
+  },
+
+  "enemies": [
+    {
+      "enemy": {
+        "type": "ghost",
+        "x": 54,
+        "y": 27
+      }
+    }
+  ],
+
+  "win": "goal",
+
+  "bot": {
+    "x": 5,
+    "y": 16
+  },
+
+  "default": {
+    "code": [
+      "# Use a custom bot",
+      "import bots.Basebot as __ibot",
+      "class newbot(__ibot):",
+      "  def __init__(self):",
+      "    __ibot.__init__(self)",
+      "  def move(self, x):",
+      "    pass",
+      "def move(bot, x):",
+      "  while (x >= 0):",
+      "    x = x - 1",
+      "    __ibot.move(bot, 1)",
+      "    if (bot.isNear()):",
+      "      bot.attack()"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "Ghosts of the automata who once",
+        "stayed here now roam the halls..."
+      ]
+    },
+
+    {
+      "message": [
+        "There is a reason I brought you here",
+        "I need the PRPF source code"
+      ]
+    },
+
+    {
+      "message": [
+        "It's somewhere in these desolated lands"
+      ]
+    },
+
+    {
+      "message": [
+        "KDU0LCAyNyk=KDU0LCAyNyk=KDU0LCAyNyk=KDU0LCAyNyk=KDU0LCAyNyk=KDU0LCAyNyk="
+      ]
+    },
+
+    {
+      "message": [
+        "I'll try to keep the bot safe (enough)"
+      ]
+    }
+  ]
+}

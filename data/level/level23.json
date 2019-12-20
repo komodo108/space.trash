@@ -1,0 +1,51 @@
+{
+  "map": {
+    "setting": "creepy",
+
+    "goal": {
+      "x": 29,
+      "y": 3
+    }
+  },
+
+  "enemies": [
+    {
+      "enemy": {
+        "type": "ghost",
+        "x": 7,
+        "y": 20
+      }
+    }
+  ],
+
+  "win": "goal",
+
+  "bot": {
+    "x": 5,
+    "y": 16
+  },
+
+  "default": {
+    "code": [
+      "# Use a custom bot",
+      "import bots.Basebot as __ibot",
+      "class newbot(__ibot):",
+      "  def __init__(self):",
+      "    __ibot.__init__(self)",
+      "  def move(self, x):",
+      "    __ibot.move(x)",
+      "# EQNS",
+      "def encrypt():",
+      "  while 1:",
+      "    print('x, ')"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "..."
+      ]
+    }
+  ]
+}

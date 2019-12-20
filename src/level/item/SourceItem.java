@@ -6,13 +6,15 @@ import static level.item.Tags.FINAL;
 import static main.Constants.TILE_SIZE;
 import static processing.Shape.CIRCLE;
 
-public class FuelItem extends Item {
+public class SourceItem extends Item {
+    private int timer;
+    private boolean top;
 
     /**
-     * Fuel
+     * Source code for PRPF
      */
     @Reflective
-    public FuelItem(float x, float y) {
+    public SourceItem(float x, float y) {
         super(CIRCLE, x, y, FINAL);
         width = TILE_SIZE;
         height = TILE_SIZE;
@@ -20,7 +22,11 @@ public class FuelItem extends Item {
 
     @Override
     public void render() {
-        applet.fill(149, 186, 48);
+        timer += top ? -5 : 5;
+        if(timer >= 255) top = true;
+        if(timer <= 0) top = false;
+
+        applet.fill(timer, 0, 0);
         applet.ellipse(pos.x, pos.y, width, height);
     }
 }

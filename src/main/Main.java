@@ -247,7 +247,7 @@ public class Main extends PApplet {
         gui.setTutorial(level.getTutorial());
         gui.setCode(level.getCode());
         if(id <= MID_LEVEL && id != SPECIAL_LEVEL) gui.setPictures("help");
-        else if(id == SPECIAL_LEVEL) gui.setPictures("black");
+        else if(id == SPECIAL_LEVEL || (id >= HELPER_GONE_START && id <= HELPER_GONE_END)) gui.setPictures("black");
         else gui.setPictures("tut-0");
         if(reset) gui.setText("# Enter code here");
 

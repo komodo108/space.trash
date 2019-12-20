@@ -1,0 +1,106 @@
+{
+  "map": {
+    "setting": "creepy",
+
+    "items": [
+      {
+        "item": {
+          "type": "source",
+          "x" : 48,
+          "y": 3
+        }
+      }
+    ]
+  },
+
+  "enemies": [
+    {
+      "enemy": {
+        "type": "ghost",
+        "x": 54,
+        "y": 27
+      }
+    },
+
+    {
+      "enemy": {
+        "type": "ghost",
+        "x": 54,
+        "y": 27
+      }
+    },
+
+    {
+      "enemy": {
+        "type": "ghost",
+        "x": 54,
+        "y": 27
+      }
+    }
+  ],
+
+  "win": "get",
+
+  "bot": {
+    "x": 5,
+    "y": 16
+  },
+
+  "default": {
+    "code": [
+      "# Use a custom bot",
+      "import bots.Basebot as __ibot",
+      "class newbot(__ibot):",
+      "  def __init__(self):",
+      "    __ibot.__init__(self)",
+      "  def move(self, x):",
+      "    __ibot.move(x)",
+      "# EQN - x^3 + 6x − 20 = 0",
+      "def eqn():",
+      "  return 0",
+      "#",
+      "def getnumber(num):",
+      "  if (num == 0):",
+      "    return eqn()",
+      "  elif(num == 1):",
+      "    return eqn() * (8 - (7 + 1))",
+      "  else:",
+      "    return eqn() * eqn()",
+      "#",
+      "def encrypt():",
+      "  i = 0",
+      "  while 1:",
+      "    print('0x')",
+      "    i = i + 1",
+      "    i = i % 3",
+      "    print(str(getnumber(i)))"
+    ]
+  },
+
+  "messages": [
+    {
+      "message": [
+        "TUTTUTUTUTUTUTUTUUUUTUTUTUT-0"
+      ]
+    },
+
+    {
+      "message": [
+        "brought code need here the PRPF",
+        "I a is reason I There you source"
+      ]
+    },
+
+    {
+      "message": [
+        "your kind ghost your kind your kind your kind your kind your kind your kind your kind your kind your kind your kind your kind your kind your kind your kind your kind your kind your kind your kind your kind your kind your kind"
+      ]
+    },
+
+    {
+      "message": [
+        ""
+      ]
+    }
+  ]
+}

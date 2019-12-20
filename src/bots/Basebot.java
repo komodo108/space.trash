@@ -36,10 +36,10 @@ public class Basebot implements PythonImplementation {
     public void move(int x) {
         // Get a vector representing where we are facing & find the targeted location from it
         PVector facing = new PVector((float) Math.cos(parent.ori), (float) Math.sin(parent.ori)).normalize();
-        PVector target = parent.pos.copy().add(facing.mult(x * TILE_SIZE));
+        PVector target = parent.pos.copy().add(facing.mult((x * TILE_SIZE) + 1.5f));
 
         // Block Python until we get to the destination or we can't move anymore
-        while (parent.pos.dist(target) > TARGET_RADIUS) {
+        while (parent.pos.dist(target) > MOVE_RADIUS) {
             // Move towards the target
             PVector vTarget = target.copy().sub(parent.pos);
             parent.integrate();
