@@ -34,6 +34,10 @@ public class SimpleContainer extends Container {
     public void render() {
         applet.fill(168, 101, 20);
         applet.rect(pos.x, pos.y, width, height);
+        applet.noStroke();
+        applet.fill(138, 71, 0);
+        applet.rect(pos.x + (0.2f * TILE_SIZE), pos.y + (0.2f * TILE_SIZE), width - (0.4f * TILE_SIZE), height - (0.4f * TILE_SIZE));
+        applet.stroke(0);
         applet.fill(70);
         applet.noStroke();
         switch (held.size()) {

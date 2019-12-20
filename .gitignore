@@ -100,5 +100,8 @@ libs/.DS_Store
 src/sources.txt
 src/data/
 
+# Submission
+submit/
+
 # Exclusions
 !/libs/*.jar
