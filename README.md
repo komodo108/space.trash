@@ -16,9 +16,6 @@ You go from planet to planet, programming trashed bots to help you acquire the r
 * Many levels where all the bots features will need to be used
 
 ### GitHub Release 
-[![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://github.com/komodo108/space.trash/issues/)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/Naereen/StrapDown.js.svg)](https://github.com/komodo108/space.trash/pull/)
-
 This project is now Open Source on Github! I probably won't continue working on this game, but I want to allow others to work off of it.
 
 I've marked some issues with the game currently, and will be reviewing any pull requests. Below is an explanation of how the most important parts of the game function, and how to build the game. 
