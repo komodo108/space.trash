@@ -146,7 +146,7 @@ class coolbot(ibot):
     def move(self, x):
         ibot.move(self, x * self.myvar)
 
-bot = coolbot()
+bot = coolbot(7)
 ```
 
 #### Data
