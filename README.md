@@ -6,12 +6,22 @@ You are working in a bot factory & you come across an unusual bot which you can'
 They take over the factory and lead you on a fantastical journey to return to their home. 
 You go from planet to planet, programming trashed bots to help you acquire the resources needed to progress.
 
+![Screenshot](https://i.imgur.com/TJ0cGpv.jpg)
+
 ### Features
 * Integration with Python to program with
 * Built-in code editor with special features (e.g. non-editable sections)
 * Initial tutorial levels + tutorials throughout
 * Challenging animals with AI
 * Many levels where all the bots features will need to be used
+
+### GitHub Release 
+[![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://github.com/komodo108/space.trash/issues/)
+[![GitHub pull-requests](https://img.shields.io/github/issues-pr/Naereen/StrapDown.js.svg)](https://github.com/komodo108/space.trash/pull/)
+
+This project is now Open Source on Github! I probably won't continue working on this game, but I want to allow others to work off of it.
+
+I've marked some issues with the game currently, and will be reviewing any pull requests. Below is an explanation of how the most important parts of the game function, and how to build the game. 
 
 ### Levels
 A level itself should be a winnable puzzle with its own environment made from the components implemented in the game.
@@ -139,9 +149,12 @@ class coolbot(ibot):
 bot = coolbot()
 ```
 
-#### Images
+#### Data
 Images and other data must be placed into the correct subfolder of `data`. 
 The normal screen size is 1504 x 912 pixels, and the tile size is 16 x 16 pixels.
+
+Royalty free music by [Bensound.com](https://www.bensound.com/royalty-free-music/track/dreams-chill-out).
+Royalty free Space image edited from [Needpix.com](https://www.needpix.com/photo/504000/star-milky-way-background-night-starry-sky-night-sky-space-texture-sky),
 
 #### Player interaction
 The player needs to have functions which they can call to interact with the level.
@@ -196,6 +209,12 @@ If not, then Python will directly execute Java code which will update the concur
 Please see the implementation for more on how this is done.
 
 ### Compiling and Running the game
+#### Debugging
+There are a few inputs mapped to debugging levels:
+* **HOME** - Win current level
+* **PAGE UP** - Go to next level
+* **PAGE DOWN** - Go to previous level
+
 #### Compiling
 To compile the game, run the following command from the `src` directory:
 
